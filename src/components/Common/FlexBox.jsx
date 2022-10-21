@@ -1,0 +1,72 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
+const defaultProps = {
+  width: 'auto',
+  height: 'auto',
+  margin: '0',
+  padding: '0',
+  gap: '0',
+  borderRadius: '',
+  column: false,
+  reverse: false,
+  wrap: 'nowrap',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  center: false,
+  background: 'transparent',
+  position: 'static',
+  top: '0',
+  left: '0',
+};
+
+const FlexBox = (props) => {
+  const {
+    children,
+    width,
+    height,
+    margin,
+    padding,
+    gap,
+    borderRadius,
+    column,
+    reverse,
+    wrap,
+    justifyContent,
+    alignItems,
+    center,
+    background,
+    position,
+    top,
+    left,
+  } = props;
+
+  const dir = (column ? 'column' : 'row') + (reverse ? '-reverse' : '');
+
+  return (
+    <div
+      css={css`
+        display: flex;
+        width: ${width};
+        height: ${height};
+        margin: ${margin};
+        padding: ${padding};
+        border-radius: ${borderRadius};
+        flex-direction: ${dir};
+        flex-wrap: ${wrap};
+        justify-content: ${center ? 'center' : justifyContent};
+        align-items: ${center ? 'center' : alignItems};
+        background: ${background};
+        position: ${position};
+        top: ${top};
+        left: ${left};
+        gap: ${gap};
+      `}
+    >
+      {children}
+    </div>
+  );
+};
+FlexBox.defaultProps = defaultProps;
+
+export default FlexBox;
