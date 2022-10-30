@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Box } from '@mui/system';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import FlexBox from 'components/Common/FlexBox';
 
 const TabsLib = styled(Tabs)`
@@ -59,33 +58,6 @@ const LogLogo = styled.img`
   height: 3rem;
 `;
 
-const TabPanel = (props) => {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 15 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-};
-
-const a11yProps = (index) => {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-};
-
 const VerticalTabs = () => {
   const [value, setValue] = React.useState(2);
 
@@ -109,7 +81,6 @@ const VerticalTabs = () => {
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        //   indicatorColor="text.primary"
         sx={{
           borderRight: 1,
           borderColor: 'divider',
@@ -119,14 +90,14 @@ const VerticalTabs = () => {
       >
         <Logo>대신</Logo>
         <NavLabel>MENU</NavLabel>
-        <Tab label="🏠 NOW" {...a11yProps(0)} />
-        <Tab label="✍ 국민인" {...a11yProps(1)} />
-        <Tab label="👪 동아리" {...a11yProps(2)} />
-        <Tab label="📢 홍보" {...a11yProps(3)} />
+        <Tab label="🏠 NOW" />
+        <Tab label="✍ 국민인" />
+        <Tab label="👪 동아리" />
+        <Tab label="📢 홍보" />
         <NavLabel>MY PAGE</NavLabel>
-        <Tab label="🙂 마이페이지" {...a11yProps(3)} />
-        <TabLib label=" - 스크랩" {...a11yProps(5)} />
-        <TabLib label=" - 내가 쓴 글" {...a11yProps(6)} />
+        <Tab label="🙂 마이페이지" />
+        <TabLib label=" - 스크랩" />
+        <TabLib label=" - 내가 쓴 글" />
         <FlexBox margin="4rem 0 0 0.8rem">
           <LogLogo src={`${process.env.PUBLIC_URL}/images/login.svg`} />
           <LogLabel>
@@ -136,27 +107,6 @@ const VerticalTabs = () => {
           </LogLabel>
         </FlexBox>
       </TabsLib>
-      <TabPanel value={value} index={2}>
-        Now Page
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        후기 Page
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        동아리 Page
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        홍보 Page
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        My Page
-      </TabPanel>
-      <TabPanel value={value} index={8}>
-        스크랩
-      </TabPanel>
-      <TabPanel value={value} index={9}>
-        내가 쓴 글
-      </TabPanel>
     </Box>
   );
 };
