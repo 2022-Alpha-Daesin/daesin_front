@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
-import FlexBox from '../FlexBox';
+import FlexBox from 'components/Common/FlexBox';
 
 const TabsLib = styled(Tabs)`
   padding: 0rem 0 2rem 2rem;

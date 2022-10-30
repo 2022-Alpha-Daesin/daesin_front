@@ -1,9 +1,9 @@
-import Navbar from 'components/Common/Navbar/DesktopNavbar';
+import ResponsiveLayout from 'layouts/responsive.layout';
 const App = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
+    <>
+      <ResponsiveLayout />
+    </>
   );
 };
 
