@@ -18,21 +18,18 @@ const TabsLib = styled(Tabs)`
     font-weight: 600;
     color: #282828;
     align-items: flex-start;
-  }
-
-  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: #282828 !important;
+    .Mui-selected {
+      color: #282828 !important;
+    }
   }
 `;
 
 const TabLib = styled(Tab)`
   padding: 0 0 0 3rem !important;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   width: 15rem;
   height: 5rem;
   font-family: 'Pr-Bold';
-  font-weight: 600;
-  color: #282828;
 `;
 
 const Logo = styled.span`
@@ -82,15 +79,15 @@ const TabPanel = (props) => {
   );
 };
 
-function a11yProps(index) {
+const a11yProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
     'aria-controls': `vertical-tabpanel-${index}`,
   };
-}
+};
 
 const VerticalTabs = () => {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(2);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -103,7 +100,7 @@ const VerticalTabs = () => {
         bgcolor: 'background.paper',
         display: 'flex',
         height: '100%',
-        padding: '5rem 0 0 0',
+        padding: '4.5rem 0 0 0',
       }}
     >
       <TabsLib
@@ -139,26 +136,26 @@ const VerticalTabs = () => {
           </LogLabel>
         </FlexBox>
       </TabsLib>
-      <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        Now Page
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        후기 Page
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five...
+        동아리 Page
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+        홍보 Page
       </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
+      <TabPanel value={value} index={7}>
+        My Page
+      </TabPanel>
+      <TabPanel value={value} index={8}>
+        스크랩
+      </TabPanel>
+      <TabPanel value={value} index={9}>
+        내가 쓴 글
       </TabPanel>
     </Box>
   );
