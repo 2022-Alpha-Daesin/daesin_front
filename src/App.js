@@ -1,6 +1,10 @@
-
+import Navbar from 'components/Navbar/DesktopNavbar';
 const App = () => {
-  return <div>deasin_main</div>;
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
 };
 
 export default App;
