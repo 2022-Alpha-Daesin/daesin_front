@@ -1,4 +1,4 @@
-import Navbar from 'components/Common/Navbar/DesktopNavbar';
+import Navbar from 'components/Navbar/DesktopNavbar';
 const App = () => {
   return (
     <div>
