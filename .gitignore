@@ -23,3 +23,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+vcs.xml
+prettier.xml
+modules.xml
+misc.xml
+daesin_front.iml
+.idea/
