@@ -1,9 +1,15 @@
-import ResponsiveLayout from 'layouts/responsive.layout';
+import { lazy, Suspense } from 'react';
+import { WaveLoading } from 'react-loadingg';
+
+const Navbar = lazy(() => import('components/Navbar/DesktopNavbar'));
+
 const App = () => {
   return (
-    <>
-      <ResponsiveLayout />
-    </>
+    <div>
+      <Suspense fallback={<WaveLoading />}>
+        <Navbar />
+      </Suspense>
+    </div>
   );
 };
 
