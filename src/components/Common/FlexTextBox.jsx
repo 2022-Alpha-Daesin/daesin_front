@@ -36,7 +36,7 @@ const FlexTextBox = (props) => {
     right,
     bottom,
     background,
-    mobileDisplay,3
+    mobileDisplay,
     lineHeight,
     whiteSpace,
   } = props;
