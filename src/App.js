@@ -1,12 +1,15 @@
-import GlobalStyles from 'styles/GlobalStyles';
-import Navbar from 'components/Navbar/DesktopNavbar';
+import { lazy, Suspense } from 'react';
+import { WaveLoading } from 'react-loadingg';
+
+const Navbar = lazy(() => import('components/Navbar/DesktopNavbar'));
 
 const App = () => {
   return (
-    <>
-      <GlobalStyles />
-      <Navbar />
-    </>
+    <div>
+      <Suspense fallback={<WaveLoading />}>
+        <Navbar />
+      </Suspense>
+    </div>
   );
 };
 
