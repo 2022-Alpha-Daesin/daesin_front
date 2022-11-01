@@ -10,7 +10,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import FlexBox from 'components/Common/FlexBox';
 
 const TabsLib = styled(Tabs)`
-  padding: 2.5rem 0 2rem 2rem;
+  padding: 3.5rem 0 2rem 2rem;
   height: 100vh;
   background-color: white;
   display: flex;
@@ -70,7 +70,7 @@ const VerticalTabs = () => {
         borderColor: 'divider',
         fontSize: 200,
         border: 'none',
-        width: 270,
+        width: 290,
       }}
     >
       <Logo>대신</Logo>
