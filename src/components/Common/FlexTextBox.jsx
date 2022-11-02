@@ -7,12 +7,14 @@ const defaultProps = {
   margin: '0',
   padding: '0',
   fontSize: '1rem',
+  lineHeight: '120%',
   color: 'white',
   fontWeight: '400',
 };
 
 const FlexTextBox = (props) => {
-  const { children, width, height, padding, margin, fontSize, color, fontWeight } = props;
+  const { children, width, height, padding, margin, fontSize, color, fontWeight, lineHeight } =
+    props;
 
   return (
     <div
@@ -23,6 +25,7 @@ const FlexTextBox = (props) => {
         padding: ${padding};
         font-size: ${fontSize};
         font-weight: ${fontWeight};
+        line-height: ${lineHeight};
         text-align: left;
         color: ${color};
       `}
