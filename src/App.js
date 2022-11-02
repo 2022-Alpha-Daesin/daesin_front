@@ -10,6 +10,10 @@ const SignIn = lazy(() => import('pages/SignIn/SignIn'));
 const App = () => {
   return (
     <Router>
+
+const App = () => {
+  return (    
+    <Router>
       <GlobalStyles />
       <Suspense fallback={<WaveLoading />}>
         <ResponsiveLayout>

@@ -205,7 +205,6 @@ const VerticalTabs = () => {
         />
         <FlexBox margin="4rem 0 0 0.8rem">
           <LogLogo src={`${process.env.PUBLIC_URL}/images/login.svg`} />
-          {/*<Link to="signin">*/}
           <LogLabel>
             <Link to="/signin">
               로그인/
@@ -213,7 +212,6 @@ const VerticalTabs = () => {
               회원가입
             </Link>
           </LogLabel>
-          {/*</Link>*/}
         </FlexBox>
       </TabsLib>
     </Box>
