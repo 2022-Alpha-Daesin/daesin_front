@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Box } from '@mui/system';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -204,11 +205,15 @@ const VerticalTabs = () => {
         />
         <FlexBox margin="4rem 0 0 0.8rem">
           <LogLogo src={`${process.env.PUBLIC_URL}/images/login.svg`} />
+          {/*<Link to="signin">*/}
           <LogLabel>
-            로그인/
-            <br />
-            회원가입
+            <Link to="/signin">
+              로그인/
+              <br />
+              회원가입
+            </Link>
           </LogLabel>
+          {/*</Link>*/}
         </FlexBox>
       </TabsLib>
     </Box>
