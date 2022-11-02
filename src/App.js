@@ -1,3 +1,4 @@
+import CrewCard from 'components/Card/CrewCard';
 import { lazy, Suspense } from 'react';
 import { WaveLoading } from 'react-loadingg';
 import GlobalStyles from 'styles/GlobalStyles';
@@ -12,6 +13,7 @@ const App = () => {
       <Suspense fallback={<WaveLoading />}>
         <ResponsiveLayout>
           <Searchbar />
+          <CrewCard />
         </ResponsiveLayout>
       </Suspense>
     </>
