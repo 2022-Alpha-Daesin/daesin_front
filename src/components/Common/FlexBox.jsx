@@ -56,7 +56,7 @@ const FlexBox = (props) => {
         flex-wrap: ${wrap};
         justify-content: ${center ? 'center' : justifyContent};
         align-items: ${center ? 'center' : alignItems};
-        background: ${background};
+        background-color: ${background};
         position: ${position};
         top: ${top};
         left: ${left};
