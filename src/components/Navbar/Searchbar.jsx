@@ -21,7 +21,7 @@ const BellIcon = styled(Icon)`
 `;
 
 const Searchbar = () => (
-  <FlexBox margin="2rem 0 0 3rem">
+  <FlexBox>
     <SearchBar size="huge" showNoResults={false} />
     <BellIcon name="bell outline" size="big" />
   </FlexBox>

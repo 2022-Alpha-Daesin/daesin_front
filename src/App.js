@@ -1,15 +1,20 @@
 import { lazy, Suspense } from 'react';
 import { WaveLoading } from 'react-loadingg';
+import GlobalStyles from 'styles/GlobalStyles';
 
-const Navbar = lazy(() => import('components/Navbar/DesktopNavbar'));
+const ResponsiveLayout = lazy(() => import('layouts/responsive.layout'));
+const Searchbar = lazy(() => import('components/Navbar/Searchbar'));
 
 const App = () => {
   return (
-    <div>
+    <>
+      <GlobalStyles />
       <Suspense fallback={<WaveLoading />}>
-        <Navbar />
+        <ResponsiveLayout>
+          <Searchbar />
+        </ResponsiveLayout>
       </Suspense>
-    </div>
+    </>
   );
 };
 

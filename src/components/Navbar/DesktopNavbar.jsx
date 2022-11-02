@@ -12,7 +12,7 @@ import FlexBox from 'components/Common/FlexBox';
 const TabsLib = styled(Tabs)`
   padding: 3.5rem 0 2rem 2rem;
   height: 100vh;
-  background-color: white;
+  background: white;
   display: flex;
 `;
 
