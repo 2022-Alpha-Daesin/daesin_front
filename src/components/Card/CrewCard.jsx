@@ -26,12 +26,13 @@ const ContentBox = styled.div`
 `;
 
 const Category = styled.div`
-  font-family: 'Pr-Bold';
+  font-family: 'Pr-Regular';
+  font-weight: 800;
   font-size: 0.9rem;
   color: #737373;
 `;
 
-const ChallengeCard = (props) => {
+const ChallengeCard = () => {
   return (
     <CardContainer>
       <Thumbnail src={`${process.env.PUBLIC_URL}/images/sample.png`} />
