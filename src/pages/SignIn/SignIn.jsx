@@ -1,31 +1,40 @@
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import styled from 'styled-components';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const SignInText = styled.span`
+  font-size: 2.5rem;
+  font-weight: 600;
+`;
 
-const theme = createTheme();
+const ButtonTxt = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+`;
+
+const SingInBtn = styled(Button)`
+  background-color: red !important;
+`;
+
+const SignInLink = styled(Link)`
+  color: #000 !important;
+`;
+
+const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#64748B',
+      contrastText: '#fff',
+    },
+  },
+});
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -49,11 +58,8 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            <SignInText>SIGN IN</SignInText>
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -61,10 +67,11 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
+              color="neutral"
             />
             <TextField
               margin="normal"
@@ -75,29 +82,25 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              color="neutral"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign In
-            </Button>
+            <SingInBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <ButtonTxt>로그인</ButtonTxt>
+            </SingInBtn>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                <SignInLink href="#" variant="body2" underline="hover">
+                  비밀번호를 잊으셨나요?
+                </SignInLink>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <SignInLink href="/signup" variant="body2" underline="hover">
+                  {'회원가입'}
+                </SignInLink>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
