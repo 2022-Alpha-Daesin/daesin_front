@@ -3,25 +3,7 @@ import styled from 'styled-components';
 import COLOR from 'constants/color';
 import FlexBox from 'components/Common/FlexBox';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
-const dummyData = [
-  '소프트웨어학과',
-  '도자공예학과',
-  '영어영문학과',
-  '중어중문학과',
-  '기계공학과',
-  '국어국문학과',
-  '전자공학과',
-  '영어영문학과',
-  '중어중문학과',
-  '기계공학과',
-  '국어국문학과',
-  '체육학과',
-  '소프트웨어학과',
-  '소프트웨어학과',
-  '영어영문학과',
-  '영어영문학과',
-];
+import dummyData from './dummyData';
 
 const Btn = styled.button`
   padding: 0.85rem 0.6rem;
@@ -29,33 +11,46 @@ const Btn = styled.button`
   border: 1.6px solid ${COLOR.font.select};
   font-size: 0.9rem;
   font-weight: 800;
-  color: ${COLOR.font.select};
-  background-color: ${(props) => (props.isClicked ? 'grey' : 'transparent')};
+  color: ${(props) => (props.isClicked ? 'white' : '#5c5c5c')};
+  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : 'transparent')};
+  opacity: 0.7;
   cursor: pointer;
 `;
 
 const CrewCategory = () => {
   const [cnt, setCnt] = useState(1);
-  const [isClicked, setClicked] = useState(false);
+  const [data, setData] = useState(dummyData);
 
   const cntUp = () => {
-    cnt >= dummyData.length / 8 ? setCnt(1) : setCnt(cnt + 1);
+    cnt >= data.length / 8 ? setCnt(1) : setCnt(cnt + 1);
   };
 
-  const handleClick = () => {
-    setClicked(!isClicked);
+  const handleClick = (id) => {
+    setData(
+      data.map((data) => {
+        if (data.id === id) {
+          data.isClicked = !data.isClicked;
+        }
+        return data;
+      }),
+    );
   };
 
   const insertBtn = (cnt) => {
     let range = cnt * 8;
-    if (range > dummyData.length) {
-      range = range - (8 - (dummyData.length % 8));
+    if (range > data.length) {
+      range = range - (8 - (data.length % 8));
     }
     const newArr = [];
     for (let i = cnt * 8 - 8; i < range; i += 1) {
       newArr.push(
-        <Btn isClicked={isClicked} onClick={handleClick}>
-          {dummyData[i]}
+        <Btn
+          isClicked={data[i].isClicked}
+          onClick={() => {
+            handleClick(data[i].id);
+          }}
+        >
+          {data[i].study}
         </Btn>,
       );
     }
