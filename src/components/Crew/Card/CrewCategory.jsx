@@ -30,26 +30,36 @@ const Btn = styled.button`
   font-size: 0.9rem;
   font-weight: 800;
   color: ${COLOR.font.select};
+  background-color: ${(props) => (props.isClicked ? 'grey' : 'transparent')};
   cursor: pointer;
 `;
 
-const insertBtn = (cnt) => {
-  let range = cnt * 8;
-  if (range > dummyData.length) {
-    range = range - (8 - (dummyData.length % 8));
-  }
-  const newArr = [];
-  for (let i = cnt * 8 - 8; i < range; i += 1) {
-    newArr.push(<Btn>{dummyData[i]}</Btn>);
-  }
-  return newArr;
-};
-
 const CrewCategory = () => {
   const [cnt, setCnt] = useState(1);
+  const [isClicked, setClicked] = useState(false);
 
   const cntUp = () => {
     cnt >= dummyData.length / 8 ? setCnt(1) : setCnt(cnt + 1);
+  };
+
+  const handleClick = () => {
+    setClicked(!isClicked);
+  };
+
+  const insertBtn = (cnt) => {
+    let range = cnt * 8;
+    if (range > dummyData.length) {
+      range = range - (8 - (dummyData.length % 8));
+    }
+    const newArr = [];
+    for (let i = cnt * 8 - 8; i < range; i += 1) {
+      newArr.push(
+        <Btn isClicked={isClicked} onClick={handleClick}>
+          {dummyData[i]}
+        </Btn>,
+      );
+    }
+    return newArr;
   };
 
   return (
