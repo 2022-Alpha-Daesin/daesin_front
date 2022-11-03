@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -11,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MajorData from './MajorData';
 
 const theme = createTheme();
 
@@ -24,9 +26,10 @@ export default function SignUp() {
     });
   };
 
-  const [grade, setGrade] = React.useState('');
-  const [division, setDivision] = React.useState('');
-  const [department, setDepartment] = React.useState('');
+  const { Division, Department } = MajorData;
+  const [grade, setGrade] = useState('');
+  const [division, setDivision] = useState('');
+  const [department, setDepartment] = useState('');
 
   const handleGrade = (event: SelectChangeEvent) => {
     setGrade(event.target.value);
@@ -100,33 +103,40 @@ export default function SignUp() {
               </FormControl>
 
               <FormControl sx={{ ml: 2, mt: 2, minWidth: 400 }}>
-                <InputLabel id="demo-simple-select-helper-lsabel">소속대학 선택</InputLabel>
+                <InputLabel id="division">소속대학 선택</InputLabel>
                 <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
+                  labelId="division"
+                  id="division"
                   value={division}
                   label="대학"
                   onChange={handleDivision}
                 >
-                  <MenuItem value={'글인지대'}>글인지대</MenuItem>
-                  <MenuItem value={'소융'}>소융</MenuItem>
+                  {Division.map((el) => (
+                    <MenuItem key={el.Division} value={el.Division}>
+                      {el.DivisionNm}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 
               <FormControl sx={{ ml: 2, mt: 2, minWidth: 400 }}>
-                <InputLabel id="demo-simple-select-helper-label">소속학과 선택</InputLabel>
+                <InputLabel id="department">소속학과 선택</InputLabel>
                 <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
+                  labelId="department"
+                  id="department"
                   value={department}
-                  label="학부"
+                  label="대학"
                   onChange={handleDepartment}
                 >
-                  <MenuItem value={'영문학과'}>영문학과</MenuItem>
-                  <MenuItem value={'소융과'}>소융과</MenuItem>
+                  {Department.filter((el) => el.Division === division).map((el) => (
+                    <MenuItem key={el.Department} value={el.Department}>
+                      {el.DepartmentNm}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
+
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               회원가입
             </Button>
