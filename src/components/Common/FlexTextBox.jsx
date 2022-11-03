@@ -7,39 +7,14 @@ const defaultProps = {
   margin: '0',
   padding: '0',
   fontSize: '1rem',
-  fontFamily: 'Pr-SemiBold',
+  lineHeight: '120%',
   color: 'white',
-  position: 'static',
-  top: '0',
-  right: '0',
-  bottom: '0',
-  background: 'transparent',
-  mobileFontSize: '',
-  mobileDisplay: 'block',
-  lineHeight: 'auto',
-  whiteSpace: '',
+  fontWeight: '400',
 };
 
 const FlexTextBox = (props) => {
-  const {
-    children,
-    width,
-    mobileFontSize,
-    height,
-    padding,
-    margin,
-    fontSize,
-    fontFamily,
-    color,
-    position,
-    top,
-    right,
-    bottom,
-    background,
-    mobileDisplay,
-    lineHeight,
-    whiteSpace,
-  } = props;
+  const { children, width, height, padding, margin, fontSize, color, fontWeight, lineHeight } =
+    props;
 
   return (
     <div
@@ -49,16 +24,10 @@ const FlexTextBox = (props) => {
         margin: ${margin};
         padding: ${padding};
         font-size: ${fontSize};
-        font-family: ${fontFamily};
+        font-weight: ${fontWeight};
+        line-height: ${lineHeight};
         text-align: left;
         color: ${color};
-        position: ${position};
-        top: ${top};
-        right: ${right};
-        bottom: ${bottom};
-        background: ${background};
-        line-height: ${lineHeight};
-        white-space: ${whiteSpace};
       `}
     >
       {children}
