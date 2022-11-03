@@ -51,7 +51,7 @@ const a11yProps = (index) => {
   };
 };
 
-const VerticalTabs = () => {
+const DesktopNavbar = () => {
   const [value, setValue] = React.useState(2);
 
   const handleChange = (event, newValue) => {
@@ -206,4 +206,4 @@ const VerticalTabs = () => {
   );
 };
 
-export default VerticalTabs;
+export default DesktopNavbar;

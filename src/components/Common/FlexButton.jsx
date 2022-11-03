@@ -11,7 +11,7 @@ const defaultProps = {
   borderRadius: '0.62rem',
   fontSize: '1.2rem',
   color: 'white',
-  backgroundColor: '',
+  backgroundColor: 'transparent',
   disabled: false,
   onClick: Function,
 };
