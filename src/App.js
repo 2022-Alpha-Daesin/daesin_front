@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-d
 import GlobalStyles from 'styles/GlobalStyles';
 
 const ResponsiveLayout = lazy(() => import('layouts/responsive.layout'));
-const Searchbar = lazy(() => import('components/Navbar/Searchbar'));
 const SignIn = lazy(() => import('pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('pages/Signup/SignUp'));
+const Club = lazy(() => import('pages/Club/Club'));
 
 const App = () => {
   return (
@@ -14,12 +14,12 @@ const App = () => {
       <GlobalStyles />
       <Suspense fallback={<WaveLoading />}>
         <ResponsiveLayout>
-          <Searchbar />
+          <Routes>
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/club" element={<Club />} />
+          </Routes>
         </ResponsiveLayout>
-        <Routes>
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
       </Suspense>
     </Router>
   );

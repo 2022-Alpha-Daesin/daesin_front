@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -8,10 +9,9 @@ import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FlexBox from 'components/Common/FlexBox';
-import Link from '@mui/material/Link';
 
 const TabsLib = styled(Tabs)`
-  padding: 3.5rem 0 2rem 2rem;
+  padding: 2.5rem 0 2rem 2rem;
   height: 100vh;
   background: white;
   display: flex;
@@ -26,7 +26,7 @@ const Logo = styled.span`
 `;
 
 const NavLabel = styled.span`
-  margin: 4rem 0 1rem 1rem;
+  margin: 2rem 0 1rem 1rem;
   font-size: 1.4rem;
   font-family: 'Pr-Bold';
   font-weight: 600;
@@ -34,14 +34,14 @@ const NavLabel = styled.span`
 `;
 
 const LogLabel = styled.span`
-  margin: 1.2rem 0 1rem 1rem;
+  margin: 0 0 1rem 1rem;
   font-size: 1.5rem;
   font-family: 'Pr-Pegular';
   font-weight: 600;
 `;
 
 const LogLogo = styled.img`
-  margin: 1.5rem 0 0 0;
+  margin: 0.25rem 0 0 0;
   width: 3rem;
   height: 3rem;
 `;
@@ -55,9 +55,14 @@ const a11yProps = (index) => {
 
 const DesktopNavbar = () => {
   const [value, setValue] = React.useState(2);
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const clickClub = () => {
+    navigate('/club');
   };
 
   return (
@@ -92,7 +97,8 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: '#282828',
-          marginTop: 1,
+          height: 20,
+          // marginTop: 1,
           justifyContent: 'flex-start',
         }}
       />
@@ -111,7 +117,7 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: '#282828',
-          marginTop: 1,
+          // marginTop: 1,
           justifyContent: 'flex-start',
         }}
       />
@@ -130,9 +136,10 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: '#282828',
-          marginTop: 1,
+          // marginTop: 1,
           justifyContent: 'flex-start',
         }}
+        onClick={clickClub}
       />
       <Tab
         icon={
@@ -149,7 +156,7 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: '#282828',
-          marginTop: 1,
+          // marginTop: 1,
           justifyContent: 'flex-start',
         }}
       />
@@ -176,7 +183,7 @@ const DesktopNavbar = () => {
         label=" - 스크랩"
         {...a11yProps(5)}
         sx={{
-          marginTop: 2,
+          // marginTop: 2,
           width: 200,
           fontSize: 20,
           fontWeight: 600,
@@ -188,7 +195,7 @@ const DesktopNavbar = () => {
         label=" - 내가 쓴 글"
         {...a11yProps(6)}
         sx={{
-          marginTop: 2,
+          // marginTop: 2,
           width: 231,
           fontSize: 20,
           fontWeight: 600,

@@ -23,7 +23,7 @@ const Thumbnail = styled.img`
 
 const ContentBox = styled.div`
   width: 14.5rem;
-  height: 4rem;
+  height: 4.25rem;
   padding: 0.5rem 0.7rem;
   border-radius: 0 2rem 1.25rem 1.25rem;
   background-color: black;
@@ -47,11 +47,11 @@ const ChallengeCard = () => {
         >
           코딩
         </FlexTextBox>
-        <FlexBox>
-          <FlexTextBox fontSize="1.05rem" fontWeight="600" padding="0 0 0 0.5rem">
+        <FlexBox margin="0.4rem 0 0 0">
+          <FlexTextBox fontSize="1.05rem" fontWeight="600" padding="0 0 0 0.5rem" color="white">
             멋쟁이 사자처럼
           </FlexTextBox>
-          <FlexTextBox fontSize="0.85rem" fontWeight="600" margin="0.2rem 0 0 1.5rem">
+          <FlexTextBox fontSize="0.85rem" fontWeight="600" margin="0.2rem 0 0 1.5rem" color="white">
             모집중
           </FlexTextBox>
         </FlexBox>

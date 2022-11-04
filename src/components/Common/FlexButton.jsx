@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import COLOR from 'constants/color';
 
 const defaultProps = {
   type: 'button',
@@ -7,10 +8,11 @@ const defaultProps = {
   height: 'auto',
   margin: '0',
   padding: '0.6rem 1.5rem',
-  fontWeight: 400,
+  fontWeight: 800,
   borderRadius: '0.62rem',
   fontSize: '1.2rem',
-  color: 'white',
+  color: COLOR.font.main,
+  textDecoration: 'none',
   backgroundColor: 'transparent',
   disabled: false,
   onClick: Function,
@@ -29,6 +31,7 @@ const FlexButton = (props) => {
     fontSize,
     fontWeight,
     color,
+    textDecoration,
     backgroundColor,
     onClick,
   } = props;
@@ -50,6 +53,7 @@ const FlexButton = (props) => {
         font-weight: ${fontWeight};
         background: ${backgroundColor};
         color: ${color};
+        text-decoration: ${textDecoration};
         cursor: pointer;
         transition: all ease 0.25s;
       `}
