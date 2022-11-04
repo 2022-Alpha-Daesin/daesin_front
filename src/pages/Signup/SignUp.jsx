@@ -11,11 +11,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MajorData from '../../constants/MajorData.js';
+import MajorData from 'constants/MajorData.js';
 import styled from 'styled-components';
-import color from 'constants/color';
+import COLOR from 'constants/color';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    btn: '${COLOR.btn.gra2}',
+  },
+});
 
 const SignUpText = styled.span`
   font-size: 2.5rem;
@@ -28,7 +32,7 @@ const ButtonTxt = styled.span`
 `;
 
 const SingInBtn = styled(Button)`
-  background-color: red !important;
+  background-color: '' !important;
 `;
 
 export default function SignUp() {
