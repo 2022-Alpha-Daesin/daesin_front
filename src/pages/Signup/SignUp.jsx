@@ -12,7 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MajorData from '../../constants/MajorData';
+import MajorData from '../../constants/MajorData.js';
 
 const theme = createTheme();
 
