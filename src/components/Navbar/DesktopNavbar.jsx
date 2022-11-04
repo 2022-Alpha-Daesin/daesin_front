@@ -8,7 +8,8 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import FlexBox from 'components/Common/FlexBox';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const TabsLib = styled(Tabs)`
   padding: 2.5rem 0 2rem 2rem;
@@ -18,7 +19,7 @@ const TabsLib = styled(Tabs)`
 `;
 
 const Logo = styled.span`
-  margin: 0rem 0 0rem 1rem;
+  margin: 0 0 0 1rem;
   font-size: 3rem;
   font-family: 'Pr-Bold';
   font-weight: 600;
@@ -63,6 +64,10 @@ const DesktopNavbar = () => {
 
   const clickClub = () => {
     navigate('/club');
+  };
+
+  const clickSignIn = () => {
+    navigate('/signin');
   };
 
   return (
@@ -203,14 +208,43 @@ const DesktopNavbar = () => {
           justifyContent: 'flex-start',
         }}
       />
-      <FlexBox margin="4rem 0 0 0.8rem">
-        <LogLogo src={`${process.env.PUBLIC_URL}/images/login.svg`} />
-        <LogLabel>
-          로그인/
-          <br />
-          회원가입
-        </LogLabel>
-      </FlexBox>
+      <Tab
+        icon={
+          <LoginIcon
+            sx={{
+              fontSize: 30,
+              color: '#282828',
+            }}
+          />
+        }
+        iconPosition="start"
+        label="로그인/회원가입"
+        sx={{
+          fontSize: 20,
+          fontWeight: 600,
+          color: '#282828',
+          justifyContent: 'flex-start',
+        }}
+        onClick={clickSignIn}
+      />
+      <Tab
+        icon={
+          <LogoutIcon
+            sx={{
+              fontSize: 30,
+              color: '#282828',
+            }}
+          />
+        }
+        iconPosition="start"
+        label="로그아웃"
+        sx={{
+          fontSize: 20,
+          fontWeight: 600,
+          color: '#282828',
+          justifyContent: 'flex-start',
+        }}
+      />
     </TabsLib>
   );
 };

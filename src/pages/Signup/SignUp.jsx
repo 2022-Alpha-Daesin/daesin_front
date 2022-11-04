@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,8 +12,24 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MajorData from '../../constants/MajorData.js';
+import styled from 'styled-components';
+import color from 'constants/color';
 
 const theme = createTheme();
+
+const SignUpText = styled.span`
+  font-size: 2.5rem;
+  font-weight: 600;
+`;
+
+const ButtonTxt = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+`;
+
+const SingInBtn = styled(Button)`
+  background-color: red !important;
+`;
 
 export default function SignUp() {
   const handleSubmit = (event) => {
@@ -54,13 +69,14 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign up
+            <SignUpText>SIGN UP</SignUpText>
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField required fullWidth id="email" label="email@kookmin.ac.kr" name="email" />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -71,6 +87,7 @@ export default function SignUp() {
                   id="password"
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -86,10 +103,10 @@ export default function SignUp() {
               </Grid>
 
               <FormControl sx={{ ml: 2, mt: 2, minWidth: 400 }}>
-                <InputLabel id="demo-simple-select-helper-label">학년</InputLabel>
+                <InputLabel id="grade">학년</InputLabel>
                 <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
+                  labelId="grade"
+                  id="grade"
                   value={grade}
                   label="학년"
                   onChange={handleGrade}
@@ -137,9 +154,9 @@ export default function SignUp() {
               </FormControl>
             </Grid>
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              회원가입
-            </Button>
+            <SingInBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <ButtonTxt>회원가입</ButtonTxt>
+            </SingInBtn>
           </Box>
         </Box>
       </Container>
