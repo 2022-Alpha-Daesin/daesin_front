@@ -7,7 +7,7 @@ const ChildrenContainer = styled.div`
   margin: 2rem 0 0 0;
   display: flex;
   justify-content: center;
-  /* width: 99%; */
+  width: 100%;
 `;
 
 const DesktopLayout = ({ children }) => {
