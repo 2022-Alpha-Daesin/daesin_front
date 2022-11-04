@@ -4,7 +4,6 @@ import FlexButton from 'components/Common/FlexButton';
 import Searchbar from 'components/Navbar/Searchbar';
 import CrewCardWrapper from 'components/Crew/Card/CrewCardWrapper';
 import styled from 'styled-components';
-import COLOR from 'constants/color';
 import CrewCategory from 'components/Crew/Card/CrewCategory';
 
 const Text = styled.div`
@@ -30,7 +29,9 @@ const Club = () => {
             >
               동아리
             </Text>
-            <FlexButton textDecoration="underline">동아리 문의하기</FlexButton>
+            <FlexButton textDecoration="underline" padding="0.2rem 1rem">
+              동아리 문의하기
+            </FlexButton>
           </FlexBox>
 
           <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">

@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-	  line-height: 240%;
+	  /* line-height: 240%; */
     background-color: #fafafa !important;
     color: #282828;
     font-family: 'Pr-Regular';
