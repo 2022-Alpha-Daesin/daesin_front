@@ -3,7 +3,7 @@ import CrewCard from 'components/Crew/Card/CrewCard';
 
 const CrewCardWrapper = () => {
   return (
-    <FlexBox gap="1rem" margin="1rem" wrap="wrap">
+    <FlexBox gap="1rem" wrap="wrap">
       <CrewCard />
       <CrewCard />
       <CrewCard />

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import COLOR from 'constants/color';
 
 const defaultProps = {
   width: 'auto',
@@ -8,13 +9,24 @@ const defaultProps = {
   padding: '0',
   fontSize: '1rem',
   lineHeight: '120%',
-  color: 'white',
-  fontWeight: '400',
+  color: COLOR.font.main,
+  fontWeight: '800',
+  background: 'transparent',
 };
 
 const FlexTextBox = (props) => {
-  const { children, width, height, padding, margin, fontSize, color, fontWeight, lineHeight } =
-    props;
+  const {
+    children,
+    width,
+    height,
+    padding,
+    margin,
+    fontSize,
+    color,
+    fontWeight,
+    lineHeight,
+    background,
+  } = props;
 
   return (
     <div
@@ -28,6 +40,7 @@ const FlexTextBox = (props) => {
         line-height: ${lineHeight};
         text-align: left;
         color: ${color};
+        background: ${background};
       `}
     >
       {children}

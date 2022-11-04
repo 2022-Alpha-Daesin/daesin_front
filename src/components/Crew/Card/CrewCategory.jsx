@@ -58,7 +58,7 @@ const CrewCategory = () => {
   };
 
   return (
-    <FlexBox wrap="wrap" gap="0.8rem" margin="2rem">
+    <FlexBox wrap="wrap" gap="0.8rem">
       {insertBtn(cnt)}
       <ArrowForwardIosIcon
         sx={{ margin: '0.6rem 0 0 0', color: COLOR.font.select, cursor: 'pointer' }}
