@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import dummyData from './dummyData';
 
 const Btn = styled.button`
-  padding: 0.85rem 0.6rem;
+  padding: 0.85rem 0.65rem;
   border-radius: 1.6rem;
   border: 1.6px solid ${COLOR.font.select};
   font-size: 0.9rem;
