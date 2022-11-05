@@ -7,6 +7,7 @@ const ResponsiveLayout = lazy(() => import('layouts/responsive.layout'));
 const SignIn = lazy(() => import('pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('pages/Signup/SignUp'));
 const Club = lazy(() => import('pages/Club/Club'));
+// const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/club" element={<Club />} />
+            {/* <Route path="/club" element={<ClubDetail />} /> */}
           </Routes>
         </ResponsiveLayout>
       </Suspense>
