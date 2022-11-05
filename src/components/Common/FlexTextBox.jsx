@@ -9,9 +9,10 @@ const defaultProps = {
   padding: '0',
   fontSize: '1rem',
   lineHeight: '120%',
+  textAlign: 'left',
   color: COLOR.font.main,
   fontWeight: '800',
-  background: 'transparent',
+  background: '',
 };
 
 const FlexTextBox = (props) => {
@@ -25,6 +26,7 @@ const FlexTextBox = (props) => {
     color,
     fontWeight,
     lineHeight,
+    textAlign,
     background,
   } = props;
 
@@ -38,7 +40,7 @@ const FlexTextBox = (props) => {
         font-size: ${fontSize};
         font-weight: ${fontWeight};
         line-height: ${lineHeight};
-        text-align: left;
+        text-align: ${textAlign};
         color: ${color};
         background: ${background};
       `}
