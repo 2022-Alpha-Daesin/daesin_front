@@ -17,7 +17,10 @@ import COLOR from 'constants/color';
 
 const theme = createTheme({
   palette: {
-    btn: '${COLOR.btn.gra2}',
+    neutral: {
+      main: '#737373',
+      contrastText: '#fff',
+    },
   },
 });
 
@@ -29,10 +32,12 @@ const SignUpText = styled.span`
 const ButtonTxt = styled.span`
   font-size: 1.5rem;
   font-weight: 700;
+  color: #fff;
 `;
 
-const SingInBtn = styled(Button)`
-  background-color: '' !important;
+const SingUpBtn = styled(Button)`
+  background: ${COLOR.btn.main_gra} !important;
+  border-radius: 0.7rem !important;
 `;
 
 export default function SignUp() {
@@ -89,6 +94,7 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   id="password"
+                  color="neutral"
                 />
               </Grid>
 
@@ -100,6 +106,7 @@ export default function SignUp() {
                   label="비밀번호 확인"
                   type="password"
                   id="repassword"
+                  color="neutral"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -114,6 +121,7 @@ export default function SignUp() {
                   value={grade}
                   label="학년"
                   onChange={handleGrade}
+                  color="neutral"
                 >
                   <MenuItem value={1}>1학년</MenuItem>
                   <MenuItem value={2}>2학년</MenuItem>
@@ -131,6 +139,7 @@ export default function SignUp() {
                   value={division}
                   label="대학"
                   onChange={handleDivision}
+                  color="neutral"
                 >
                   {Division.map((el) => (
                     <MenuItem key={el.Division} value={el.Division}>
@@ -148,6 +157,7 @@ export default function SignUp() {
                   value={department}
                   label="대학"
                   onChange={handleDepartment}
+                  color="neutral"
                 >
                   {Department.filter((el) => el.Division === division).map((el) => (
                     <MenuItem key={el.Department} value={el.Department}>
@@ -158,9 +168,9 @@ export default function SignUp() {
               </FormControl>
             </Grid>
 
-            <SingInBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <SingUpBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               <ButtonTxt>회원가입</ButtonTxt>
-            </SingInBtn>
+            </SingUpBtn>
           </Box>
         </Box>
       </Container>
