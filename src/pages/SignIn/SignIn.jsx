@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
 import COLOR from 'constants/color';
+import useInput from 'hooks/useInput';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -39,15 +40,19 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+const SignIn = () => {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+  const [email, handleEmail] = useInput('');
+  const [password, handlePassword] = useInput('');
+  console.log(email);
+  console.log(password);
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,7 +69,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             <SignInText>SIGN IN</SignInText>
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -75,6 +80,8 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
               color="neutral"
+              value={email}
+              onChange={handleEmail}
             />
             <TextField
               margin="normal"
@@ -86,6 +93,8 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
               color="neutral"
+              value={password}
+              onChange={handlePassword}
             />
             <SingInBtn
               type="submit"
@@ -113,4 +122,6 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignIn;
