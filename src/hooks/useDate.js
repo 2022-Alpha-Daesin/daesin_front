@@ -3,7 +3,9 @@ import 'moment/locale/ko';
 
 moment.locale('ko');
 
-export const useDate = (value) => {
+const useDate = (value) => {
   const date = moment(value);
   return date.format('YYYY. MM. DD.');
 };
+
+export default useDate;
