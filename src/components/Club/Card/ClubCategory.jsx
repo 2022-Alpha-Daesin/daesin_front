@@ -17,7 +17,7 @@ const Btn = styled.button`
   cursor: pointer;
 `;
 
-const CrewCategory = () => {
+const ClubCategory = () => {
   const [cnt, setCnt] = useState(1);
   const [data, setData] = useState(dummyData);
 
@@ -45,6 +45,7 @@ const CrewCategory = () => {
     for (let i = cnt * 8 - 8; i < range; i += 1) {
       newArr.push(
         <Btn
+          key={i}
           isClicked={data[i].isClicked}
           onClick={() => {
             handleClick(data[i].id);
@@ -69,4 +70,4 @@ const CrewCategory = () => {
     </FlexBox>
   );
 };
-export default CrewCategory;
+export default ClubCategory;

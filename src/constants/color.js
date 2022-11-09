@@ -7,7 +7,7 @@ const COLOR = {
   },
   btn: {
     main_gra: 'linear-gradient(to right, #0562FB, #8B0293)',
-    gra2: 'linear-gradient(to bottom, #ff8f28, #db00ff)',
+    gra2: 'linear-gradient(to bottom, #FFA756, #F982FF)',
   },
   bg: {
     default: '#FAFAFA',
