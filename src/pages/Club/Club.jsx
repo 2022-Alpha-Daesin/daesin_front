@@ -5,7 +5,6 @@ import Searchbar from 'components/Navbar/Searchbar';
 import ClubCardWrapper from 'components/Club/Card/ClubCardWrapper';
 import styled from 'styled-components';
 import ClubCategory from 'components/Club/Card/ClubCategory';
-import ADDateTab from 'components/AD/ADDateTab';
 
 const Text = styled.div`
   font-size: 1.5rem;
@@ -19,7 +18,6 @@ const Text = styled.div`
 const Club = () => {
   return (
     <>
-      <ADDateTab />
       <FlexBox column margin="2rem 0 0 0" gap="2rem">
         <Searchbar />
         <FlexBox column>
