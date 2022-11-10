@@ -10,8 +10,15 @@ const CardContainer = styled.div`
   background-position: center;
   background-size: cover;
   cursor: pointer;
-  transition-duration: 1.2s, 3s; // 변화가 일어나는 기간. 초단위. 프로퍼티와 각각 대응 (기본값 0s)
- 
+  @keyframes fade-in {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fade-in 1000ms;
 `;
 
 const ContentBox = styled.div`

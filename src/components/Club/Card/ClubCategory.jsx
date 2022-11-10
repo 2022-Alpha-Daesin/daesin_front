@@ -15,6 +15,15 @@ const Btn = styled.button`
   background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : 'transparent')};
   opacity: 0.7;
   cursor: pointer;
+  @keyframes fade-in {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fade-in 1000ms;
 `;
 
 const ClubCategory = () => {
