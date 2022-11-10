@@ -14,6 +14,7 @@ const Btn = styled.button`
   width: 2.7rem;
   padding: 0.8rem 0;
   border-radius: 0.4rem;
+  cursor: pointer;
   :focus {
     background: ${COLOR.btn.gra2};
   }
