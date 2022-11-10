@@ -1,37 +1,16 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import COLOR from 'constants/color';
 import FlexBox from 'components/Common/FlexBox';
+import ADCard from 'components/AD/ADCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import dummyData from './dummyData';
 
-const Btn = styled.button`
-  padding: 0.85rem 0.65rem;
-  border-radius: 1.6rem;
-  border: 1.6px solid ${COLOR.font.select};
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: ${(props) => (props.isClicked ? 'white' : '#5c5c5c')};
-  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : 'transparent')};
-  opacity: 0.7;
-  cursor: pointer;
-  @keyframes fade-in {
-    from {
-      opacity: 0.5;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  animation: fade-in 1000ms;
-`;
-
-const ClubCategory = () => {
+const ADCarousel = () => {
   const [cnt, setCnt] = useState(1);
   const [data, setData] = useState(dummyData);
 
   const cntUp = () => {
-    cnt >= data.length / 8 ? setCnt(1) : setCnt(cnt + 1);
+    cnt >= data.length / 4 ? setCnt(1) : setCnt(cnt + 1);
   };
 
   const handleClick = (id) => {
@@ -46,32 +25,34 @@ const ClubCategory = () => {
   };
 
   const insertBtn = (cnt) => {
-    let range = cnt * 8;
+    let range = cnt * 4;
     if (range > data.length) {
-      range = range - (8 - (data.length % 8));
+      range = range - (4 - (data.length % 4));
     }
     const newArr = [];
-    for (let i = cnt * 8 - 8; i < range; i += 1) {
+    for (let i = cnt * 4 - 4; i < range; i += 1) {
       newArr.push(
-        <Btn
+        <ADCard
           key={i}
           isClicked={data[i].isClicked}
           onClick={() => {
             handleClick(data[i].id);
           }}
+          title={data[i].title}
+          content={data[i].content}
         >
           {data[i].study}
-        </Btn>,
+        </ADCard>,
       );
     }
     return newArr;
   };
 
   return (
-    <FlexBox wrap="wrap" gap="0.8rem">
+    <FlexBox wrap="wrap" gap="0.75rem">
       {insertBtn(cnt)}
       <ArrowForwardIosIcon
-        sx={{ margin: '0.6rem 0 0 0', color: COLOR.font.select, cursor: 'pointer' }}
+        sx={{ margin: '7.5rem 0 0 0', color: 'black', cursor: 'pointer' }}
         onClick={() => {
           cntUp();
         }}
@@ -79,4 +60,4 @@ const ClubCategory = () => {
     </FlexBox>
   );
 };
-export default ClubCategory;
+export default ADCarousel;

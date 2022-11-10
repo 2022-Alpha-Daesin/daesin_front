@@ -9,7 +9,7 @@ const CardContainer = styled.div`
   background-image: ${(props) => props.img};
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   cursor: pointer;
 `;
 
