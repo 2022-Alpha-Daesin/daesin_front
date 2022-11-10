@@ -1,9 +1,9 @@
-import ADCard from 'components/AD/ADCard';
+import ADCarousel from 'components/AD/ADCarousel';
 
 const AD = () => {
   return (
     <>
-      <ADCard />
+      <ADCarousel />
     </>
   );
 };
