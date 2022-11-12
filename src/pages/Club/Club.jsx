@@ -2,9 +2,9 @@ import FlexBox from 'components/Common/FlexBox';
 import FlexTextBox from 'components/Common/FlexTextBox';
 import FlexButton from 'components/Common/FlexButton';
 import Searchbar from 'components/Navbar/Searchbar';
-import CrewCardWrapper from 'components/Crew/Card/CrewCardWrapper';
+import ClubCardWrapper from 'components/Club/Card/ClubCardWrapper';
 import styled from 'styled-components';
-import CrewCategory from 'components/Crew/Card/CrewCategory';
+import ClubCategory from 'components/Club/Card/ClubCategory';
 
 const Text = styled.div`
   font-size: 1.5rem;
@@ -38,16 +38,16 @@ const Club = () => {
             중앙동아리
           </FlexTextBox>
         </FlexBox>
-        <CrewCardWrapper />
+        <ClubCardWrapper />
       </FlexBox>
       <FlexBox column margin="2rem 0 0 0" gap="2rem">
         <FlexBox column gap="2rem">
           <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">
             과 동아리
           </FlexTextBox>
-          <CrewCategory />
+          <ClubCategory />
         </FlexBox>
-        <CrewCardWrapper />
+        <ClubCardWrapper />
       </FlexBox>
     </>
   );

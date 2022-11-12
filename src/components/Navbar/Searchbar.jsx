@@ -7,8 +7,8 @@ import FlexBox from 'components/Common/FlexBox';
 
 const SearchBar = styled(Search)`
   .ui.input > input {
-    width: 42rem;
-    height: 3rem;
+    width: 46rem;
+    height: 2.6rem;
     border: none;
     background-color: #f2f2f2;
   }
