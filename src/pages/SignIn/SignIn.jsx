@@ -8,6 +8,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
+import COLOR from 'constants/color';
+import useInput from 'hooks/useInput';
+import useSignInMutation from 'queries/auth/useSignInMutation';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -17,10 +22,12 @@ const SignInText = styled.span`
 const ButtonTxt = styled.span`
   font-size: 1.5rem;
   font-weight: 700;
+  color: #fff;
 `;
 
 const SingInBtn = styled(Button)`
-  background-color: red !important;
+  background: ${COLOR.btn.main_gra} !important;
+  border-radius: 0.7rem !important;
 `;
 
 const SignInLink = styled(Link)`
@@ -30,21 +37,26 @@ const SignInLink = styled(Link)`
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#64748B',
+      main: '#737373',
       contrastText: '#fff',
     },
   },
 });
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+const SignIn = () => {
+  const [email, handleEmail] = useInput('');
+  const [password, handlePassword] = useInput('');
+  const navigate = useNavigate();
+  const { mutate: loginMutate, isError: error } = useSignInMutation();
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
+    loginMutate({ email: email, password: password });
   };
+  useEffect(() => {
+    alert('??');
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,7 +73,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             <SignInText>SIGN IN</SignInText>
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={submit}>
             <TextField
               margin="normal"
               required
@@ -72,6 +84,8 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
               color="neutral"
+              value={email}
+              onChange={handleEmail}
             />
             <TextField
               margin="normal"
@@ -83,8 +97,16 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
               color="neutral"
+              value={password}
+              onChange={handlePassword}
             />
-            <SingInBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <SingInBtn
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              color="background"
+            >
               <ButtonTxt>로그인</ButtonTxt>
             </SingInBtn>
             <Grid container>
@@ -94,7 +116,7 @@ export default function SignIn() {
                 </SignInLink>
               </Grid>
               <Grid item>
-                <SignInLink href="/signup" variant="body2" underline="hover">
+                <SignInLink onClick={() => navigate('/signup')} variant="body2" underline="hover">
                   {'회원가입'}
                 </SignInLink>
               </Grid>
@@ -104,4 +126,6 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignIn;

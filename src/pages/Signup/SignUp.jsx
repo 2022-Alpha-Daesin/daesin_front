@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,20 +11,38 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MajorData from '../../constants/MajorData.js';
+import MajorData from 'constants/MajorData.js';
+import styled from 'styled-components';
+import COLOR from 'constants/color';
+import useInput from 'hooks/useInput';
+import useSignUpMutation from 'queries/auth/useSignUpMutation';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    neutral: {
+      main: '#737373',
+      contrastText: '#fff',
+    },
+  },
+});
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+const SignUpText = styled.span`
+  font-size: 2.5rem;
+  font-weight: 600;
+`;
 
+const ButtonTxt = styled.span`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+`;
+
+const SingUpBtn = styled(Button)`
+  background: ${COLOR.btn.main_gra} !important;
+  border-radius: 0.7rem !important;
+`;
+
+const SignUp = () => {
   const { Division, Department } = MajorData;
   const [grade, setGrade] = useState('');
   const [division, setDivision] = useState('');
@@ -41,6 +58,31 @@ export default function SignUp() {
     setDepartment(event.target.value);
   };
 
+  const [email, handleEmail] = useInput('');
+  const [password1, handlePassword1] = useInput('');
+  const [password2, handlePassword2] = useInput('');
+  const [nickname, handleNickname] = useInput('');
+  // const [grade, handleGrade] = useInput('');
+  // const [major, handleMajor] = useInput('');
+
+  const { mutate: signInMutate } = useSignUpMutation();
+
+  const onKeyPressFunc = (e) => {
+    if (e.key === 'Enter') submit();
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    signInMutate({
+      email: email,
+      password1: password1,
+      password2: password2,
+      nickname: nickname,
+      grade: grade,
+      major: 1,
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -54,13 +96,23 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign up
+            <SignUpText>SIGN UP</SignUpText>
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate onSubmit={submit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField required fullWidth id="email" label="email@kookmin.ac.kr" name="email" />
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="email@kookmin.ac.kr"
+                  name="email"
+                  value={email}
+                  onChange={handleEmail}
+                  onKeyPress={onKeyPressFunc}
+                />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -69,8 +121,13 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   id="password"
+                  color="neutral"
+                  value={password1}
+                  onChange={handlePassword1}
+                  onKeyPress={onKeyPressFunc}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -79,20 +136,35 @@ export default function SignUp() {
                   label="비밀번호 확인"
                   type="password"
                   id="repassword"
+                  color="neutral"
+                  value={password2}
+                  onChange={handlePassword2}
+                  onKeyPress={onKeyPressFunc}
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField required fullWidth id="nickname" label="닉네임" name="nickname" />
+                <TextField
+                  required
+                  fullWidth
+                  id="nickname"
+                  label="닉네임"
+                  name="nickname"
+                  value={nickname}
+                  onChange={handleNickname}
+                  onKeyPress={onKeyPressFunc}
+                />
               </Grid>
 
               <FormControl sx={{ ml: 2, mt: 2, minWidth: 400 }}>
-                <InputLabel id="demo-simple-select-helper-label">학년</InputLabel>
+                <InputLabel id="grade">학년</InputLabel>
                 <Select
-                  labelId="demo-simple-select-helper-label"
-                  id="demo-simple-select-helper"
-                  value={grade}
+                  labelId="grade"
+                  id="grade"
                   label="학년"
+                  color="neutral"
+                  value={grade}
                   onChange={handleGrade}
+                  onKeyPress={onKeyPressFunc}
                 >
                   <MenuItem value={1}>1학년</MenuItem>
                   <MenuItem value={2}>2학년</MenuItem>
@@ -110,6 +182,8 @@ export default function SignUp() {
                   value={division}
                   label="대학"
                   onChange={handleDivision}
+                  color="neutral"
+                  onKeyPress={onKeyPressFunc}
                 >
                   {Division.map((el) => (
                     <MenuItem key={el.Division} value={el.Division}>
@@ -127,6 +201,8 @@ export default function SignUp() {
                   value={department}
                   label="대학"
                   onChange={handleDepartment}
+                  color="neutral"
+                  onKeyPress={onKeyPressFunc}
                 >
                   {Department.filter((el) => el.Division === division).map((el) => (
                     <MenuItem key={el.Department} value={el.Department}>
@@ -137,12 +213,14 @@ export default function SignUp() {
               </FormControl>
             </Grid>
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              회원가입
-            </Button>
+            <SingUpBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              <ButtonTxt>회원가입</ButtonTxt>
+            </SingUpBtn>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignUp;
