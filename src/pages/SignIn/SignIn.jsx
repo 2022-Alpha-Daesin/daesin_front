@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
 import COLOR from 'constants/color';
 import useInput from 'hooks/useInput';
+import useSignInMutation from 'queries/auth/useSignInMutation';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -41,18 +42,14 @@ const theme = createTheme({
 });
 
 const SignIn = () => {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
   const [email, handleEmail] = useInput('');
   const [password, handlePassword] = useInput('');
-  console.log(email);
-  console.log(password);
+
+  const { mutate: loginMutate } = useSignInMutation();
+
+  const submit = () => {
+    loginMutate({ email: email, password: password });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -102,6 +99,7 @@ const SignIn = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="background"
+              onClick={submit}
             >
               <ButtonTxt>로그인</ButtonTxt>
             </SingInBtn>

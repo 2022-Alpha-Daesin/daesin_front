@@ -44,17 +44,27 @@ const SingUpBtn = styled(Button)`
 
 const SignUp = () => {
   const { Division, Department } = MajorData;
+
+  const [grade, setGrade] = useState('');
   const [division, setDivision] = useState('');
+  const [department, setDepartment] = useState('');
+
+  const handleGrade = (event: SelectChangeEvent) => {
+    setGrade(event.target.value);
+  };
   const handleDivision = (event: SelectChangeEvent) => {
     setDivision(event.target.value);
+  };
+  const handleDepartment = (event: SelectChangeEvent) => {
+    setDepartment(event.target.value);
   };
 
   const [email, handleEmail] = useInput('');
   const [password1, handlePassword1] = useInput('');
   const [password2, handlePassword2] = useInput('');
   const [nickname, handleNickname] = useInput('');
-  const [grade, handleGrade] = useInput('');
-  const [major, handleMajor] = useInput('');
+  // const [grade, handleGrade] = useInput('');
+  // const [major, handleMajor] = useInput('');
 
   const { mutate: signInMutate } = useSignUpMutation();
 
@@ -69,7 +79,7 @@ const SignUp = () => {
       password2: password2,
       nickname: nickname,
       grade: grade,
-      major: major,
+      // major: major,
     });
   };
 
@@ -188,9 +198,9 @@ const SignUp = () => {
                 <Select
                   labelId="department"
                   id="department"
-                  value={major}
+                  value={department}
                   label="대학"
-                  onChange={handleMajor}
+                  onChange={handleDepartment}
                   color="neutral"
                   onKeyPress={onKeyPressFunc}
                 >
