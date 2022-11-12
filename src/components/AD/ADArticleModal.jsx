@@ -1,21 +1,180 @@
+import { useState, useRef } from 'react';
 import COLOR from 'constants/color';
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from 'components/Common';
+import { Input } from 'semantic-ui-react';
+import EventIcon from '@mui/icons-material/Event';
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import styled from 'styled-components';
 
-const ADArticleModal = () => {
+const Image = styled.img`
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-right: 0.8rem;
+  border-radius: 0.6rem;
+  object-fit: cover;
+  background: ${COLOR.bg.primary};
+`;
+
+export const PhotoInput = styled(Input)`
+  width: 5rem !important;
+  height: 2.5rem !important;
+  display: none !important;
+`;
+
+const ImgInner = styled.div`
+  position: relative;
+`;
+
+const ADArticleModal = (props) => {
+  const [imageList, setimageList] = useState([]);
+  const inputRef = useRef(null);
+
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    setimageList([...imageList, { file: imageFile, url: imageUrl }]);
+  };
+
+  const deleteImage = (idx) => {
+    setimageList(imageList.filter((_, index) => index !== idx));
+  };
+
+  const onButtonClick = () => {
+    inputRef.current.click();
+  };
   return (
-    <FlexBox width="50rem" height="90vh" padding="3rem 4rem" gap="2rem" background="white" column>
-      <FlexTextBox fontSize="2rem">홍보 올리기</FlexTextBox>
-      <FlexBox>
-        <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
-        <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-          노노카
-        </FlexTextBox>
+    <FlexBox position="relative">
+      <ClearOutlinedIcon
+        sx={{
+          fontSize: 35,
+          position: 'absolute',
+          top: 15,
+          right: 25,
+          cursor: 'pointer',
+        }}
+        onClick={props.onClick}
+      />
+      <FlexBox
+        width="100%"
+        padding="2.5rem 4rem"
+        gap="1.8rem"
+        background="white"
+        column
+      >
+        <FlexTextBox fontSize="2rem">홍보 올리기</FlexTextBox>
+        <FlexBox>
+          <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
+          <FlexTextBox fontSize="1.25rem" margin="0.9rem">
+            노노카
+          </FlexTextBox>
+        </FlexBox>
+        <FlexBox width="100%" column gap="0.6rem">
+          <FlexTextBox fontSize="1.5rem" fontWeight="600">
+            제목
+          </FlexTextBox>
+          <FlexTextArea />
+        </FlexBox>
+        <FlexBox width="100%" column gap="0.6rem">
+          <FlexTextBox fontSize="1.5rem" fontWeight="600">
+            홍보 종류
+          </FlexTextBox>
+          <FlexTextArea />
+        </FlexBox>
+        <FlexBox width="100%" column gap="0.6rem">
+          <FlexTextBox fontSize="1.5rem" fontWeight="600">
+            홍보 기간
+          </FlexTextBox>
+          <FlexBox width="100%" gap="2rem">
+            <FlexBox
+              width="50%"
+              height="3rem"
+              borderRadius="0.8rem"
+              background="#ECF2FE"
+              position="relative"
+            >
+              <EventIcon
+                sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8, cursor: 'pointer' }}
+              />
+            </FlexBox>
+            <FlexTextBox fontSize="2.5rem" fontWeight="500">
+              TO
+            </FlexTextBox>
+            <FlexBox
+              width="50%"
+              height="3rem"
+              borderRadius="0.8rem"
+              background="#ECF2FE"
+              position="relative"
+            >
+              <EventIcon
+                sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8, cursor: 'pointer' }}
+              />
+            </FlexBox>
+          </FlexBox>
+        </FlexBox>
+        <FlexBox width="100%" column gap="0.6rem">
+          <FlexTextBox fontSize="1.5rem" fontWeight="600">
+            글 작성
+          </FlexTextBox>
+          <FlexTextArea padding="5rem 1rem" />
+        </FlexBox>
+        <FlexBox width="100%" column gap="0.6rem">
+          <FlexTextBox fontSize="1.5rem" fontWeight="600">
+            첨부 파일
+          </FlexTextBox>
+          <FlexBox background="transparent">
+            <div>
+              <FlexBox background="transparent" position="relative">
+                {imageList.map((image, index) => (
+                  <ImgInner key={`add_article_images_${index}`}>
+                    <Image alt="article_image" src={image.url} />
+                    <ClearOutlinedIcon
+                      onClick={() => deleteImage(index)}
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 8,
+                        cursor: 'pointer',
+                        color: 'white',
+                      }}
+                    />
+                  </ImgInner>
+                ))}
+              </FlexBox>
+            </div>
+            <input
+              name="imggeUpload"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              ref={inputRef}
+              style={{ width: '10rem', height: '10rem', display: 'none' }}
+            />
+            <FlexBox
+              width="5.5rem"
+              height="5.5rem"
+              borderRadius="0.6rem"
+              center
+              background="#ECF2FE"
+            >
+              <AddPhotoAlternateOutlinedIcon
+                onClick={onButtonClick}
+                sx={{ fontSize: 30, cursor: 'pointer' }}
+              />
+            </FlexBox>
+          </FlexBox>
+        </FlexBox>
+        <FlexButton
+          fontSize="1.1rem"
+          backgroundColor={COLOR.btn.main_gra}
+          color="white"
+          padding="0.8rem 10rem"
+          margin="0 20%"
+        >
+          올리기
+        </FlexButton>
       </FlexBox>
-      <FlexTextBox fontSize="1.5rem" fontWeight="600">
-        제목
-      </FlexTextBox>
-      <FlexTextArea />
     </FlexBox>
   );
 };

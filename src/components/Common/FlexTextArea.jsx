@@ -3,15 +3,15 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { css } from '@emotion/react';
 
 const defaultProps = {
-  width: '40rem',
+  width: '100%',
   minRow: 1,
   margin: '0',
-  padding: '1.25rem',
+  padding: '0.8rem',
   fontSize: '1.2rem',
   background: '#ECF2FE',
   maxLength: 900000,
   autoFocus: false,
-  borderRadius: '1.25rem',
+  borderRadius: '1rem',
 };
 
 const Textarea = (props) => {
