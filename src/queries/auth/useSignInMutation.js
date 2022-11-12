@@ -10,8 +10,9 @@ const useSignInMutation = () => {
       onSuccess: () => {
         console.log('success');
       },
-      onError: () => {
-        console.log('fail');
+      onError: (error) => {
+        console.log('fail', error.response.data);
+        return ''.join(error.response.data);
       },
     },
   );

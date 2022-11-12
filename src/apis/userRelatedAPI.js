@@ -4,7 +4,7 @@ const client = axiosInstance;
 
 const userRelatedAPI = {
   postSignup: (data) => {
-    return client.post('auth/registration', data);
+    return client.post('auth/registration/', data);
   },
 
   postSignin: (data) => {

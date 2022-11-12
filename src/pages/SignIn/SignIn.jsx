@@ -12,6 +12,7 @@ import COLOR from 'constants/color';
 import useInput from 'hooks/useInput';
 import useSignInMutation from 'queries/auth/useSignInMutation';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -46,11 +47,16 @@ const SignIn = () => {
   const [email, handleEmail] = useInput('');
   const [password, handlePassword] = useInput('');
   const navigate = useNavigate();
-  const { mutate: loginMutate } = useSignInMutation();
+  const { mutate: loginMutate, isError: error } = useSignInMutation();
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(email, password);
     loginMutate({ email: email, password: password });
   };
+  useEffect(() => {
+    alert('??');
+  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,7 +73,7 @@ const SignIn = () => {
           <Typography component="h1" variant="h5">
             <SignInText>SIGN IN</SignInText>
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={submit}>
             <TextField
               margin="normal"
               required
@@ -100,7 +106,6 @@ const SignIn = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               color="background"
-              onClick={submit}
             >
               <ButtonTxt>로그인</ButtonTxt>
             </SingInBtn>

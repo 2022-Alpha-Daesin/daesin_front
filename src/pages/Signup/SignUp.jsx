@@ -71,14 +71,15 @@ const SignUp = () => {
     if (e.key === 'Enter') submit();
   };
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault();
     signInMutate({
       email: email,
       password1: password1,
       password2: password2,
       nickname: nickname,
       grade: grade,
-      // major: major,
+      major: 1,
     });
   };
 
@@ -212,13 +213,7 @@ const SignUp = () => {
               </FormControl>
             </Grid>
 
-            <SingUpBtn
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick-={submit}
-            >
+            <SingUpBtn type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               <ButtonTxt>회원가입</ButtonTxt>
             </SingUpBtn>
           </Box>
