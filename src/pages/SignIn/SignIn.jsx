@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import COLOR from 'constants/color';
 import useInput from 'hooks/useInput';
 import useSignInMutation from 'queries/auth/useSignInMutation';
+import { useNavigate } from 'react-router-dom';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -44,7 +45,7 @@ const theme = createTheme({
 const SignIn = () => {
   const [email, handleEmail] = useInput('');
   const [password, handlePassword] = useInput('');
-
+  const navigate = useNavigate();
   const { mutate: loginMutate } = useSignInMutation();
 
   const submit = () => {
@@ -110,7 +111,7 @@ const SignIn = () => {
                 </SignInLink>
               </Grid>
               <Grid item>
-                <SignInLink href="/signup" variant="body2" underline="hover">
+                <SignInLink onClick={() => navigate('/signup')} variant="body2" underline="hover">
                   {'회원가입'}
                 </SignInLink>
               </Grid>

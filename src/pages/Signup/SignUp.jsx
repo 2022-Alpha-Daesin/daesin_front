@@ -44,7 +44,6 @@ const SingUpBtn = styled(Button)`
 
 const SignUp = () => {
   const { Division, Department } = MajorData;
-
   const [grade, setGrade] = useState('');
   const [division, setDivision] = useState('');
   const [department, setDepartment] = useState('');
