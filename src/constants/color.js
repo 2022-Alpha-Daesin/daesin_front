@@ -6,7 +6,7 @@ const COLOR = {
     select_text: '#313131',
   },
   btn: {
-    main_gra: 'linear-gradient(to right, #0562FB, #8B0293)',
+    main_gra: 'linear-gradient(to right, #66A3FF, #F387FF)',
     gra2: 'linear-gradient(to bottom, #FFA756, #F982FF)',
   },
   bg: {
