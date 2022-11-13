@@ -1,0 +1,19 @@
+.react-datepicker__header {
+  background-color: #ecf2fe;
+}
+.react-datepicker__triangle::after {
+  border-bottom-color: #ecf2fe;
+}
+.react-datepicker__day--selected {
+  color: black;
+  background-color: #ecf2fe;
+}
+.react-datepicker__day--keyboard-selected {
+  color: black;
+  background-color: #ecf2fe;
+}
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  color: black;
+  background-color: #ecf2fe;
+}
