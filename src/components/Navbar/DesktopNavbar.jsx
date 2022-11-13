@@ -34,19 +34,6 @@ const NavLabel = styled.span`
   color: #737373;
 `;
 
-const LogLabel = styled.span`
-  margin: 0 0 1rem 1rem;
-  font-size: 1.5rem;
-  font-family: 'Pr-Pegular';
-  font-weight: 600;
-`;
-
-const LogLogo = styled.img`
-  margin: 0.25rem 0 0 0;
-  width: 3rem;
-  height: 3rem;
-`;
-
 const a11yProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
@@ -64,6 +51,10 @@ const DesktopNavbar = () => {
 
   const clickClub = () => {
     navigate('/club');
+  };
+
+  const clickAD = () => {
+    navigate('/ad');
   };
 
   const clickSignIn = () => {
@@ -164,6 +155,7 @@ const DesktopNavbar = () => {
           // marginTop: 1,
           justifyContent: 'flex-start',
         }}
+        onClick={clickAD}
       />
       <NavLabel>MY PAGE</NavLabel>
       <Tab

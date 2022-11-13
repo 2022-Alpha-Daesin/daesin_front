@@ -8,8 +8,8 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import styled from 'styled-components';
 
 const Image = styled.img`
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 6rem;
+  height: 6rem;
   margin-right: 0.8rem;
   border-radius: 0.6rem;
   object-fit: cover;
@@ -152,8 +152,8 @@ const ADArticleModal = (props) => {
               style={{ width: '10rem', height: '10rem', display: 'none' }}
             />
             <FlexBox
-              width="5.5rem"
-              height="5.5rem"
+              width="6rem"
+              height="6rem"
               borderRadius="0.6rem"
               center
               background="#ECF2FE"
@@ -169,7 +169,7 @@ const ADArticleModal = (props) => {
           fontSize="1.1rem"
           backgroundColor={COLOR.btn.main_gra}
           color="white"
-          padding="0.8rem 10rem"
+          padding="1rem 10rem"
           margin="0 20%"
         >
           올리기
