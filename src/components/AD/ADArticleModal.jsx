@@ -1,11 +1,19 @@
 import { useState, useRef } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import './datepicker.css';
 import COLOR from 'constants/color';
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from 'components/Common';
-import { Input } from 'semantic-ui-react';
 import EventIcon from '@mui/icons-material/Event';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import styled from 'styled-components';
+
+const Calendar = styled(DatePicker)`
+  width: 60%;
+  margin: 4% 0 0 25%;
+  font-size: 1.25rem;
+`;
 
 const Image = styled.img`
   width: 6rem;
@@ -16,17 +24,13 @@ const Image = styled.img`
   background: ${COLOR.bg.primary};
 `;
 
-export const PhotoInput = styled(Input)`
-  width: 5rem !important;
-  height: 2.5rem !important;
-  display: none !important;
-`;
-
 const ImgInner = styled.div`
   position: relative;
 `;
 
 const ADArticleModal = (props) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
 
@@ -55,13 +59,7 @@ const ADArticleModal = (props) => {
         }}
         onClick={props.onClick}
       />
-      <FlexBox
-        width="100%"
-        padding="2.5rem 4rem"
-        gap="1.8rem"
-        background="white"
-        column
-      >
+      <FlexBox width="100%" padding="2.5rem 4rem" gap="1.8rem" background="white" column>
         <FlexTextBox fontSize="2rem">홍보 올리기</FlexTextBox>
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
@@ -87,15 +85,21 @@ const ADArticleModal = (props) => {
           </FlexTextBox>
           <FlexBox width="100%" gap="2rem">
             <FlexBox
-              width="50%"
+              width="48%"
               height="3rem"
               borderRadius="0.8rem"
               background="#ECF2FE"
               position="relative"
             >
-              <EventIcon
-                sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8, cursor: 'pointer' }}
+              <Calendar
+                dateFormat="yyyy-MM-dd"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
               />
+              <EventIcon sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8 }} />
             </FlexBox>
             <FlexTextBox fontSize="2.5rem" fontWeight="500">
               TO
@@ -107,9 +111,16 @@ const ADArticleModal = (props) => {
               background="#ECF2FE"
               position="relative"
             >
-              <EventIcon
-                sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8, cursor: 'pointer' }}
+              <Calendar
+                dateFormat="yyyy-MM-dd"
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
               />
+              <EventIcon sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8 }} />
             </FlexBox>
           </FlexBox>
         </FlexBox>
@@ -151,13 +162,7 @@ const ADArticleModal = (props) => {
               ref={inputRef}
               style={{ width: '10rem', height: '10rem', display: 'none' }}
             />
-            <FlexBox
-              width="6rem"
-              height="6rem"
-              borderRadius="0.6rem"
-              center
-              background="#ECF2FE"
-            >
+            <FlexBox width="6rem" height="6rem" borderRadius="0.6rem" center background="#ECF2FE">
               <AddPhotoAlternateOutlinedIcon
                 onClick={onButtonClick}
                 sx={{ fontSize: 30, cursor: 'pointer' }}
