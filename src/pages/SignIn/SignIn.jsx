@@ -64,10 +64,6 @@ const SignIn = () => {
 
   const { mutate: loginMutate, isError: error } = useSignInMutation();
 
-  const onKeyPressFunc = (e) => {
-    if (e.key === 'Enter') submit();
-  };
-
   const submit = (e) => {
     e.preventDefault();
     console.log(email, password);
