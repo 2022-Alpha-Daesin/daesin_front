@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MajorData from 'constants/MajorData.js';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import useInput from 'hooks/useInput';
-import useSignUpMutation from 'queries/auth/useSignUpMutation';
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MajorData from "constants/MajorData.js";
+import styled from "styled-components";
+import COLOR from "constants/color";
+import useInput from "hooks/useInput";
+import useSignUpMutation from "queries/auth/useSignUpMutation";
 
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#737373',
-      contrastText: '#fff',
+      main: "#737373",
+      contrastText: "#fff",
     },
   },
 });
@@ -44,9 +44,9 @@ const SingUpBtn = styled(Button)`
 
 const SignUp = () => {
   const { Division, Department } = MajorData;
-  const [grade, setGrade] = useState('');
-  const [division, setDivision] = useState('');
-  const [department, setDepartment] = useState('');
+  const [grade, setGrade] = useState("");
+  const [division, setDivision] = useState("");
+  const [department, setDepartment] = useState("");
 
   const handleGrade = (event: SelectChangeEvent) => {
     setGrade(event.target.value);
@@ -58,17 +58,17 @@ const SignUp = () => {
     setDepartment(event.target.value);
   };
 
-  const [email, handleEmail] = useInput('');
-  const [password1, handlePassword1] = useInput('');
-  const [password2, handlePassword2] = useInput('');
-  const [nickname, handleNickname] = useInput('');
+  const [email, handleEmail] = useInput("");
+  const [password1, handlePassword1] = useInput("");
+  const [password2, handlePassword2] = useInput("");
+  const [nickname, handleNickname] = useInput("");
   // const [grade, handleGrade] = useInput('');
   // const [major, handleMajor] = useInput('');
 
   const { mutate: signInMutate } = useSignUpMutation();
 
   const onKeyPressFunc = (e) => {
-    if (e.key === 'Enter') submit();
+    if (e.key === "Enter") submit();
   };
 
   const submit = (e) => {
@@ -90,9 +90,9 @@ const SignUp = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">

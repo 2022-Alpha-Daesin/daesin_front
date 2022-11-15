@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import styled from "styled-components";
+import FlexTextBox from "components/Common/FlexTextBox";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 const CardContainer = styled.div`
   width: 21rem;
@@ -29,7 +29,7 @@ const ChallengeCard = () => {
   return (
     <CardContainer img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}>
       <ContentBox>
-        <CheckCircleOutlinedIcon sx={{ color: 'white', fontSize: 30 }} />
+        <CheckCircleOutlinedIcon sx={{ color: "white", fontSize: 30 }} />
         <FlexTextBox color="white" fontSize="1.5rem">
           동아리 소개
         </FlexTextBox>

@@ -1,9 +1,9 @@
-import FlexBox from 'components/Common/FlexBox';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import Searchbar from 'components/Navbar/Searchbar';
-import ClubDetailCardWrapper from 'components/Club/Card/ClubDetailCardWrapper';
-import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
-import COLOR from 'constants/color';
+import FlexBox from "components/Common/FlexBox";
+import FlexTextBox from "components/Common/FlexTextBox";
+import Searchbar from "components/Navbar/Searchbar";
+import ClubDetailCardWrapper from "components/Club/Card/ClubDetailCardWrapper";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
+import COLOR from "constants/color";
 
 const ClubDetail = () => {
   return (
@@ -12,7 +12,7 @@ const ClubDetail = () => {
       <FlexBox column gap="1rem">
         <FlexBox>
           <FlexTextBox fontSize="1.8rem">멋쟁이 사자처럼</FlexTextBox>
-          <FavoriteOutlinedIcon sx={{ fontSize: 20, margin: '0.4rem 0 0 0.6rem' }} />
+          <FavoriteOutlinedIcon sx={{ fontSize: 20, margin: "0.4rem 0 0 0.6rem" }} />
           <FlexTextBox margin="0.6rem 0 0 0.5rem">📍현재 모집중</FlexTextBox>
         </FlexBox>
         <FlexTextBox fontSize="1.2rem" color={COLOR.font.sub} margin="0 0 1rem 0">

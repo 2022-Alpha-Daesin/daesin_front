@@ -1,12 +1,12 @@
-import FlexBox from 'components/Common/FlexBox';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
+import FlexBox from "components/Common/FlexBox";
+import FlexTextBox from "components/Common/FlexTextBox";
+import styled from "styled-components";
+import COLOR from "constants/color";
 
 let today = new Date();
 let date = today.getDate();
 let day = today.getDay(); // 몇일인지
-let week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+let week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const Btn = styled.button`
   display: flex;

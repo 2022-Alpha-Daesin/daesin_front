@@ -1,13 +1,13 @@
-import { useState, useRef } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import './datepicker.css';
-import COLOR from 'constants/color';
-import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from 'components/Common';
-import EventIcon from '@mui/icons-material/Event';
-import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import styled from 'styled-components';
+import { useState, useRef } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./datepicker.css";
+import COLOR from "constants/color";
+import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
+import EventIcon from "@mui/icons-material/Event";
+import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import styled from "styled-components";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -52,10 +52,10 @@ const ADArticleModal = (props) => {
       <ClearOutlinedIcon
         sx={{
           fontSize: 35,
-          position: 'absolute',
+          position: "absolute",
           top: 15,
           right: 25,
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         onClick={props.onClick}
       />
@@ -99,7 +99,7 @@ const ADArticleModal = (props) => {
                 startDate={startDate}
                 endDate={endDate}
               />
-              <EventIcon sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8 }} />
+              <EventIcon sx={{ fontSize: 28, position: "absolute", right: 8, top: 8 }} />
             </FlexBox>
             <FlexTextBox fontSize="2.5rem" fontWeight="500">
               TO
@@ -120,7 +120,7 @@ const ADArticleModal = (props) => {
                 endDate={endDate}
                 minDate={startDate}
               />
-              <EventIcon sx={{ fontSize: 28, position: 'absolute', right: 8, top: 8 }} />
+              <EventIcon sx={{ fontSize: 28, position: "absolute", right: 8, top: 8 }} />
             </FlexBox>
           </FlexBox>
         </FlexBox>
@@ -143,11 +143,11 @@ const ADArticleModal = (props) => {
                     <ClearOutlinedIcon
                       onClick={() => deleteImage(index)}
                       sx={{
-                        position: 'absolute',
+                        position: "absolute",
                         top: 0,
                         right: 8,
-                        cursor: 'pointer',
-                        color: 'white',
+                        cursor: "pointer",
+                        color: "white",
                       }}
                     />
                   </ImgInner>
@@ -160,12 +160,12 @@ const ADArticleModal = (props) => {
               accept="image/*"
               onChange={handleImageChange}
               ref={inputRef}
-              style={{ width: '10rem', height: '10rem', display: 'none' }}
+              style={{ width: "10rem", height: "10rem", display: "none" }}
             />
             <FlexBox width="6rem" height="6rem" borderRadius="0.6rem" center background="#ECF2FE">
               <AddPhotoAlternateOutlinedIcon
                 onClick={onButtonClick}
-                sx={{ fontSize: 30, cursor: 'pointer' }}
+                sx={{ fontSize: 30, cursor: "pointer" }}
               />
             </FlexBox>
           </FlexBox>

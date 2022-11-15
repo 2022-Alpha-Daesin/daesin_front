@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Search } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
-import { Icon } from 'semantic-ui-react';
-import FlexBox from 'components/Common/FlexBox';
+import React from "react";
+import styled from "styled-components";
+import { Search } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
+import { Icon } from "semantic-ui-react";
+import FlexBox from "components/Common/FlexBox";
 
 const SearchBar = styled(Search)`
   .ui.input > input {

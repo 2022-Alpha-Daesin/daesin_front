@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
-import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
+import RecordVoiceOverOutlinedIcon from "@mui/icons-material/RecordVoiceOverOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const TabsLib = styled(Tabs)`
   padding: 2.5rem 0 2rem 2rem;
@@ -21,7 +21,7 @@ const TabsLib = styled(Tabs)`
 const Logo = styled.span`
   margin: 0 0 0 1rem;
   font-size: 3rem;
-  font-family: 'Pr-Bold';
+  font-family: "Pr-Bold";
   font-weight: 600;
   line-height: 1.5;
 `;
@@ -29,7 +29,7 @@ const Logo = styled.span`
 const NavLabel = styled.span`
   margin: 2rem 0 1rem 1rem;
   font-size: 1.4rem;
-  font-family: 'Pr-Bold';
+  font-family: "Pr-Bold";
   font-weight: 600;
   color: #737373;
 `;
@@ -37,7 +37,7 @@ const NavLabel = styled.span`
 const a11yProps = (index) => {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 };
 
@@ -50,15 +50,15 @@ const DesktopNavbar = () => {
   };
 
   const clickClub = () => {
-    navigate('/club');
+    navigate("/club");
   };
 
   const clickAD = () => {
-    navigate('/ad');
+    navigate("/ad");
   };
 
   const clickSignIn = () => {
-    navigate('/signin');
+    navigate("/signin");
   };
 
   return (
@@ -70,9 +70,9 @@ const DesktopNavbar = () => {
       aria-label="Vertical tabs example"
       sx={{
         borderRight: 1,
-        borderColor: 'divider',
+        borderColor: "divider",
         fontSize: 200,
-        border: 'none',
+        border: "none",
         width: 290,
       }}
     >
@@ -83,7 +83,7 @@ const DesktopNavbar = () => {
           <HomeOutlinedIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -92,10 +92,10 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
+          color: "#282828",
           height: 20,
           // marginTop: 1,
-          justifyContent: 'flex-start',
+          justifyContent: "flex-start",
         }}
       />
       <Tab
@@ -103,7 +103,7 @@ const DesktopNavbar = () => {
           <EditOutlinedIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -112,9 +112,9 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
+          color: "#282828",
           // marginTop: 1,
-          justifyContent: 'flex-start',
+          justifyContent: "flex-start",
         }}
       />
       <Tab
@@ -122,7 +122,7 @@ const DesktopNavbar = () => {
           <PeopleAltOutlinedIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -131,9 +131,9 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
+          color: "#282828",
           // marginTop: 1,
-          justifyContent: 'flex-start',
+          justifyContent: "flex-start",
         }}
         onClick={clickClub}
       />
@@ -142,7 +142,7 @@ const DesktopNavbar = () => {
           <RecordVoiceOverOutlinedIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -151,9 +151,9 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
+          color: "#282828",
           // marginTop: 1,
-          justifyContent: 'flex-start',
+          justifyContent: "flex-start",
         }}
         onClick={clickAD}
       />
@@ -163,7 +163,7 @@ const DesktopNavbar = () => {
           <AccountCircleOutlinedIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -172,8 +172,8 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
-          justifyContent: 'flex-start',
+          color: "#282828",
+          justifyContent: "flex-start",
         }}
       />
       <Tab
@@ -184,8 +184,8 @@ const DesktopNavbar = () => {
           width: 200,
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
-          justifyContent: 'flex-start',
+          color: "#282828",
+          justifyContent: "flex-start",
         }}
       />
       <Tab
@@ -196,8 +196,8 @@ const DesktopNavbar = () => {
           width: 231,
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
-          justifyContent: 'flex-start',
+          color: "#282828",
+          justifyContent: "flex-start",
         }}
       />
       <Tab
@@ -205,7 +205,7 @@ const DesktopNavbar = () => {
           <LoginIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -214,8 +214,8 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
-          justifyContent: 'flex-start',
+          color: "#282828",
+          justifyContent: "flex-start",
         }}
         onClick={clickSignIn}
       />
@@ -224,7 +224,7 @@ const DesktopNavbar = () => {
           <LogoutIcon
             sx={{
               fontSize: 30,
-              color: '#282828',
+              color: "#282828",
             }}
           />
         }
@@ -233,8 +233,8 @@ const DesktopNavbar = () => {
         sx={{
           fontSize: 20,
           fontWeight: 600,
-          color: '#282828',
-          justifyContent: 'flex-start',
+          color: "#282828",
+          justifyContent: "flex-start",
         }}
       />
     </TabsLib>

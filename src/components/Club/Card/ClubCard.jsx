@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import FlexBox from 'components/Common/FlexBox';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import styled from "styled-components";
+import FlexTextBox from "components/Common/FlexTextBox";
+import FlexBox from "components/Common/FlexBox";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 const CardContainer = styled.div`
   width: 16em;
@@ -36,22 +36,22 @@ const ChallengeCard = () => {
     <CardContainer>
       <Thumbnail src={`${process.env.PUBLIC_URL}/images/sample.png`} />
       <FavoriteBorderOutlinedIcon
-        sx={{ fontSize: 24, color: 'white', position: 'absolute', top: 10, right: 10 }}
+        sx={{ fontSize: 24, color: "white", position: "absolute", top: 10, right: 10 }}
       />
       <ContentBox>
-        <FlexTextBox
-          fontSize="1rem"
-          color="#737373"
-          fontWeight="600"
-          padding="0 0 0.25rem 0.5rem"
-        >
+        <FlexTextBox fontSize="1rem" color="#737373" fontWeight="600" padding="0 0 0.25rem 0.5rem">
           코딩
         </FlexTextBox>
         <FlexBox margin="0.4rem 0 0 0">
           <FlexTextBox fontSize="1.2rem" fontWeight="600" padding="0 0 0 0.5rem" color="white">
             멋쟁이 사자처럼
           </FlexTextBox>
-          <FlexTextBox fontSize="0.85rem" fontWeight="600" margin="0.25rem 0 0 1.5rem" color="white">
+          <FlexTextBox
+            fontSize="0.85rem"
+            fontWeight="600"
+            margin="0.25rem 0 0 1.5rem"
+            color="white"
+          >
             모집중
           </FlexTextBox>
         </FlexBox>

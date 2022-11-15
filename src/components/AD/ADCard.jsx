@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import FlexTextBox from 'components/Common/FlexTextBox';
+import styled from "styled-components";
+import FlexTextBox from "components/Common/FlexTextBox";
 
 const CardContainer = styled.div`
   width: 16rem;

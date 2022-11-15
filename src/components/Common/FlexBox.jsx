@@ -1,23 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 const defaultProps = {
-  width: 'auto',
-  height: 'auto',
-  margin: '0',
-  padding: '0',
-  gap: '0',
-  borderRadius: '',
+  width: "auto",
+  height: "auto",
+  margin: "0",
+  padding: "0",
+  gap: "0",
+  borderRadius: "",
   column: false,
   reverse: false,
-  wrap: 'nowrap',
-  justifyContent: 'flex-start',
-  alignItems: 'flex-start',
+  wrap: "nowrap",
+  justifyContent: "flex-start",
+  alignItems: "flex-start",
   center: false,
-  background: 'transparent',
-  position: 'static',
-  top: '0',
-  right: '0',
+  background: "transparent",
+  position: "static",
+  top: "0",
+  right: "0",
 };
 
 const FlexBox = (props) => {
@@ -41,7 +41,7 @@ const FlexBox = (props) => {
     top,
   } = props;
 
-  const dir = (column ? 'column' : 'row') + (reverse ? '-reverse' : '');
+  const dir = (column ? "column" : "row") + (reverse ? "-reverse" : "");
 
   return (
     <div
@@ -54,8 +54,8 @@ const FlexBox = (props) => {
         border-radius: ${borderRadius};
         flex-direction: ${dir};
         flex-wrap: ${wrap};
-        justify-content: ${center ? 'center' : justifyContent};
-        align-items: ${center ? 'center' : alignItems};
+        justify-content: ${center ? "center" : justifyContent};
+        align-items: ${center ? "center" : alignItems};
         background-color: ${background};
         position: ${position};
         top: ${top};

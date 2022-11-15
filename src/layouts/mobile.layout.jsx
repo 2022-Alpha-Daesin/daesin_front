@@ -1,4 +1,4 @@
-import MaxWidthLayout from './maxWidth.layout';
+import MaxWidthLayout from "./maxWidth.layout";
 
 const MobileLayout = ({ children }) => {
   return (

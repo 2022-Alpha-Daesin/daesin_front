@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import FlexBox from 'components/Common/FlexBox';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import FlexButton from 'components/Common/FlexButton';
-import Searchbar from 'components/Navbar/Searchbar';
-import ADDateTab from 'components/AD/ADDateTab';
-import ADCarousel from 'components/AD/ADCarousel';
-import ADCategory from 'components/AD/ADCategory';
-import ADCardWrapper from 'components/AD/ADCardWrapper';
-import ADArticleModal from 'components/AD/ADArticleModal';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import styled from 'styled-components';
+import { useState } from "react";
+import FlexBox from "components/Common/FlexBox";
+import FlexTextBox from "components/Common/FlexTextBox";
+import FlexButton from "components/Common/FlexButton";
+import Searchbar from "components/Navbar/Searchbar";
+import ADDateTab from "components/AD/ADDateTab";
+import ADCarousel from "components/AD/ADCarousel";
+import ADCategory from "components/AD/ADCategory";
+import ADCardWrapper from "components/AD/ADCardWrapper";
+import ADArticleModal from "components/AD/ADArticleModal";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import styled from "styled-components";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '100%',
-  maxWidth: '52rem',
-  borderRadius: '1rem',
-  bgcolor: 'white',
-  color: 'black',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "100%",
+  maxWidth: "52rem",
+  borderRadius: "1rem",
+  bgcolor: "white",
+  color: "black",
   boxShadow: 24,
   p: 4,
 };

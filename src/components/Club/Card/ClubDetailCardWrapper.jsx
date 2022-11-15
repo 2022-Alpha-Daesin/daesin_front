@@ -1,5 +1,5 @@
-import FlexBox from 'components/Common/FlexBox';
-import ClubDetailCard from 'components/Club/Card/ClubDetailCard';
+import FlexBox from "components/Common/FlexBox";
+import ClubDetailCard from "components/Club/Card/ClubDetailCard";
 
 const ClubDetailCardWrapper = () => {
   return (

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import FlexBox from 'components/Common/FlexBox';
-import ADCard from 'components/AD/ADCard';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import dummyData from './dummyData';
+import { useState } from "react";
+import FlexBox from "components/Common/FlexBox";
+import ADCard from "components/AD/ADCard";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import dummyData from "./dummyData";
 
 const ADCarousel = () => {
   const [cnt, setCnt] = useState(1);
@@ -51,7 +51,7 @@ const ADCarousel = () => {
     <FlexBox wrap="wrap" gap="0.75rem" margin="1rem 0 2rem 0">
       {insertBtn(cnt)}
       <ArrowForwardIosIcon
-        sx={{ margin: '9rem 0 0 0', color: 'black', cursor: 'pointer' }}
+        sx={{ margin: "9rem 0 0 0", color: "black", cursor: "pointer" }}
         onClick={() => {
           cntUp();
         }}

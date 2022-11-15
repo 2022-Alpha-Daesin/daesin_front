@@ -1,10 +1,10 @@
-import FlexBox from 'components/Common/FlexBox';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import FlexButton from 'components/Common/FlexButton';
-import Searchbar from 'components/Navbar/Searchbar';
-import ClubCardWrapper from 'components/Club/Card/ClubCardWrapper';
-import styled from 'styled-components';
-import ClubCategory from 'components/Club/Card/ClubCategory';
+import FlexBox from "components/Common/FlexBox";
+import FlexTextBox from "components/Common/FlexTextBox";
+import FlexButton from "components/Common/FlexButton";
+import Searchbar from "components/Navbar/Searchbar";
+import ClubCardWrapper from "components/Club/Card/ClubCardWrapper";
+import styled from "styled-components";
+import ClubCategory from "components/Club/Card/ClubCategory";
 
 const Text = styled.div`
   font-size: 1.5rem;

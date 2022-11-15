@@ -1,18 +1,18 @@
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import useInput from 'hooks/useInput';
-import useSignInMutation from 'queries/auth/useSignInMutation';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import styled from "styled-components";
+import COLOR from "constants/color";
+import useInput from "hooks/useInput";
+import useSignInMutation from "queries/auth/useSignInMutation";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -37,15 +37,15 @@ const SignInLink = styled(Link)`
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#737373',
-      contrastText: '#fff',
+      main: "#737373",
+      contrastText: "#fff",
     },
   },
 });
 
 const SignIn = () => {
-  const [email, handleEmail] = useInput('');
-  const [password, handlePassword] = useInput('');
+  const [email, handleEmail] = useInput("");
+  const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
   const { mutate: loginMutate, isError: error } = useSignInMutation();
 
@@ -55,7 +55,7 @@ const SignIn = () => {
     loginMutate({ email: email, password: password });
   };
   useEffect(() => {
-    alert('??');
+    alert("??");
   }, [error]);
 
   return (
@@ -65,9 +65,9 @@ const SignIn = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
@@ -116,8 +116,8 @@ const SignIn = () => {
                 </SignInLink>
               </Grid>
               <Grid item>
-                <SignInLink onClick={() => navigate('/signup')} variant="body2" underline="hover">
-                  {'회원가입'}
+                <SignInLink onClick={() => navigate("/signup")} variant="body2" underline="hover">
+                  {"회원가입"}
                 </SignInLink>
               </Grid>
             </Grid>
