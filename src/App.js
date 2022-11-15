@@ -7,6 +7,7 @@ import { AxiosInterceptor } from "./apis/config";
 const ResponsiveLayout = lazy(() => import("layouts/responsive.layout"));
 const SignIn = lazy(() => import("pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("pages/Signup/SignUp"));
+const Now = lazy(() => import("pages/Now/Now"));
 const Club = lazy(() => import("pages/Club/Club"));
 const AD = lazy(() => import("pages/AD/AD"));
 // const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
@@ -21,6 +22,7 @@ const App = () => {
             <Routes>
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/now" element={<Now />} />
               <Route path="/club" element={<Club />} />
               <Route path="/ad" element={<AD />} />
             </Routes>

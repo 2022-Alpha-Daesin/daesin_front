@@ -49,6 +49,10 @@ const DesktopNavbar = () => {
     setValue(newValue);
   };
 
+  const clickNow = () => {
+    navigate("/now");
+  };
+
   const clickClub = () => {
     navigate("/club");
   };
@@ -97,6 +101,7 @@ const DesktopNavbar = () => {
           // marginTop: 1,
           justifyContent: "flex-start",
         }}
+        onClick={clickNow}
       />
       <Tab
         icon={
