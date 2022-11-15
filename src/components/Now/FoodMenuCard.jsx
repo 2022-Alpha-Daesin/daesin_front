@@ -3,7 +3,7 @@ import FlexTextBox from "components/Common/FlexTextBox";
 import RestaurantOutlinedIcon from "@mui/icons-material/RestaurantOutlined";
 
 const CardContainer = styled.div`
-  width: 19rem;
+  width: 18rem;
   height: 25.4rem;
   border-radius: 1.25rem;
   background-image: ${(props) => props.img};
@@ -11,13 +11,22 @@ const CardContainer = styled.div`
   background-position: center;
   background-size: cover;
   cursor: pointer;
+  @keyframes fade-in {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  animation: fade-in 1500ms;
 `;
 
 const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 19rem;
+  width: 18rem;
   height: 25.4rem;
   padding: 0.8rem 1.8rem 2rem 1.8rem;
   border-radius: 1.25rem;
@@ -29,32 +38,33 @@ const FoodMenuCard = (props) => {
     <CardContainer img={`url(${process.env.PUBLIC_URL}/images/${props.img})`}>
       <ContentBox>
         <RestaurantOutlinedIcon sx={{ color: "white", fontSize: 33 }} />
-        <FlexTextBox color="white" fontSize="1.4rem" margin="1.2rem 0 1.2rem 0">
-          학생식당
+        <FlexTextBox color="white" fontSize="1.35rem" margin="1.5rem 0 1.5rem 0">
+          {props.place}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.9rem" textAlign="center">
-          누들송
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+          {props.category[0].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0 0 1.2rem 0">
-          갈비만제비, 과일젤리
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+          {props.category[0].food.map((data) => data + ", ")}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.9rem" textAlign="center">
-          가마
+
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+          {props.category[1].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0 0 1.2rem 0">
-          국민표집밥한상, 뚝배기 김치찌개& 간장제육볶음, 잡채어묵깐풍 ...
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+          {props.category[1].food.map((data) => data + ", ")}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.9rem" textAlign="center">
-          인터쉐프
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+          {props.category[2].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0 0 1.2rem 0">
-          불고기필라프, 바삭스팸튀김, 과일 젤리
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+          {props.category[2].food.map((data) => data + ", ")}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center">
-          데일리밥
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+          {props.category[3].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0 0 1.2rem 0">
-          불고기필라프, 바삭스팸튀김, 과일젤리
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+          {props.category[3].food.map((data) => data + ", ")}
         </FlexTextBox>
       </ContentBox>
     </CardContainer>

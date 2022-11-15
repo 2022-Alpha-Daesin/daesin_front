@@ -2,10 +2,11 @@ import { useState } from "react";
 import { FlexBox } from "components/Common";
 import FoodMenuCard from "components/Now/FoodMenuCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import dummyFoodData from "./dummyFoodData";
 
 const FoodMenuCarousel = () => {
   const [cnt, setCnt] = useState(1);
-  const [data, setData] = useState(dummyData);
+  const [data, setData] = useState(dummyFoodData);
 
   const cntUp = () => {
     cnt >= data.length / 3 ? setCnt(1) : setCnt(cnt + 1);
@@ -36,20 +37,19 @@ const FoodMenuCarousel = () => {
           onClick={() => {
             handleClick(data[i].id);
           }}
-          title={data[i].title}
-          content={data[i].content}
-        >
-          {data[i].study}
-        </FoodMenuCard>,
+          img={data[i].img}
+          place={data[i].place}
+          category={data[i].category}
+        />,
       );
     }
     return newArr;
   };
   return (
-    <FlexBox wrap="wrap" gap="0.75rem" margin="1rem 0 2rem 0">
+    <FlexBox wrap="wrap" gap="1.65rem" margin="1rem 0 2rem 0">
       {insertBtn(cnt)}
       <ArrowForwardIosIcon
-        sx={{ margin: "9rem 0 0 0", color: "black", cursor: "pointer" }}
+        sx={{ margin: "12rem 0 0 0", color: "black", cursor: "pointer" }}
         onClick={() => {
           cntUp();
         }}
