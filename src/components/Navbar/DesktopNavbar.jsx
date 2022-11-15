@@ -50,7 +50,7 @@ const DesktopNavbar = () => {
   };
 
   const clickNow = () => {
-    navigate("/now");
+    navigate("/");
   };
 
   const clickClub = () => {
