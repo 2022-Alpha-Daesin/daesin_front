@@ -46,8 +46,10 @@ const FoodMenuCarousel = () => {
     return newArr;
   };
   return (
-    <FlexBox wrap="wrap" gap="1.65rem" margin="1rem 0 2rem 0">
-      {insertBtn(cnt)}
+    <FlexBox gap="1rem">
+      <FlexBox wrap="wrap" gap="1.8rem" margin="1rem 0 2rem 0">
+        {insertBtn(cnt)}
+      </FlexBox>
       <ArrowForwardIosIcon
         sx={{ margin: "12rem 0 0 0", color: "black", cursor: "pointer" }}
         onClick={() => {
