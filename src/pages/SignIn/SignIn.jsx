@@ -13,6 +13,9 @@ import useInput from 'hooks/useInput';
 import useSignInMutation from 'queries/auth/useSignInMutation';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states/userInfo';
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -44,19 +47,32 @@ const theme = createTheme({
 });
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
   const [email, handleEmail] = useInput('');
   const [password, handlePassword] = useInput('');
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      toast.success('이미 로그인한 상태입니다. 👍');
+      navigate('/');
+    }
+    if (window.location.pathname.split('/').pop() === '1') {
+      toast.error('해당 기능을 사용하려면 로그인을 해주세요 😭');
+    }
+  }, []);
+
   const { mutate: loginMutate, isError: error } = useSignInMutation();
+
+  const onKeyPressFunc = (e) => {
+    if (e.key === 'Enter') submit();
+  };
 
   const submit = (e) => {
     e.preventDefault();
     console.log(email, password);
     loginMutate({ email: email, password: password });
   };
-  useEffect(() => {
-    alert('??');
-  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
