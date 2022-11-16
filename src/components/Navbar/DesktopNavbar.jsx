@@ -61,6 +61,10 @@ const DesktopNavbar = () => {
     navigate("/signin");
   };
 
+  const clickReview = () => {
+    navigate("/review");
+  };
+
   return (
     <TabsLib
       orientation="vertical"
@@ -116,6 +120,7 @@ const DesktopNavbar = () => {
           // marginTop: 1,
           justifyContent: "flex-start",
         }}
+        onClick={clickReview}
       />
       <Tab
         icon={
