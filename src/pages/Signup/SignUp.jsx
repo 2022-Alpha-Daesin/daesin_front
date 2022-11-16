@@ -1,21 +1,25 @@
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MajorData from "constants/MajorData.js";
-import styled from "styled-components";
-import COLOR from "constants/color";
-import useInput from "hooks/useInput";
-import useSignUpMutation from "queries/auth/useSignUpMutation";
+import { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MajorData from 'constants/MajorData.js';
+import styled from 'styled-components';
+import COLOR from 'constants/color';
+import useInput from 'hooks/useInput';
+import useSignUpMutation from 'queries/auth/useSignUpMutation';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states/userInfo';
+import toast from 'react-hot-toast';
 
 const theme = createTheme({
   palette: {
@@ -43,6 +47,8 @@ const SingUpBtn = styled(Button)`
 `;
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
   const { Division, Department } = MajorData;
   const [grade, setGrade] = useState("");
   const [division, setDivision] = useState("");
@@ -64,6 +70,13 @@ const SignUp = () => {
   const [nickname, handleNickname] = useInput("");
   // const [grade, handleGrade] = useInput('');
   // const [major, handleMajor] = useInput('');
+
+  useEffect(() => {
+    if (user) {
+      toast.success('이미 로그인한 상태입니다. 👍');
+      navigate('/');
+    }
+  }, []);
 
   const { mutate: signInMutate } = useSignUpMutation();
 
