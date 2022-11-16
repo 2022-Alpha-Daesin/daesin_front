@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import COLOR from "constants/color";
 import FlexBox from "components/Common/FlexBox";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import dummyData from "./DummyData";
 
 const Btn = styled.button`
@@ -26,7 +25,7 @@ const Btn = styled.button`
   animation: fade-in 1000ms;
 `;
 
-const ClubCategory = () => {
+const ReviewCategory = () => {
   const [cnt, setCnt] = useState(1);
   const [data, setData] = useState(dummyData);
 
@@ -70,13 +69,7 @@ const ClubCategory = () => {
   return (
     <FlexBox wrap="wrap" gap="0.8rem">
       {insertBtn(cnt)}
-      <ArrowForwardIosIcon
-        sx={{ margin: "0.6rem 0 0 0", color: COLOR.font.select, cursor: "pointer" }}
-        onClick={() => {
-          cntUp();
-        }}
-      />
     </FlexBox>
   );
 };
-export default ClubCategory;
+export default ReviewCategory;
