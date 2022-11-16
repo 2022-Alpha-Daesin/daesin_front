@@ -4,6 +4,7 @@ import FlexButton from "components/Common/FlexButton";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import ReviewCategory from "components/Review/ReviewCategory";
+import ReviewPostList from "../../components/Review/ReviewPostList";
 
 const Text = styled.div`
   font-size: 1.5rem;
@@ -14,10 +15,16 @@ const Text = styled.div`
   opacity: 0.9;
 `;
 
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+`;
+
 const Review = () => {
   return (
-    <>
-      <FlexBox column margin="2rem 0 0 0" gap="2rem">
+    <FlexContainer>
+      <FlexBox alignItems="flex-start" column margin="2rem 0 0 0" gap="2rem">
         <Searchbar />
         <FlexBox>
           <Text>후기</Text>
@@ -34,8 +41,9 @@ const Review = () => {
           </FlexTextBox>
         </FlexBox>
         <ReviewCategory />
+        <ReviewPostList />
       </FlexBox>
-    </>
+    </FlexContainer>
   );
 };
 

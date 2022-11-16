@@ -14,6 +14,9 @@ const Btn = styled.button`
   background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : "transparent")};
   opacity: 0.7;
   cursor: pointer;
+  width: 7rem;
+  height: 2.5rem;
+  line-height: 1;
   @keyframes fade-in {
     from {
       opacity: 0.5;
