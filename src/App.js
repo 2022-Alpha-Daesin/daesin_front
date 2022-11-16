@@ -9,6 +9,7 @@ const SignIn = lazy(() => import("pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("pages/Signup/SignUp"));
 const Club = lazy(() => import("pages/Club/Club"));
 const AD = lazy(() => import("pages/AD/AD"));
+const Review = lazy(() => import("pages/Review/Review"));
 // const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/club" element={<Club />} />
               <Route path="/ad" element={<AD />} />
+              <Route path="/review" element={<Review />} />
             </Routes>
           </ResponsiveLayout>
         </Suspense>
