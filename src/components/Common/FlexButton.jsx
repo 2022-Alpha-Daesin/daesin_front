@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import COLOR from 'constants/color';
+import { css } from "@emotion/react";
+import COLOR from "constants/color";
 
 const defaultProps = {
-  type: 'button',
-  width: 'auto',
-  height: 'auto',
-  margin: '0',
-  padding: '0.6rem 1.5rem',
+  type: "button",
+  width: "auto",
+  height: "auto",
+  margin: "0",
+  padding: "0.6rem 1.5rem",
   fontWeight: 800,
-  borderRadius: '0.62rem',
-  fontSize: '1.2rem',
+  borderRadius: "0.62rem",
+  fontSize: "1.2rem",
   color: COLOR.font.main,
-  textDecoration: 'none',
-  backgroundColor: 'transparent',
+  textDecoration: "none",
+  backgroundColor: "transparent",
   disabled: false,
   onClick: Function,
 };

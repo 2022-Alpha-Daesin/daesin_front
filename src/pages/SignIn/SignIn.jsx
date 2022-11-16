@@ -40,8 +40,8 @@ const SignInLink = styled(Link)`
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#737373',
-      contrastText: '#fff',
+      main: "#737373",
+      contrastText: "#fff",
     },
   },
 });
@@ -61,7 +61,6 @@ const SignIn = () => {
       toast.error('해당 기능을 사용하려면 로그인을 해주세요 😭');
     }
   }, []);
-
   const { mutate: loginMutate, isError: error } = useSignInMutation();
 
   const submit = (e) => {
@@ -77,9 +76,9 @@ const SignIn = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">
@@ -128,8 +127,8 @@ const SignIn = () => {
                 </SignInLink>
               </Grid>
               <Grid item>
-                <SignInLink onClick={() => navigate('/signup')} variant="body2" underline="hover">
-                  {'회원가입'}
+                <SignInLink onClick={() => navigate("/signup")} variant="body2" underline="hover">
+                  {"회원가입"}
                 </SignInLink>
               </Grid>
             </Grid>

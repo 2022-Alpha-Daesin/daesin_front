@@ -1,8 +1,8 @@
-import FlexBox from 'components/Common/FlexBox';
-import FlexTextBox from 'components/Common/FlexTextBox';
-import Searchbar from 'components/Navbar/Searchbar';
-import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
+import FlexBox from "components/Common/FlexBox";
+import FlexTextBox from "components/Common/FlexTextBox";
+import Searchbar from "components/Navbar/Searchbar";
+import styled from "styled-components";
+import { Icon } from "semantic-ui-react";
 
 const Img = styled.img`
   width: 80%;

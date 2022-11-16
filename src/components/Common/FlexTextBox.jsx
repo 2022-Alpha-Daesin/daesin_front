@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import COLOR from 'constants/color';
+import { css } from "@emotion/react";
+import COLOR from "constants/color";
 
 const defaultProps = {
-  width: 'auto',
-  height: 'auto',
-  margin: '0',
-  padding: '0',
-  fontSize: '1rem',
-  lineHeight: '120%',
-  textAlign: 'left',
+  width: "auto",
+  height: "auto",
+  margin: "0",
+  padding: "0",
+  fontSize: "1rem",
+  lineHeight: "120%",
+  textAlign: "left",
   color: COLOR.font.main,
-  fontWeight: '800',
-  background: '',
+  fontWeight: "800",
+  background: "",
 };
 
 const FlexTextBox = (props) => {

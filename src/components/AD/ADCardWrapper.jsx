@@ -1,6 +1,6 @@
-import FlexBox from 'components/Common/FlexBox';
-import ADCard from 'components/AD/ADCard';
-import dummyData from 'components/AD/dummyData';
+import FlexBox from "components/Common/FlexBox";
+import ADCard from "components/AD/ADCard";
+import dummyData from "components/AD/dummyData";
 
 const ADCardWrapper = () => {
   const cardList = dummyData.map((data) => <ADCard title={data.title} content={data.content} />);

@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import FlexBox from 'components/Common/FlexBox';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import dummyData from './dummyData';
+import { useState } from "react";
+import styled from "styled-components";
+import COLOR from "constants/color";
+import FlexBox from "components/Common/FlexBox";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import dummyData from "./dummyData";
 
 const Btn = styled.button`
   padding: 0.85rem 0.65rem;
@@ -11,8 +11,8 @@ const Btn = styled.button`
   border: 1.6px solid ${COLOR.font.select};
   font-size: 0.9rem;
   font-weight: 800;
-  color: ${(props) => (props.isClicked ? 'white' : '#5c5c5c')};
-  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : 'transparent')};
+  color: ${(props) => (props.isClicked ? "white" : "#5c5c5c")};
+  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : "transparent")};
   opacity: 0.7;
   cursor: pointer;
   @keyframes fade-in {
@@ -71,7 +71,7 @@ const ClubCategory = () => {
     <FlexBox wrap="wrap" gap="0.8rem">
       {insertBtn(cnt)}
       <ArrowForwardIosIcon
-        sx={{ margin: '0.6rem 0 0 0', color: COLOR.font.select, cursor: 'pointer' }}
+        sx={{ margin: "0.6rem 0 0 0", color: COLOR.font.select, cursor: "pointer" }}
         onClick={() => {
           cntUp();
         }}

@@ -24,8 +24,8 @@ import toast from 'react-hot-toast';
 const theme = createTheme({
   palette: {
     neutral: {
-      main: '#737373',
-      contrastText: '#fff',
+      main: "#737373",
+      contrastText: "#fff",
     },
   },
 });
@@ -50,9 +50,9 @@ const SignUp = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
   const { Division, Department } = MajorData;
-  const [grade, setGrade] = useState('');
-  const [division, setDivision] = useState('');
-  const [department, setDepartment] = useState('');
+  const [grade, setGrade] = useState("");
+  const [division, setDivision] = useState("");
+  const [department, setDepartment] = useState("");
 
   const handleGrade = (event: SelectChangeEvent) => {
     setGrade(event.target.value);
@@ -64,10 +64,10 @@ const SignUp = () => {
     setDepartment(event.target.value);
   };
 
-  const [email, handleEmail] = useInput('');
-  const [password1, handlePassword1] = useInput('');
-  const [password2, handlePassword2] = useInput('');
-  const [nickname, handleNickname] = useInput('');
+  const [email, handleEmail] = useInput("");
+  const [password1, handlePassword1] = useInput("");
+  const [password2, handlePassword2] = useInput("");
+  const [nickname, handleNickname] = useInput("");
   // const [grade, handleGrade] = useInput('');
   // const [major, handleMajor] = useInput('');
 
@@ -81,7 +81,7 @@ const SignUp = () => {
   const { mutate: signInMutate } = useSignUpMutation();
 
   const onKeyPressFunc = (e) => {
-    if (e.key === 'Enter') submit();
+    if (e.key === "Enter") submit();
   };
 
   const submit = (e) => {
@@ -103,9 +103,9 @@ const SignUp = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <Typography component="h1" variant="h5">

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import FlexBox from 'components/Common/FlexBox';
+import { useState } from "react";
+import styled from "styled-components";
+import COLOR from "constants/color";
+import FlexBox from "components/Common/FlexBox";
 
 const Btn = styled.button`
   width: 6.8rem;
@@ -10,8 +10,8 @@ const Btn = styled.button`
   border: 1.6px solid ${COLOR.font.select};
   font-size: 0.9rem;
   font-weight: 800;
-  color: ${(props) => (props.isClicked ? 'white' : '#5c5c5c')};
-  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : 'transparent')};
+  color: ${(props) => (props.isClicked ? "white" : "#5c5c5c")};
+  background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : "transparent")};
   opacity: 0.7;
   cursor: pointer;
 `;
