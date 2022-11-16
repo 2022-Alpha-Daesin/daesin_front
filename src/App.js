@@ -5,6 +5,7 @@ import GlobalStyles from "styles/GlobalStyles";
 import { AxiosInterceptor } from "./apis/config";
 
 const ResponsiveLayout = lazy(() => import("layouts/responsive.layout"));
+const Now = lazy(() => import("pages/Now/Now"));
 const SignIn = lazy(() => import("pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("pages/Signup/SignUp"));
 const Club = lazy(() => import("pages/Club/Club"));
@@ -19,6 +20,7 @@ const App = () => {
         <Suspense fallback={<WaveLoading />}>
           <ResponsiveLayout>
             <Routes>
+              <Route path="/" element={<Now />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/club" element={<Club />} />
