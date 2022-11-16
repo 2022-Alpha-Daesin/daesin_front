@@ -10,7 +10,6 @@ const CardContainer = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  cursor: pointer;
   @keyframes fade-in {
     from {
       opacity: 0.5;

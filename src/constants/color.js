@@ -12,6 +12,7 @@ const COLOR = {
   bg: {
     default: "#FAFAFA",
     dep1: "#f2f2f2",
+    blue: "#ECF2FE",
   },
   border: {
     default: "#b0b0b0",
