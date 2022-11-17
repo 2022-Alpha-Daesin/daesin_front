@@ -8,14 +8,14 @@ const Btn = styled.button`
   padding: 0.85rem 0.65rem;
   border-radius: 1.6rem;
   border: 1.6px solid ${COLOR.font.select};
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: ${(props) => (props.isClicked ? "white" : "#5c5c5c")};
   background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : "transparent")};
   opacity: 0.7;
   cursor: pointer;
-  width: 7rem;
-  height: 2.5rem;
+  width: 10rem;
+  height: 3rem;
   line-height: 1;
   @keyframes fade-in {
     from {
@@ -70,7 +70,7 @@ const ReviewCategory = () => {
   };
 
   return (
-    <FlexBox wrap="wrap" gap="0.8rem">
+    <FlexBox wrap="wrap" gap="1.8rem">
       {insertBtn(cnt)}
     </FlexBox>
   );

@@ -19,6 +19,7 @@ const FlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  padding-bottom: 3rem;
 `;
 
 const Review = () => {
@@ -41,6 +42,10 @@ const Review = () => {
           </FlexTextBox>
         </FlexBox>
         <ReviewCategory />
+        <ReviewPostList />
+        <ReviewPostList />
+        <ReviewPostList />
+        <ReviewPostList />
         <ReviewPostList />
       </FlexBox>
     </FlexContainer>
