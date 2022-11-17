@@ -3,6 +3,8 @@ import FlexTextBox from "components/Common/FlexTextBox";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
+import AddComment from "components/ReviewDetail/AddComment";
+import CommentList from "components/ReviewDetail/CommentList";
 
 const Img = styled.img`
   width: 80%;
@@ -37,7 +39,7 @@ const ReviewDetail = () => {
           </FlexBox>
           <FlexTextBox fontSize="2rem">[멋쟁이 사자 처럼 8기] 아기사자 대모집!!</FlexTextBox>
           <FlexBox width="100%" center column gap="2rem">
-            <FlexTextBox width="100%" fontSize="1.1rem" marginBottom="10rem">
+            <FlexTextBox width="100%" fontSize="1.1rem" marginBottom="10%">
               안녕하세요! 교내 소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다.
               <br /> <br /> 국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다. 안녕하세요! 교내
               소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다. 국민대 멋쟁이 사자처럼이 8기 아기
@@ -50,7 +52,8 @@ const ReviewDetail = () => {
               멋쟁이 사자처럼이 8기 아기 사자를 모집합니다.
             </FlexTextBox>
           </FlexBox>
-          asdasd
+          <AddComment />
+          <CommentList />
         </FlexBox>
         <Line />
       </FlexBox>
