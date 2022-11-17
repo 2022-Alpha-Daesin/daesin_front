@@ -64,7 +64,7 @@ const ADArticleModal = (props) => {
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
-            홍보 종류
+            후기 종류
           </FlexTextBox>
           <FlexTextArea />
         </FlexBox>
