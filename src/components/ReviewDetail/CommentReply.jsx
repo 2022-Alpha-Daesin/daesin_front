@@ -62,7 +62,7 @@ const CommentReply = () => {
           padding="0.8rem 1.5rem"
           margin="1rem 0 2rem 0"
         >
-          답글 달기
+          답글 쓰기
         </FlexButton>
       </FlexBox>
     </FlexBox>
