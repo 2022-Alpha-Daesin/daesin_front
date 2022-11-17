@@ -1,8 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FlexBox, FlexButton } from "../Common";
 import FlexTextBox from "../Common/FlexTextBox";
 // import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import CommentReply from "./CommentReply";
 
 const RecommendCnt = styled.span`
   margin-left: 0.5rem;
@@ -23,6 +25,11 @@ const CommentDate = styled.span`
 `;
 
 const CommentList = () => {
+  const [replyOpen, setReplyOpen] = useState(false);
+  const replyOpenHandler = () => {
+    setReplyOpen(!replyOpen);
+  };
+
   return (
     <FlexBox column width="100%" borderBottom="1px solid #b5b5b5" padding="0 0 1.5% 0">
       <FlexBox width="100%" height="100%" alignItems="center">
@@ -44,9 +51,10 @@ const CommentList = () => {
       <FlexBox color="#717171" justifyContent="flex-end" width="93%">
         <ThumbUpOffAltIcon />
         <RecommendCnt>2</RecommendCnt>
-        <CommentReplyBtn>답글쓰기</CommentReplyBtn>
+        <CommentReplyBtn onClick={replyOpenHandler}>답글쓰기</CommentReplyBtn>
         <CommentDate>2022.11.18</CommentDate>
       </FlexBox>
+      {replyOpen ? <CommentReply /> : null}
     </FlexBox>
   );
 };
