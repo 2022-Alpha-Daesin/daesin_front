@@ -2,19 +2,21 @@ import { useState } from "react";
 import styled from "styled-components";
 import COLOR from "constants/color";
 import FlexBox from "components/Common/FlexBox";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import dummyData from "./DummyData";
 
 const Btn = styled.button`
   padding: 0.85rem 0.65rem;
   border-radius: 1.6rem;
   border: 1.6px solid ${COLOR.font.select};
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: ${(props) => (props.isClicked ? "white" : "#5c5c5c")};
   background: ${(props) => (props.isClicked ? COLOR.btn.main_gra : "transparent")};
   opacity: 0.7;
   cursor: pointer;
+  width: 10rem;
+  height: 3rem;
+  line-height: 1;
   @keyframes fade-in {
     from {
       opacity: 0.5;
@@ -26,7 +28,7 @@ const Btn = styled.button`
   animation: fade-in 1000ms;
 `;
 
-const ClubCategory = () => {
+const ReviewCategory = () => {
   const [cnt, setCnt] = useState(1);
   const [data, setData] = useState(dummyData);
 
@@ -68,15 +70,9 @@ const ClubCategory = () => {
   };
 
   return (
-    <FlexBox wrap="wrap" gap="0.8rem">
+    <FlexBox wrap="wrap" gap="1.8rem">
       {insertBtn(cnt)}
-      <ArrowForwardIosIcon
-        sx={{ margin: "0.6rem 0 0 0", color: COLOR.font.select, cursor: "pointer" }}
-        onClick={() => {
-          cntUp();
-        }}
-      />
     </FlexBox>
   );
 };
-export default ClubCategory;
+export default ReviewCategory;
