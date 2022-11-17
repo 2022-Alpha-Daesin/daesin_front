@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PostContainer = styled.div`
   width: 100%;
@@ -35,8 +36,9 @@ const ReviewPostCommentCnt = styled.span`
 `;
 
 const ReviewPostList = () => {
+  const navigate = useNavigate();
   return (
-    <PostContainer>
+    <PostContainer onClick={() => navigate("/review/1")}>
       <ReviewPostTitle>소프트웨어 융합학부 전과 면접 꿀팁</ReviewPostTitle>
       <ReviewPostContent>이번에 면접까지 보게 되었는데 꿀팁 같은게 있을까요?</ReviewPostContent>
       <ReviewPostDate>10.25</ReviewPostDate>
