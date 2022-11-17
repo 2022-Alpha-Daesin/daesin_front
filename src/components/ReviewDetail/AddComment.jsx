@@ -38,7 +38,7 @@ const AddCommentText = styled.input`
 
 const AddComment = () => {
   return (
-    <FlexBox width="100%" column>
+    <FlexBox width="100%" column borderBottom="1px solid #b5b5b5">
       <FlexBox>
         <Title>국민 TALK</Title>
         <CommentCnt> 총 18개</CommentCnt>
@@ -64,7 +64,7 @@ const AddComment = () => {
           backgroundColor={COLOR.btn.main_gra}
           color="#fff"
           padding="0.8rem 1.5rem"
-          margin="1rem 0 0 0"
+          margin="1rem 0 2rem 0"
         >
           올리기
         </FlexButton>

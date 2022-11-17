@@ -18,6 +18,7 @@ const defaultProps = {
   position: "static",
   top: "0",
   right: "0",
+  borderBottom: "0",
 };
 
 const FlexBox = (props) => {
@@ -39,6 +40,7 @@ const FlexBox = (props) => {
     position,
     right,
     top,
+    borderBottom,
   } = props;
 
   const dir = (column ? "column" : "row") + (reverse ? "-reverse" : "");
@@ -61,6 +63,7 @@ const FlexBox = (props) => {
         top: ${top};
         right: ${right};
         gap: ${gap};
+        border-bottom: ${borderBottom};
       `}
     >
       {children}
