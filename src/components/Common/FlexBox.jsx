@@ -19,6 +19,7 @@ const defaultProps = {
   top: "0",
   right: "0",
   borderBottom: "0",
+  color: "black",
 };
 
 const FlexBox = (props) => {
@@ -41,6 +42,7 @@ const FlexBox = (props) => {
     right,
     top,
     borderBottom,
+    color,
   } = props;
 
   const dir = (column ? "column" : "row") + (reverse ? "-reverse" : "");
@@ -64,6 +66,7 @@ const FlexBox = (props) => {
         right: ${right};
         gap: ${gap};
         border-bottom: ${borderBottom};
+        color: ${color};
       `}
     >
       {children}

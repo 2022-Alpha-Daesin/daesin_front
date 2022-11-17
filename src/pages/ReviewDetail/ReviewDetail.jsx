@@ -49,6 +49,9 @@ const ReviewDetail = () => {
           </FlexBox>
           <AddComment />
           <CommentList />
+          <CommentList />
+          <CommentList />
+          <CommentList />
         </FlexBox>
         <Line />
       </FlexBox>
