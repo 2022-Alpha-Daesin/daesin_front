@@ -28,7 +28,7 @@ const style = {
 
 const Text = styled.div`
   margin: 1rem 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 800;
   background: linear-gradient(to bottom, #ff8f28, #db00ff);
   -webkit-background-clip: text;
@@ -41,8 +41,10 @@ const AD = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <FlexBox column gap="1.5rem">
-      <Searchbar />
+    <FlexBox column gap="1.4rem">
+      <FlexBox margin="1.9rem 0 0 0">
+        <Searchbar />
+      </FlexBox>
       <Text>홍보</Text>
       <FlexTextBox fontSize="1.5rem">마감 임박 홍보</FlexTextBox>
       <ADDateTab />

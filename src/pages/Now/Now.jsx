@@ -1,11 +1,12 @@
 import { FlexBox, FlexTextBox } from "components/Common";
-import styled from "styled-components";
+import Searchbar from "components/Navbar/Searchbar";
 import FoodMenuCarousel from "components/Now/FoodMenuCarousel";
 import HotKeyword from "components/Now/HotKeyword";
+import styled from "styled-components";
 
 const Text = styled.div`
   margin: 1rem 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 1000;
   background: linear-gradient(to bottom, #ff8f28, #db00ff);
   -webkit-background-clip: text;
@@ -15,7 +16,10 @@ const Text = styled.div`
 
 const Now = () => {
   return (
-    <FlexBox column gap="1.2rem">
+    <FlexBox width="100%" column gap="1.3rem">
+      <FlexBox margin="1.9rem 0 0 0">
+        <Searchbar />
+      </FlexBox>
       <Text>NOW</Text>
       <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
       <FoodMenuCarousel />
