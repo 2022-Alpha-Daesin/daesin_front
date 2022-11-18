@@ -27,7 +27,7 @@ const ContentBox = styled.div`
   align-items: center;
   width: 18rem;
   height: 25.4rem;
-  padding: 0.8rem 1.8rem 2rem 1.8rem;
+  padding: 1.5rem 1.8rem 1rem 1.8rem;
   border-radius: 1.25rem;
   background-color: rgba(0, 0, 0, 0.5);
 `;
@@ -37,38 +37,38 @@ const FoodMenuCard = (props) => {
     <CardContainer img={`url(${process.env.PUBLIC_URL}/images/${props.img})`}>
       <ContentBox>
         <RestaurantOutlinedIcon sx={{ color: "white", fontSize: 33 }} />
-        <FlexTextBox color="white" fontSize="1.35rem" margin="1.5rem 0 1.5rem 0">
+        <FlexTextBox color="white" fontSize="1.35rem" margin="1.5rem 0 0 0">
           {props.place}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="1rem 0 0 0">
           {props.category[0].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[0].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
         </FlexTextBox>
 
-        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[1].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[1].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[2].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[2].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0 0 0.2rem 0">
+        <FlexTextBox color="#C7C7C7" fontSize="0.8rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[3].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0 0 1.2rem 0">
+        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[3].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
