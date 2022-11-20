@@ -1,6 +1,9 @@
 import { FlexBox, FlexTextBox } from "components/Common";
+import useDate from "hooks/useDate";
 
 const MyArticleCard = () => {
+  let date = useDate();
+  date = date.slice(5, -1);
   return (
     <FlexBox
       width="100%"
@@ -17,7 +20,7 @@ const MyArticleCard = () => {
         아아아아아아ㅏ아아아아아아ㅏ아아아아아아아아아아...
       </FlexTextBox>
       <FlexBox gap="1rem">
-        <FlexTextBox>10.25</FlexTextBox>
+        <FlexTextBox>{date}</FlexTextBox>
         <FlexTextBox>댓글 2</FlexTextBox>
       </FlexBox>
     </FlexBox>
