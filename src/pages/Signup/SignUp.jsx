@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { ThemeProvider } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-
 import useInput from "hooks/useInput";
-import useSignUpMutation from "queries/auth/useSignUpMutation";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userAtom } from "states/userInfo";
 import { useCollegeQuery, useMajorListQuery } from "queries/major";
+import { useSignUpMutation } from "queries/auth";
 import toast from "react-hot-toast";
 import MajorData from "constants/MajorData";
-import { theme, SignUpText, ButtonTxt, SingUpBtn } from "./style.js";
+import { SelectChangeEvent } from "@mui/material/Select";
+import {
+  theme,
+  SignUpText,
+  ButtonTxt,
+  SingUpBtn,
+  ThemeProvider,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "./styles.js";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const user = useRecoilValue(userAtom);
   // const [Divsion
   const { Division, Department } = MajorData;
   const [grade, setGrade] = useState("");
@@ -49,15 +51,6 @@ const SignUp = () => {
   const [password1, handlePassword1] = useInput("");
   const [password2, handlePassword2] = useInput("");
   const [nickname, handleNickname] = useInput("");
-  // const [grade, handleGrade] = useInput('');
-  // const [major, handleMajor] = useInput('');
-
-  useEffect(() => {
-    if (user) {
-      toast.success("이미 로그인한 상태입니다. 👍");
-      navigate("/");
-    }
-  }, []);
 
   const onKeyPressFunc = (e) => {
     if (e.key === "Enter") submit();

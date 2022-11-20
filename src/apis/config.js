@@ -1,6 +1,8 @@
-import axios from 'axios';
-import { baseUrl } from '../constants/URLS';
-import { useEffect } from 'react';
+import axios from "axios";
+import { baseUrl } from "../constants/URLS";
+import { useEffect } from "react";
+import { userInfo } from "states";
+import { useRecoilState } from "recoil";
 
 const createInstance = () => {
   const timeout = 1000 * 10;
@@ -17,10 +19,11 @@ const createInstance = () => {
 const axiosInstance = createInstance();
 
 const AxiosInterceptor = ({ children }) => {
+  const [user] = useRecoilState(userInfo);
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
-      const accessToken = localStorage.getItem('access_token');
-      if (accessToken) config.headers['Authorization'] = `Bearer ${accessToken}`;
+      const accessToken = user.accessToken;
+      if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
       return config;
     });
   }, []);

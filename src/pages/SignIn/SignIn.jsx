@@ -1,77 +1,36 @@
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import styled from "styled-components";
-import COLOR from "constants/color";
 import useInput from "hooks/useInput";
-import useSignInMutation from "queries/auth/useSignInMutation";
+import { useSignInMutation, useVerifyEmailMutation } from "queries/auth";
 import { useNavigate, useLocation } from "react-router-dom";
-import userRelatedAPI from "apis/userRelatedAPI";
 import { useEffect } from "react";
+// import toast, { Toaster } from "react-hot-toast";
 import qs from "query-string";
-
-const SignInText = styled.span`
-  font-size: 2.5rem;
-  font-weight: 600;
-`;
-
-const ButtonTxt = styled.span`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-`;
-
-const SingInBtn = styled(Button)`
-  background: ${COLOR.btn.main_gra} !important;
-  border-radius: 0.7rem !important;
-`;
-
-const SignInLink = styled(Link)`
-  color: #000 !important;
-`;
-
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: "#737373",
-      contrastText: "#fff",
-    },
-  },
-});
+import {
+  SignInLink,
+  SignInText,
+  SingInBtn,
+  theme,
+  ButtonTxt,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  ThemeProvider,
+} from "./styles";
 
 const SignIn = () => {
   const [email, handleEmail] = useInput("");
   const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { mutate: loginMutate, isError: error } = useSignInMutation();
-
-  const confirmEmail = async (emailVerifyToken) => {
-    const data = { key: emailVerifyToken };
-    await userRelatedAPI
-      .verifyEmail(data)
-      .then((res) => {
-        alert("이메일 인증이 완료되었습니다. 로그인을 진행하시길 바랍니다.");
-        console.log(res.data);
-      })
-      .catch((err) => {
-        if (err.response.status === 404) {
-          alert("이미 처리되었습니다. 로그인을 진행하시길 바랍니다.");
-        }
-      });
-  };
+  const { mutate: loginMutate, isError: loginError, isSuccess: loginSuccess } = useSignInMutation();
+  const { mutate: verifyMutate, isError: emailError } = useVerifyEmailMutation();
 
   useEffect(() => {
     let query = qs.parse(location.search);
     if ("key" in query) {
-      console.log("??", query["key"]);
-      confirmEmail(query["key"]);
+      verifyMutate(query["key"]);
     }
   }, []);
 
