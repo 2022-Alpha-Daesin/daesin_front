@@ -43,7 +43,7 @@ const FoodMenuCard = (props) => {
         <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="1rem 0 0 0">
           {props.category[0].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.95rem" textAlign="center" margin="0.2rem 0 0 0">
+        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[0].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
@@ -52,7 +52,7 @@ const FoodMenuCard = (props) => {
         <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[1].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.95rem" textAlign="center" margin="0.2rem 0 0 0">
+        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[1].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
@@ -60,7 +60,7 @@ const FoodMenuCard = (props) => {
         <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[2].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.95rem" textAlign="center" margin="0.2rem 0 0 0">
+        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[2].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}
@@ -68,7 +68,7 @@ const FoodMenuCard = (props) => {
         <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
           {props.category[3].name}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.95rem" textAlign="center" margin="0.2rem 0 0 0">
+        <FlexTextBox color="white" fontSize="1rem" textAlign="center" margin="0.2rem 0 0 0">
           {props.category[3].food.map((data, idx) =>
             idx && props.category[3].food.length - 1 ? data : data + ", ",
           )}

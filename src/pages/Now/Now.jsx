@@ -17,7 +17,7 @@ const Text = styled.div`
 const Now = () => {
   return (
     <FlexBox width="100%" column gap="1.3rem">
-      <FlexBox margin="1.9rem 0 0 0">
+      <FlexBox width="100%" margin="1.9rem 0 0 0">
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>

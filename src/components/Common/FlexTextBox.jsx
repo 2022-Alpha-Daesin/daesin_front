@@ -14,6 +14,7 @@ const defaultProps = {
   fontWeight: "800",
   background: "",
   marginBottom: "0",
+  textOverflow: "clip",
 };
 
 const FlexTextBox = (props) => {
@@ -30,6 +31,7 @@ const FlexTextBox = (props) => {
     textAlign,
     background,
     marginBottom,
+    textOverflow,
   } = props;
 
   return (
@@ -46,6 +48,7 @@ const FlexTextBox = (props) => {
         color: ${color};
         background: ${background};
         margin-bottom: ${marginBottom};
+        text-overflow: ${textOverflow};
       `}
     >
       {children}
