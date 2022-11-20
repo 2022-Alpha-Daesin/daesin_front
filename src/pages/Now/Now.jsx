@@ -1,7 +1,6 @@
 import { FlexBox, FlexTextBox } from "components/Common";
+import { FoodMenuCarousel, HotKeyword } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
-import FoodMenuCarousel from "components/Now/FoodMenuCarousel";
-import HotKeyword from "components/Now/HotKeyword";
 import styled from "styled-components";
 
 const Text = styled.div`
