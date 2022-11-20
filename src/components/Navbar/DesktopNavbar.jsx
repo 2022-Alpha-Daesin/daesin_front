@@ -189,7 +189,7 @@ const DesktopNavbar = () => {
           color: "#282828",
           justifyContent: "flex-start",
         }}
-        onclick={clickMypage}
+        onClick={clickMypage}
       />
       <Tab
         label=" - 스크랩"
