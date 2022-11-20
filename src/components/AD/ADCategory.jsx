@@ -17,17 +17,22 @@ const Btn = styled.button`
 `;
 
 const ADCategory = () => {
-  const [isClicked, setClick] = useState([1, 0, 0, 0, 0]);
+  const [isClicked, setClick] = useState([true, false, false, false, false]);
 
   const handleClick = (id) => {
     setClick(
       isClicked.map((data, idx) => {
+        if (data === true) {
+          data = false;
+        }
         if (idx === id) {
           data = !data;
         }
+
         return data;
       }),
     );
+    console.log(isClicked);
   };
 
   return (
