@@ -11,8 +11,8 @@ const userRelatedAPI = {
     return client.post("auth/login/", data).then((res) => res.data);
   },
 
-  verifyEmail: (token) => {
-    return client.post("auth/registration/verify-email", token);
+  verifyEmail: (data) => {
+    return client.post("auth/registration/verify-email/", data);
   },
 };
 

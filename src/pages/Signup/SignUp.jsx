@@ -1,66 +1,47 @@
-import { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import MajorData from 'constants/MajorData.js';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import useInput from 'hooks/useInput';
-import useSignUpMutation from 'queries/auth/useSignUpMutation';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states/userInfo';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { ThemeProvider } from "@mui/material/styles";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: "#737373",
-      contrastText: "#fff",
-    },
-  },
-});
-
-const SignUpText = styled.span`
-  font-size: 2.5rem;
-  font-weight: 600;
-`;
-
-const ButtonTxt = styled.span`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-`;
-
-const SingUpBtn = styled(Button)`
-  background: ${COLOR.btn.main_gra} !important;
-  border-radius: 0.7rem !important;
-`;
+import useInput from "hooks/useInput";
+import useSignUpMutation from "queries/auth/useSignUpMutation";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "states/userInfo";
+import { useCollegeQuery, useMajorListQuery } from "queries/major";
+import toast from "react-hot-toast";
+import MajorData from "constants/MajorData";
+import { theme, SignUpText, ButtonTxt, SingUpBtn } from "./style.js";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
+  // const [Divsion
   const { Division, Department } = MajorData;
   const [grade, setGrade] = useState("");
-  const [division, setDivision] = useState("");
+  const [targetCollege, setTargetCollege] = useState("");
   const [department, setDepartment] = useState("");
-
+  const { mutate: signInMutate } = useSignUpMutation();
+  const { data: collegeData, isSuccess: successCollege } = useCollegeQuery();
+  const { data: majorList, isSuccess: successMajor } = useMajorListQuery(targetCollege);
   const handleGrade = (event: SelectChangeEvent) => {
+    event.preventDefault();
     setGrade(event.target.value);
   };
-  const handleDivision = (event: SelectChangeEvent) => {
-    setDivision(event.target.value);
+  const handleTargetCollege = (event: SelectChangeEvent) => {
+    event.preventDefault();
+    setTargetCollege(event.target.value);
   };
   const handleDepartment = (event: SelectChangeEvent) => {
+    event.preventDefault();
     setDepartment(event.target.value);
   };
 
@@ -73,12 +54,10 @@ const SignUp = () => {
 
   useEffect(() => {
     if (user) {
-      toast.success('이미 로그인한 상태입니다. 👍');
-      navigate('/');
+      toast.success("이미 로그인한 상태입니다. 👍");
+      navigate("/");
     }
   }, []);
-
-  const { mutate: signInMutate } = useSignUpMutation();
 
   const onKeyPressFunc = (e) => {
     if (e.key === "Enter") submit();
@@ -92,7 +71,7 @@ const SignUp = () => {
       password2: password2,
       nickname: nickname,
       grade: grade,
-      major: 1,
+      major_id: department,
     });
   };
 
@@ -192,17 +171,18 @@ const SignUp = () => {
                 <Select
                   labelId="division"
                   id="division"
-                  value={division}
+                  value={targetCollege}
                   label="대학"
-                  onChange={handleDivision}
+                  onChange={handleTargetCollege}
                   color="neutral"
                   onKeyPress={onKeyPressFunc}
                 >
-                  {Division.map((el) => (
-                    <MenuItem key={el.Division} value={el.Division}>
-                      {el.DivisionNm}
-                    </MenuItem>
-                  ))}
+                  {successCollege &&
+                    collegeData.map((el) => (
+                      <MenuItem key={el[0]} value={el[0]}>
+                        {el[1]}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
 
@@ -217,11 +197,17 @@ const SignUp = () => {
                   color="neutral"
                   onKeyPress={onKeyPressFunc}
                 >
-                  {Department.filter((el) => el.Division === division).map((el) => (
-                    <MenuItem key={el.Department} value={el.Department}>
-                      {el.DepartmentNm}
+                  {successMajor ? (
+                    majorList.map((major) => (
+                      <MenuItem key={major.id} value={major.id}>
+                        {major.name}
+                      </MenuItem>
+                    ))
+                  ) : (
+                    <MenuItem key={0} value={0}>
+                      "단과대를 선택해주세요"
                     </MenuItem>
-                  ))}
+                  )}
                 </Select>
               </FormControl>
             </Grid>

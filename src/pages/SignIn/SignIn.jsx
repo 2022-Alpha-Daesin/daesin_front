@@ -11,8 +11,10 @@ import styled from "styled-components";
 import COLOR from "constants/color";
 import useInput from "hooks/useInput";
 import useSignInMutation from "queries/auth/useSignInMutation";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import userRelatedAPI from "apis/userRelatedAPI";
 import { useEffect } from "react";
+import qs from "query-string";
 
 const SignInText = styled.span`
   font-size: 2.5rem;
@@ -47,16 +49,37 @@ const SignIn = () => {
   const [email, handleEmail] = useInput("");
   const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
+  const location = useLocation();
   const { mutate: loginMutate, isError: error } = useSignInMutation();
+
+  const confirmEmail = async (emailVerifyToken) => {
+    const data = { key: emailVerifyToken };
+    await userRelatedAPI
+      .verifyEmail(data)
+      .then((res) => {
+        alert("이메일 인증이 완료되었습니다. 로그인을 진행하시길 바랍니다.");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          alert("이미 처리되었습니다. 로그인을 진행하시길 바랍니다.");
+        }
+      });
+  };
+
+  useEffect(() => {
+    let query = qs.parse(location.search);
+    if ("key" in query) {
+      console.log("??", query["key"]);
+      confirmEmail(query["key"]);
+    }
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
     console.log(email, password);
     loginMutate({ email: email, password: password });
   };
-  useEffect(() => {
-    alert("??");
-  }, [error]);
 
   return (
     <ThemeProvider theme={theme}>
