@@ -1,7 +1,6 @@
-import FlexBox from "components/Common/FlexBox";
-import FlexTextBox from "components/Common/FlexTextBox";
+import { FlexBox, FlexTextBox } from "components/Common/FlexBox";
+import { ClubDetailCardWrapper } from "components/Club";
 import Searchbar from "components/Navbar/Searchbar";
-import ClubDetailCardWrapper from "components/Club/Card/ClubDetailCardWrapper";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import COLOR from "constants/color";
 

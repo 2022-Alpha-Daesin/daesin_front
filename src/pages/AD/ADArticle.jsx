@@ -1,5 +1,4 @@
-import FlexBox from "components/Common/FlexBox";
-import FlexTextBox from "components/Common/FlexTextBox";
+import { FlexBox, FlexTextBox } from "components/Common";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import { Icon } from "semantic-ui-react";

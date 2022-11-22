@@ -48,7 +48,7 @@ const ADArticleModal = (props) => {
     inputRef.current.click();
   };
   return (
-    <FlexBox position="relative">
+    <FlexBox position="relative" width="38%">
       <ClearOutlinedIcon
         sx={{
           fontSize: 35,
@@ -59,7 +59,7 @@ const ADArticleModal = (props) => {
         }}
         onClick={props.onClick}
       />
-      <FlexBox width="100%" padding="2.5rem 4rem" gap="1.8rem" background="white" column>
+      <FlexBox width="100%" padding="2.5rem 5rem" gap="1.8rem" background="white" column>
         <FlexTextBox fontSize="2rem">홍보 올리기</FlexTextBox>
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
