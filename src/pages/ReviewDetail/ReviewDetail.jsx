@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Icon } from "semantic-ui-react";
 import AddComment from "components/ReviewDetail/AddComment";
 import CommentList from "components/ReviewDetail/CommentList";
+import CommentReply from "components/ReviewDetail/CommentReply";
 
 const Line = styled.div`
   width: 0.12rem;
@@ -49,7 +50,7 @@ const ReviewDetail = () => {
           </FlexBox>
           <AddComment />
           <CommentList />
-          <CommentList />
+          <CommentReply />
           <CommentList />
           <CommentList />
         </FlexBox>

@@ -4,7 +4,7 @@ import { FlexBox, FlexButton } from "../Common";
 import FlexTextBox from "../Common/FlexTextBox";
 // import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import CommentReply from "./CommentReply";
+import AddCommentReply from "./AddCommentReply";
 
 const RecommendCnt = styled.span`
   margin-left: 0.5rem;
@@ -54,7 +54,7 @@ const CommentList = () => {
         <CommentReplyBtn onClick={replyOpenHandler}>답글쓰기</CommentReplyBtn>
         <CommentDate>2022.11.18</CommentDate>
       </FlexBox>
-      {replyOpen ? <CommentReply /> : null}
+      {replyOpen ? <AddCommentReply /> : null}
     </FlexBox>
   );
 };

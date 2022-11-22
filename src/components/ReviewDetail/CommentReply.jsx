@@ -1,69 +1,46 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FlexBox, FlexButton } from "../Common";
 import FlexTextBox from "../Common/FlexTextBox";
-import COLOR from "constants/color";
+// import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import AddCommentReply from "./AddCommentReply";
+import SubdirectoryArrowRightIcon from "@mui/icons-material/SubdirectoryArrowRight";
 
-const Title = styled.span`
-  font-size: 2rem;
-  font-weight: 800;
-  margin-right: 2rem;
+const RecommendCnt = styled.span`
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
 `;
 
-const CommentCnt = styled.span`
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #717171;
-`;
-
-const AddCommentBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 5rem;
-  margin-top: 6%;
-  border-radius: 1rem;
-  background-color: #f2f2f2;
-`;
-
-const AddCommentText = styled.input`
-  width: 70%;
-  height: 100%;
-  margin-top: 0.2%;
-  font-size: 1.25rem;
-  font-weight: 600;
-  border: None;
-  color: #666;
-  background-color: transparent;
+const CommentDate = styled.span`
+  margin-left: 1rem;
+  font-size: 1.1rem;
 `;
 
 const CommentReply = () => {
   return (
-    <FlexBox width="100%" column borderBottom="1px solid #b5b5b5">
-      <FlexBox width="100%">
-        <AddCommentBox>
-          <FlexBox
-            width="3rem"
-            height="3rem"
-            borderRadius="50%"
-            background="#FFC8C8"
-            margin="0 1rem 0 1rem"
-          />
-          <FlexTextBox margin="0 3rem 0 0" fontSize="1.25rem">
-            멋쟁이 사자처럼
-          </FlexTextBox>
-          <AddCommentText type="text" name="comment" placeholder="답글을 입력해주세요." />
-        </AddCommentBox>
+    <FlexBox column width="100%" borderBottom="1px solid #b5b5b5" padding="0 0 1.5% 5%">
+      <FlexBox width="95%" height="100%" alignItems="center">
+        <SubdirectoryArrowRightIcon fontSize="large" />
+
+        <FlexBox
+          width="3rem"
+          height="3rem"
+          borderRadius="50%"
+          background="#FFC8C8"
+          margin="0 1rem  1rem"
+        />
+        <FlexTextBox margin="0 2rem 0 0" fontSize="1rem" padding="0 0 2% 0">
+          멋쟁이 사자처럼
+        </FlexTextBox>
+        <FlexTextBox margin="0 1rem 0 0" fontSize="1.1rem" width="70%" padding="0 0 2% 0">
+          댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글
+        </FlexTextBox>
       </FlexBox>
-      <FlexBox width="100%" justifyContent="flex-end">
-        <FlexButton
-          fontSize="1.1rem"
-          backgroundColor={COLOR.btn.main_gra}
-          color="#fff"
-          padding="0.8rem 1.5rem"
-          margin="1rem 0 2rem 0"
-        >
-          답글 쓰기
-        </FlexButton>
+      <FlexBox color="#717171" justifyContent="flex-end" width="93%">
+        <ThumbUpOffAltIcon />
+        <RecommendCnt>2</RecommendCnt>
+        <CommentDate>2022.11.18</CommentDate>
       </FlexBox>
     </FlexBox>
   );
