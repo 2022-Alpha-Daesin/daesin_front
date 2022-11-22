@@ -12,6 +12,7 @@ const Club = lazy(() => import("pages/Club/Club"));
 const AD = lazy(() => import("pages/AD/AD"));
 const Review = lazy(() => import("pages/Review/Review"));
 const ReviewDetail = lazy(() => import("pages/ReviewDetail/ReviewDetail"));
+const MyPage = lazy(() => import("pages/MyPage/MyPage"));
 // const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/ad" element={<AD />} />
               <Route path="/review" element={<Review />} />
               <Route path="/review/1" element={<ReviewDetail />} />
+              <Route path="/mypage" element={<MyPage />} />
             </Routes>
           </ResponsiveLayout>
         </Suspense>

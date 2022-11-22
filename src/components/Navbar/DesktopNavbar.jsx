@@ -69,6 +69,10 @@ const DesktopNavbar = () => {
     navigate("/review");
   };
 
+  const clickMypage = () => {
+    navigate("/mypage");
+  };
+
   return (
     <TabsLib
       orientation="vertical"
@@ -185,6 +189,7 @@ const DesktopNavbar = () => {
           color: "#282828",
           justifyContent: "flex-start",
         }}
+        onClick={clickMypage}
       />
       <Tab
         label=" - 스크랩"
