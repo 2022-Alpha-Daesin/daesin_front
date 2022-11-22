@@ -10,8 +10,11 @@ import RecordVoiceOverOutlinedIcon from "@mui/icons-material/RecordVoiceOverOutl
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "states";
 
 const TabsLib = styled(Tabs)`
+  position: fixed;
   padding: 2.5rem 0 2rem 2rem;
   height: 100vh;
   background: white;
@@ -44,6 +47,7 @@ const a11yProps = (index) => {
 const DesktopNavbar = () => {
   const [value, setValue] = React.useState(2);
   const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -192,30 +196,6 @@ const DesktopNavbar = () => {
         onClick={clickMypage}
       />
       <Tab
-        label=" - 스크랩"
-        {...a11yProps(5)}
-        sx={{
-          // marginTop: 2,
-          width: 200,
-          fontSize: 20,
-          fontWeight: 600,
-          color: "#282828",
-          justifyContent: "flex-start",
-        }}
-      />
-      <Tab
-        label=" - 내가 쓴 글"
-        {...a11yProps(6)}
-        sx={{
-          // marginTop: 2,
-          width: 231,
-          fontSize: 20,
-          fontWeight: 600,
-          color: "#282828",
-          justifyContent: "flex-start",
-        }}
-      />
-      <Tab
         icon={
           <LoginIcon
             sx={{
@@ -234,24 +214,26 @@ const DesktopNavbar = () => {
         }}
         onClick={clickSignIn}
       />
-      <Tab
-        icon={
-          <LogoutIcon
-            sx={{
-              fontSize: 30,
-              color: "#282828",
-            }}
-          />
-        }
-        iconPosition="start"
-        label="로그아웃"
-        sx={{
-          fontSize: 20,
-          fontWeight: 600,
-          color: "#282828",
-          justifyContent: "flex-start",
-        }}
-      />
+      {user && (
+        <Tab
+          icon={
+            <LogoutIcon
+              sx={{
+                fontSize: 30,
+                color: "#282828",
+              }}
+            />
+          }
+          iconPosition="start"
+          label="로그아웃"
+          sx={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: "#282828",
+            justifyContent: "flex-start",
+          }}
+        />
+      )}
     </TabsLib>
   );
 };
