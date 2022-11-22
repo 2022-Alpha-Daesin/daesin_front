@@ -34,8 +34,7 @@ const CommentReply = () => {
           멋쟁이 사자처럼
         </FlexTextBox>
         <FlexTextBox margin="0 1rem 0 0" fontSize="1.1rem" width="70%" padding="0 0 2% 0">
-          댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의
-          대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의
+          댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글
         </FlexTextBox>
       </FlexBox>
       <FlexBox color="#717171" justifyContent="flex-end" width="93%">
