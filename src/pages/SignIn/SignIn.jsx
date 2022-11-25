@@ -36,7 +36,6 @@ const SignIn = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     loginMutate({ email: email, password: password });
   };
 

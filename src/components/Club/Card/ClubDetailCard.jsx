@@ -25,7 +25,7 @@ const ContentBox = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const ChallengeCard = () => {
+const ClubDetailCard = () => {
   return (
     <CardContainer img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}>
       <ContentBox>
@@ -42,4 +42,4 @@ const ChallengeCard = () => {
   );
 };
 
-export default ChallengeCard;
+export default ClubDetailCard;

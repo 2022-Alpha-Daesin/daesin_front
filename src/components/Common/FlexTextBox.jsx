@@ -13,6 +13,7 @@ const defaultProps = {
   color: COLOR.font.main,
   fontWeight: "800",
   background: "",
+  marginBottom: "0",
 };
 
 const FlexTextBox = (props) => {
@@ -28,6 +29,7 @@ const FlexTextBox = (props) => {
     lineHeight,
     textAlign,
     background,
+    marginBottom,
   } = props;
 
   return (
@@ -43,6 +45,7 @@ const FlexTextBox = (props) => {
         text-align: ${textAlign};
         color: ${color};
         background: ${background};
+        margin-bottom: ${marginBottom};
       `}
     >
       {children}

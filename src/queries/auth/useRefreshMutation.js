@@ -1,28 +1,30 @@
 import { useMutation } from "@tanstack/react-query";
 import userRelatedAPI from "apis/userRelatedAPI";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { useRecoilState } from "recoil";
 import { userInfo } from "states/userInfo";
 
-const useVerifyEmailMutation = () => {
+const useRefreshMutation = () => {
   const [user, setUser] = useRecoilState(userInfo);
   const refreshToken = getCookie("refreshToken");
-  if (!refreshToken) return;
   return useMutation(
     ["verifyEmail", refreshToken],
-    () => userRelatedAPI.verifyEmail({ refresh: refreshToken }),
+    () => refreshToken && userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
     {
       onSuccess: (res) => {
+        console.log("리프레쉬데이터", res);
         setCookie("refreshToken", res.refresh_token);
-        setUserInfo({
+        setUser({
           ...user,
           isLoggedIn: true,
           accessToken: res.access_token,
         });
       },
-      onError: (res) => {},
+      onError: (res) => {
+        console.log("refresh error", res);
+      },
     },
   );
 };
 
-export default useVerifyEmailMutation;
+export default useRefreshMutation;

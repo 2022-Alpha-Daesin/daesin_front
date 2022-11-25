@@ -31,7 +31,7 @@ const ContentBox = styled.div`
   bottom: 0;
 `;
 
-const ChallengeCard = () => {
+const ClubCard = () => {
   return (
     <CardContainer>
       <Thumbnail src={`${process.env.PUBLIC_URL}/images/sample.png`} />
@@ -60,4 +60,4 @@ const ChallengeCard = () => {
   );
 };
 
-export default ChallengeCard;
+export default ClubCard;

@@ -19,20 +19,20 @@ const useSignInMutation = () => {
       onSuccess: (res) => {
         toast.dismiss();
         toast.success(messages.user.signin.success);
-        console.log("onSuccess", res, res.access_token, res.refresh_token, res.user.email);
         setCookie("refreshToken", res.refresh_token);
         setUserInfo({
           isLoggedIn: true,
-          nickName: res.user.nickName,
+          nickName: res.user.nickname,
           email: res.user.email,
           grade: res.user.grade,
           accessToken: res.access_token,
         });
+        navigate("/");
       },
       onError: (res) => {
         toast.dismiss();
         deleteCookie("refreshToken");
-        const detail = res.response.data.error.details;
+        const detail = res.response.data;
         if (detail?.non_field_errors) {
           toast.error("아이디/비밀번호를 확인해주세요 😭");
         } else {

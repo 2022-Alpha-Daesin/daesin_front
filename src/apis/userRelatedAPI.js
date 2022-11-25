@@ -15,10 +15,13 @@ const userRelatedAPI = {
     return client.post("auth/registration/verify-email/", data);
   },
   tokenRefresh: (data) => {
-    return client.post("auth/token/refresh", data);
+    return client.post("auth/token/refresh/", data);
   },
   getUserInfo: () => {
-    return client.get("auth/user");
+    return client.get("auth/user/");
+  },
+  tokenVerfiy: (data) => {
+    return client.post("auth/token/verify/", data);
   },
 };
 
