@@ -1,13 +1,13 @@
 const messages = {
   user: {
     signin: {
-      success: '로그인되었습니다.',
+      success: "로그인되었습니다.",
     },
     signout: {
-      success: '로그아웃되었습니다.',
+      success: "로그아웃되었습니다.",
     },
     signup: {
-      success: '회원가입되었습니다.',
+      success: "이메일 인증을 진행하시길 바랍니다.",
     },
   },
 };

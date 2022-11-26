@@ -1,8 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
-import userRelatedAPI from 'apis/userRelatedAPI';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import messages from 'constants/message';
+import { useMutation } from "@tanstack/react-query";
+import userRelatedAPI from "apis/userRelatedAPI";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import messages from "constants/message";
 
 const useSignUpMutation = () => {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ const useSignUpMutation = () => {
       onSuccess: () => {
         toast.dismiss();
         toast.success(messages.user.signup.success);
-        navigate('/login');
+        navigate("/signin");
       },
       onError: () => {
-        console.log('fail');
+        console.log("fail");
       },
     },
   );

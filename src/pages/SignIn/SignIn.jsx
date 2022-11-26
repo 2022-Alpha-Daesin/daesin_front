@@ -1,71 +1,41 @@
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import styled from 'styled-components';
-import COLOR from 'constants/color';
-import useInput from 'hooks/useInput';
-import useSignInMutation from 'queries/auth/useSignInMutation';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states/userInfo';
-
-const SignInText = styled.span`
-  font-size: 2.5rem;
-  font-weight: 600;
-`;
-
-const ButtonTxt = styled.span`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-`;
-
-const SingInBtn = styled(Button)`
-  background: ${COLOR.btn.main_gra} !important;
-  border-radius: 0.7rem !important;
-`;
-
-const SignInLink = styled(Link)`
-  color: #000 !important;
-`;
-
-const theme = createTheme({
-  palette: {
-    neutral: {
-      main: "#737373",
-      contrastText: "#fff",
-    },
-  },
-});
+import useInput from "hooks/useInput";
+import { useSignInMutation, useVerifyEmailMutation } from "queries/auth";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+// import toast, { Toaster } from "react-hot-toast";
+import qs from "query-string";
+import {
+  SignInLink,
+  SignInText,
+  SingInBtn,
+  theme,
+  ButtonTxt,
+  CssBaseline,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  ThemeProvider,
+} from "./styles";
 
 const SignIn = () => {
+  const [email, handleEmail] = useInput("");
+  const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
-  const user = useRecoilValue(userAtom);
-  const [email, handleEmail] = useInput('');
-  const [password, handlePassword] = useInput('');
+  const location = useLocation();
+  const { mutate: loginMutate, isError: loginError, isSuccess: loginSuccess } = useSignInMutation();
+  const { mutate: verifyMutate, isError: emailError } = useVerifyEmailMutation();
 
   useEffect(() => {
-    if (user) {
-      toast.success('이미 로그인한 상태입니다. 👍');
-      navigate('/');
-    }
-    if (window.location.pathname.split('/').pop() === '1') {
-      toast.error('해당 기능을 사용하려면 로그인을 해주세요 😭');
+    let query = qs.parse(location.search);
+    if ("key" in query) {
+      verifyMutate(query["key"]);
     }
   }, []);
-  const { mutate: loginMutate, isError: error } = useSignInMutation();
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(email, password);
     loginMutate({ email: email, password: password });
   };
 

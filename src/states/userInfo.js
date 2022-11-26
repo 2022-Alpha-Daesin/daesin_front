@@ -1,8 +1,15 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
-const userAtom = atom({
-  key: 'user',
-  default: JSON.parse(localStorage.getItem('user_info')) || null,
+const userInfo = atom({
+  key: "user",
+  default: {
+    // 초기값 설정
+    isLoggedIn: false,
+    nickName: "",
+    email: "",
+    grade: 1,
+    accessToken: "",
+  },
 });
 
-export { userAtom };
+export { userInfo };

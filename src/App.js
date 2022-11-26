@@ -1,8 +1,12 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { WaveLoading } from "react-loadingg";
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from "styles/GlobalStyles";
-import { AxiosInterceptor } from "./apis/config";
+import { Toaster } from "react-hot-toast";
+import { useRefreshMutation } from "queries/auth";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { userInfo } from "states";
+import { getCookie } from "cookies-next";
 
 const ResponsiveLayout = lazy(() => import("layouts/responsive.layout"));
 const Now = lazy(() => import("pages/Now/Now"));
@@ -16,9 +20,24 @@ const MyPage = lazy(() => import("pages/MyPage/MyPage"));
 // const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
 
 const App = () => {
+  const user = useRecoilValue(userInfo);
+  const resetUser = useResetRecoilState(userInfo);
+  const { mutate: refresMutate } = useRefreshMutation();
+
+  useEffect(() => {
+    const refreshCookie = getCookie("refreshToken");
+    if (refreshCookie) {
+      if (!user.isLoggedIn) {
+        refresMutate();
+      }
+    } else {
+      resetUser();
+    }
+  }, [user]);
+
   return (
-    <Router>
-      <AxiosInterceptor>
+    <>
+      <Router>
         <GlobalStyles />
         <Suspense fallback={<WaveLoading />}>
           <ResponsiveLayout>
@@ -34,8 +53,9 @@ const App = () => {
             </Routes>
           </ResponsiveLayout>
         </Suspense>
-      </AxiosInterceptor>
-    </Router>
+      </Router>
+      <Toaster />
+    </>
   );
 };
 

@@ -11,7 +11,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRecoilValue } from "recoil";
-import { userAtom } from "states";
+import { userInfo } from "states";
 
 const TabsLib = styled(Tabs)`
   position: fixed;
@@ -47,7 +47,7 @@ const a11yProps = (index) => {
 const DesktopNavbar = () => {
   const [value, setValue] = React.useState(2);
   const navigate = useNavigate();
-  const user = useRecoilValue(userAtom);
+  const user = useRecoilValue(userInfo);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
