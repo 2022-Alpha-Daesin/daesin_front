@@ -5,6 +5,8 @@ import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Commo
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
+import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
+import useInput from "hooks/useInput";
 
 const Image = styled.img`
   width: 6rem;
@@ -19,14 +21,27 @@ const ImgInner = styled.div`
   position: relative;
 `;
 
-const ADArticleModal = (props) => {
+const ReviewPostModal = (props) => {
+  const [title, setTitle] = useInput("");
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-
+  const contentRef = useRef(null);
+  const [tags, setTags] = useState([
+    { content: "전공", id: 1 },
+    { content: "졸업정보", id: 2 },
+    { content: "교환학생", id: 3 },
+    { content: "장학정보", id: 4 },
+    { content: "지원금", id: 5 },
+  ]);
+  const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
+  };
+  const onContentChange = () => {
+    const doc = document.getElementById("contents");
+    console.log(doc);
   };
 
   const deleteImage = (idx) => {
@@ -35,6 +50,9 @@ const ADArticleModal = (props) => {
 
   const onButtonClick = () => {
     inputRef.current.click();
+  };
+  const submitReview = () => {
+    console.log("데이타들", imageList, selectTags);
   };
   return (
     <FlexBox position="relative">
@@ -66,13 +84,19 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             후기 종류
           </FlexTextBox>
-          <FlexTextArea />
+          <CustomAutoComplete tags={tags} setSelectTags={setSelectTags} selectTags={selectTags} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          <FlexTextArea padding="5rem 1rem" />
+          {/* <FlexTextArea padding="5rem 1rem" /> */}
+          <div
+            contentEditable="true"
+            id="contents"
+            onInput={onContentChange}
+            // style={{ outline: "none" }}
+          ></div>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -120,6 +144,7 @@ const ADArticleModal = (props) => {
           color="white"
           padding="1rem 10rem"
           margin="0 20%"
+          onClick={submitReview}
         >
           올리기
         </FlexButton>
@@ -128,4 +153,4 @@ const ADArticleModal = (props) => {
   );
 };
 
-export default ADArticleModal;
+export default ReviewPostModal;
