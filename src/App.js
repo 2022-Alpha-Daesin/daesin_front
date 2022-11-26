@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from "styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
 import { useRefreshMutation } from "queries/auth";
-import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import { userInfo } from "states";
 import { getCookie } from "cookies-next";
 
@@ -23,9 +23,9 @@ const App = () => {
   const user = useRecoilValue(userInfo);
   const resetUser = useResetRecoilState(userInfo);
   const { mutate: refresMutate } = useRefreshMutation();
+
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
-    console.log("잉?", refreshCookie, user);
     if (refreshCookie) {
       if (!user.isLoggedIn) {
         refresMutate();
