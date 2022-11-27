@@ -40,7 +40,7 @@ const ADArticleModal = (props) => {
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-  // const { data: user } = useUserInfoQuery();
+  const { data: user } = useUserInfoQuery();
   // const { mutate: ADMutate } = useADMutation();
   // const { mutate: refresMutate } = useRefreshMutation();
 
@@ -56,7 +56,7 @@ const ADArticleModal = (props) => {
   // if (isError) {
   //   console.log(Error);
   // }
-  // console.log(user);
+  console.log(user);
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];

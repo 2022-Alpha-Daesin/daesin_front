@@ -19,6 +19,7 @@ const Line = styled.div`
 const ADArticle = () => {
   const { id } = useParams();
   const { data } = useADQuery(id);
+  console.log(data);
   return (
     <FlexBox width="100%" column>
       <Searchbar />
@@ -28,7 +29,7 @@ const ADArticle = () => {
           <FlexBox width="100%" position="relative">
             <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
             <FlexBox column gap="0.2rem" margin="0.2rem 0 0 0.8rem">
-              <FlexTextBox fontSize="1.25rem">{data.title}</FlexTextBox>
+              <FlexTextBox fontSize="1.25rem">{data.post.title}</FlexTextBox>
               <FlexTextBox fontSize="0.85rem" color="#717171">
                 2022.10.14
               </FlexTextBox>
@@ -38,13 +39,13 @@ const ADArticle = () => {
               <Icon disabled name="paperclip" size="large" link />
             </FlexBox>
           </FlexBox>
-          <FlexTextBox fontSize="2rem">{data.title}</FlexTextBox>
+          <FlexTextBox fontSize="2rem">{data.post.title}</FlexTextBox>
           <FlexBox width="100%" center column gap="2rem">
             <FlexBox width="86%" column center background="#DCDCDC">
               <Img src={`${process.env.PUBLIC_URL}/images/ADArticle.png`} />
             </FlexBox>
             <FlexTextBox width="100%" fontSize="1.1rem">
-              {data.content}
+              {data.post.content}
             </FlexTextBox>
           </FlexBox>
           <FlexTextBox color="#679AFF">#동방있음</FlexTextBox>
