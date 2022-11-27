@@ -27,6 +27,7 @@ const App = () => {
   useEffect(() => {
     console.log(user);
     const refreshCookie = getCookie("refreshToken");
+    console.log("app.js", user, refreshCookie);
     if (refreshCookie) {
       if (!user.isLoggedIn) {
         refresMutate();

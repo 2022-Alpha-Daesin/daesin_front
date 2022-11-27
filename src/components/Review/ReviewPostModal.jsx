@@ -22,10 +22,10 @@ const ImgInner = styled.div`
 `;
 
 const ReviewPostModal = (props) => {
-  const [title, setTitle] = useInput("");
+  const [title, setTitle] = useInput();
+  const [contents, setContents] = useInput();
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-  const contentRef = useRef(null);
   const [tags, setTags] = useState([
     { content: "전공", id: 1 },
     { content: "졸업정보", id: 2 },
@@ -38,10 +38,6 @@ const ReviewPostModal = (props) => {
     const imageFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
-  };
-  const onContentChange = () => {
-    const doc = document.getElementById("contents");
-    console.log(doc);
   };
 
   const deleteImage = (idx) => {
@@ -90,13 +86,7 @@ const ReviewPostModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          {/* <FlexTextArea padding="5rem 1rem" /> */}
-          <div
-            contentEditable="true"
-            id="contents"
-            onInput={onContentChange}
-            // style={{ outline: "none" }}
-          ></div>
+          <FlexTextArea padding="5rem 1rem" />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
