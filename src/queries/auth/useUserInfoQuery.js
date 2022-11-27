@@ -9,7 +9,6 @@ const useUserInfoQuery = () => {
   const isLogged = getCookie("accessToken") ? true : false;
   return useQuery(["getUserInfo"], () => userRelatedAPI.getUserInfo(), {
     onSuccess: (data) => {
-      console.log("유저정보", data);
       setUser({
         ...user,
         isLoggedIn: true,
