@@ -1,13 +1,16 @@
 import { useState, useRef } from "react";
+import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
+import TextField from "@mui/material/TextField";
+import useInput from "hooks/useInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./datepicker.css";
 import COLOR from "constants/color";
-import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
 import EventIcon from "@mui/icons-material/Event";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
+import useADMutation from "queries/AD/useADMutation";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -29,10 +32,13 @@ const ImgInner = styled.div`
 `;
 
 const ADArticleModal = (props) => {
+  const [title, handleTitle] = useInput("");
+  const [content, handleContent] = useInput("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
+  const { mutate: ADMutate } = useADMutation();
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
@@ -47,6 +53,11 @@ const ADArticleModal = (props) => {
   const onButtonClick = () => {
     inputRef.current.click();
   };
+
+  // const submit = (e) => {
+  //   e.preventDefault();
+  //   ADMutate({ email: email, password: password });
+  // };
   return (
     <FlexBox position="relative" width="38%">
       <ClearOutlinedIcon
@@ -71,7 +82,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             제목
           </FlexTextBox>
-          <FlexTextArea />
+          <TextField value={title} onChange={handleTitle} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -128,7 +139,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          <FlexTextArea padding="5rem 1rem" />
+          <TextField value={content} onChange={handleContent} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
