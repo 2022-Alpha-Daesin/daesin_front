@@ -5,8 +5,10 @@ import useADListQuery from "queries/AD/useADListQuery";
 const ADCardWrapper = () => {
   const { data: ADList } = useADListQuery();
 
-  const cardList = ADList.map((data) => (
-    <ADCard title={data.post.title} content={data.post.content} />
+  console.log(ADList[0].id);
+
+  const cardList = ADList.map((data, idx) => (
+    <ADCard key={idx} title={data.post.title} content={data.post.content} id={data.id} />
   ));
   return (
     <FlexBox gap="1.5rem" wrap="wrap">

@@ -18,7 +18,9 @@ const userRelatedAPI = {
     return client.post("auth/token/refresh/", data);
   },
   getUserInfo: () => {
-    return client.get("auth/user/");
+    return client.get("auth/user/", {
+      withCredentials: true,
+    });
   },
   tokenVerfiy: (data) => {
     return client.post("auth/token/verify/", data);

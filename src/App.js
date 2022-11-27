@@ -14,6 +14,7 @@ const SignIn = lazy(() => import("pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("pages/Signup/SignUp"));
 const Club = lazy(() => import("pages/Club/Club"));
 const AD = lazy(() => import("pages/AD/AD"));
+const ADArticle = lazy(() => import("pages/AD/ADArticle"));
 const Review = lazy(() => import("pages/Review/Review"));
 const ReviewDetail = lazy(() => import("pages/ReviewDetail/ReviewDetail"));
 const MyPage = lazy(() => import("pages/MyPage/MyPage"));
@@ -33,7 +34,7 @@ const App = () => {
     } else {
       resetUser();
     }
-  }, [user]);
+  });
 
   return (
     <>
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/club" element={<Club />} />
               <Route path="/ad" element={<AD />} />
+              <Route path="/ad/:id" element={<ADArticle />} />
               <Route path="/review" element={<Review />} />
               <Route path="/review/1" element={<ReviewDetail />} />
               <Route path="/mypage" element={<MyPage />} />

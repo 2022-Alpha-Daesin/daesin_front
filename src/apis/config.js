@@ -20,6 +20,8 @@ const AxiosInterceptor = ({ children }) => {
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = user.accessToken;
+      console.log(user);
+      console.log(accessToken);
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
       return config;
     });

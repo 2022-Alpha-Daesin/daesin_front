@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
-import TextField from "@mui/material/TextField";
 import useInput from "hooks/useInput";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,7 +9,10 @@ import EventIcon from "@mui/icons-material/Event";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
-import useADMutation from "queries/AD/useADMutation";
+// import useADMutation from "queries/AD/useADMutation";
+import useUserInfoQuery from "queries/auth/useUserInfoQuery";
+// import { useRefreshMutation } from "queries/auth";
+// import { getCookie } from "cookies-next";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -38,7 +40,23 @@ const ADArticleModal = (props) => {
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-  const { mutate: ADMutate } = useADMutation();
+  const { data: user } = useUserInfoQuery();
+  // const { mutate: ADMutate } = useADMutation();
+  // const { mutate: refresMutate } = useRefreshMutation();
+
+  // useEffect(() => {
+  //   const refreshCookie = getCookie("refreshToken");
+  //   if (refreshCookie) {
+  //     if (!user.isLoggedIn) {
+  //       refresMutate();
+  //     }
+  //   }
+  // }, [isError]);
+
+  // if (isError) {
+  //   console.log(Error);
+  // }
+  console.log(user);
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
@@ -82,7 +100,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             제목
           </FlexTextBox>
-          <TextField value={title} onChange={handleTitle} />
+          <FlexTextArea value={title} onChange={handleTitle} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -139,7 +157,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          <TextField value={content} onChange={handleContent} />
+          <FlexTextArea value={content} onChange={handleContent} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
