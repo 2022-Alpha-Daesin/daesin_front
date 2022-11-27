@@ -59,7 +59,14 @@ const SignUp = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    SignUpHandler({ email: email, password1: password1, password2: password2 });
+    SignUpHandler({
+      email: email,
+      password1: password1,
+      password2: password2,
+      nickname: nickname,
+      grade: grade,
+      major_id: department,
+    });
     signInMutate({
       email: email,
       password1: password1,
