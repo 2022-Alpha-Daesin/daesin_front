@@ -33,14 +33,10 @@ const useSignInMutation = () => {
         toast.dismiss();
         deleteCookie("refreshToken");
         const detail = res.response.data;
-        if (detail.email) {
-          toast.error(detail.email);
-        }
-        if (detail.password) {
-          toast.error(detail.password);
-        }
         if (detail?.non_field_errors) {
           toast.error("아이디/비밀번호를 확인해주세요 😭");
+        } else {
+          toast.error("예기치 않은 오류가 발생했습니다. 😭");
         }
         console.log("fail", res.response.data);
         return "".join(res.response.data);
