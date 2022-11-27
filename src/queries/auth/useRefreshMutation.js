@@ -17,7 +17,7 @@ const useRefreshMutation = () => {
         setUser({
           ...user,
           isLoggedIn: true,
-          accessToken: res.access,
+          accessToken: res.data.access,
         });
       },
       onError: (res) => {

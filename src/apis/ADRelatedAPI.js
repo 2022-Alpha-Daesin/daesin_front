@@ -8,7 +8,7 @@ const ADRelatedAPI = {
   },
 
   getAD: (id) => {
-    return client.post(`advertisement/${id}/`);
+    return client.post(`advertisement/${id}/`).then((res) => res.data);
   },
 
   postAD: (payload) => {

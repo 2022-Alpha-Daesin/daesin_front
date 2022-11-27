@@ -35,6 +35,7 @@ const ContentBox = styled.div`
 
 const ADCard = (props) => {
   const navigate = useNavigate();
+
   return (
     <CardContainer
       img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}
