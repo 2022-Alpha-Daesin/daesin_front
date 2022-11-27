@@ -1,7 +1,6 @@
 import toast from "react-hot-toast";
 
 const SignUpHandler = (e) => {
-  const PasswordIncludedString = isNaN(e.password1);
   if (e.major_id.length === 0) {
     toast.error("전공을 선택해주세요. 😭");
   }
