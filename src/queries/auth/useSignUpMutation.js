@@ -18,7 +18,6 @@ const useSignUpMutation = () => {
         navigate("/signin");
       },
       onError: (res) => {
-        console.log("fail");
         console.log(res);
       },
     },

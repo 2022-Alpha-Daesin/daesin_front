@@ -5,6 +5,7 @@ import { useCollegeQuery, useMajorListQuery } from "queries/major";
 import { useSignUpMutation } from "queries/auth";
 import toast from "react-hot-toast";
 import MajorData from "constants/MajorData";
+import SignUpHandler from "utils/SignUpHandler";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
   theme,
@@ -58,6 +59,7 @@ const SignUp = () => {
 
   const submit = (e) => {
     e.preventDefault();
+    SignUpHandler({ email: email, password1: password1, password2: password2 });
     signInMutate({
       email: email,
       password1: password1,
