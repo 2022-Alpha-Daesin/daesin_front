@@ -22,13 +22,13 @@ const MyPage = lazy(() => import("pages/MyPage/MyPage"));
 const App = () => {
   const user = useRecoilValue(userInfo);
   const resetUser = useResetRecoilState(userInfo);
-  const { mutate: refresMutate } = useRefreshMutation();
+  const { mutate: refreshMutate } = useRefreshMutation();
 
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
     if (refreshCookie) {
-      if (!user.isLoggedIn) {
-        refresMutate();
+      if (user && !user.isLoggedIn) {
+        refreshMutate();
       }
     } else {
       resetUser();

@@ -36,10 +36,17 @@ const SignIn = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    if (email.includes("@kookmin.ac.kr")) {
-      loginMutate({ email: email, password: password });
+    if (email.length <= 0) {
+      toast.error("이메일을 작성해주세요. 😭");
     } else {
-      toast.error("국민대학교 이메일로 로그인해주세요. 😭");
+      if (email.includes("@kookmin.ac.kr")) {
+        loginMutate({ email: email, password: password });
+      } else {
+        toast.error("국민대학교 이메일로 로그인해주세요. 😭");
+      }
+    }
+    if (password.length <= 7) {
+      toast.error("비밀번호는 8자 이상입니다. 😭");
     }
   };
 

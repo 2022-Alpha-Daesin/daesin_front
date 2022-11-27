@@ -13,7 +13,7 @@ const useRefreshMutation = () => {
     {
       onSuccess: (res) => {
         console.log("리프레쉬데이터", res);
-        setCookie("refreshToken", res.refresh_token);
+        console.log(refreshToken);
         setUser({
           ...user,
           isLoggedIn: true,
