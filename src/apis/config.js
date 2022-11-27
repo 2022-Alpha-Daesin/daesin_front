@@ -3,6 +3,7 @@ import { baseUrl } from "../constants/URLS";
 import { useEffect } from "react";
 import { userInfo } from "states";
 import { useRecoilState } from "recoil";
+import { getCookie } from "cookies-next";
 
 const createInstance = () => {
   const headers = {};
@@ -19,9 +20,8 @@ const AxiosInterceptor = ({ children }) => {
   const [user] = useRecoilState(userInfo);
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
-      const accessToken = user.accessToken;
-      console.log(user);
-      console.log(accessToken);
+      const accessToken = getCookie("accessToken");
+      console.log("잉?", user, accessToken);
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
       return config;
     });

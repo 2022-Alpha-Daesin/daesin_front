@@ -20,6 +20,7 @@ const useSignInMutation = () => {
         toast.dismiss();
         toast.success(messages.user.signin.success);
         setCookie("refreshToken", res.refresh_token);
+        setCookie("accessToken", res.access_token);
         setUserInfo({
           isLoggedIn: true,
           nickName: res.user.nickname,
