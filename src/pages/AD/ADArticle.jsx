@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { FlexBox, FlexTextBox } from "components/Common";
-import useDate from "hooks/useDate";
 import Searchbar from "components/Navbar/Searchbar";
-import styled from "styled-components";
+import useDate from "hooks/useDate";
 import { Icon } from "semantic-ui-react";
-import useADQuery from "queries/AD/useADQuery";
+import { useADQuery } from "queries/AD";
 import { useUserInfoQuery } from "queries/auth";
+import styled from "styled-components";
 
 const Img = styled.img`
   width: 80%;
