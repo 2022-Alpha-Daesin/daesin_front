@@ -2,7 +2,7 @@ import useInput from "hooks/useInput";
 import { useSignInMutation, useVerifyEmailMutation } from "queries/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-// import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import qs from "query-string";
 import {
   SignInLink,
@@ -36,7 +36,11 @@ const SignIn = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    loginMutate({ email: email, password: password });
+    if (email.includes("@kookmin.ac.kr")) {
+      loginMutate({ email: email, password: password });
+    } else {
+      toast.error("국민대학교 이메일로 로그인해주세요. 😭");
+    }
   };
 
   return (
