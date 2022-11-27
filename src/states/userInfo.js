@@ -9,6 +9,7 @@ const userInfo = atom({
     email: "",
     grade: 1,
     accessToken: "",
+    major: [],
   },
 });
 

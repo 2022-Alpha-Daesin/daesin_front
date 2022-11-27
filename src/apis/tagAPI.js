@@ -2,16 +2,13 @@ import { axiosInstance } from "./config";
 
 const client = axiosInstance;
 
-const reviewAPI = {
-  getReviewList: (data) => {
-    return client.get("review/", data);
-  },
-  getReviewDetail: (id) => {
-    return client.get(`review/${id}`);
-  },
-  postReview: (data) => {
-    return client.post("review/", data);
+const tagAPI = {
+  getAllTag: () => {
+    return client
+      .get("tag/")
+      .then((res) => res.data)
+      .catch((err) => err);
   },
 };
 
-export default reviewAPI;
+export default tagAPI;

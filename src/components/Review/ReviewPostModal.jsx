@@ -7,6 +7,11 @@ import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
 import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
 import useInput from "hooks/useInput";
+import useTagListQuery from "queries/tag/useTagListQuery";
+import { usePostReviewMutation } from "queries/review";
+import { useEffect } from "react";
+import { userInfo } from "states";
+import { useRecoilState } from "recoil";
 
 const Image = styled.img`
   width: 6rem;
@@ -22,33 +27,45 @@ const ImgInner = styled.div`
 `;
 
 const ReviewPostModal = (props) => {
-  const [title, setTitle] = useInput();
-  const [contents, setContents] = useInput();
+  const [user] = useRecoilState(userInfo);
+  const [title, setTitle] = useInput("");
+  const [contents, setContents] = useInput("");
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-  const [tags, setTags] = useState([
-    { content: "전공", id: 1 },
-    { content: "졸업정보", id: 2 },
-    { content: "교환학생", id: 3 },
-    { content: "장학정보", id: 4 },
-    { content: "지원금", id: 5 },
-  ]);
+  const { data: tagData, isSuccess: successTag } = useTagListQuery();
+  const { mutate: reviewMutate } = usePostReviewMutation();
+  const [tags, setTags] = useState([]);
   const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
   };
-
+  useEffect(() => {
+    if (successTag) {
+      setTags(tagData);
+    }
+  }, [successTag]);
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
   };
-
+  console.log("유저상태", user);
   const onButtonClick = () => {
     inputRef.current.click();
   };
   const submitReview = () => {
-    console.log("데이타들", imageList, selectTags);
+    console.log("데이타들", imageList, selectTags, title, contents);
+    let images = imageList.map((item) => item.file);
+    let tagList = selectTags.map((item) => item.id);
+    // let text = { title: title, content: contents };
+    const postData = new FormData();
+    postData.append("title", title);
+    postData.append("content", contents);
+    const formData = new FormData();
+    formData.append("images", images);
+    formData.append("tags", tagList);
+    formData.append("post", postData);
+    reviewMutate(formData);
   };
   return (
     <FlexBox position="relative">
@@ -74,7 +91,7 @@ const ReviewPostModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             제목
           </FlexTextBox>
-          <FlexTextArea />
+          <FlexTextArea value={title} onChange={setTitle} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -86,7 +103,7 @@ const ReviewPostModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          <FlexTextArea padding="5rem 1rem" />
+          <FlexTextArea padding="5rem 1rem" value={contents} onChange={setContents} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
