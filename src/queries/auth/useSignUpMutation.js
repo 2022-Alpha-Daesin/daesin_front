@@ -17,8 +17,9 @@ const useSignUpMutation = () => {
         toast.success(messages.user.signup.success);
         navigate("/signin");
       },
-      onError: () => {
+      onError: (res) => {
         console.log("fail");
+        console.log(res);
       },
     },
   );
