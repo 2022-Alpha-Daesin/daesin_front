@@ -23,10 +23,8 @@ const App = () => {
   const user = useRecoilValue(userInfo);
   const resetUser = useResetRecoilState(userInfo);
   const { mutate: refresMutate } = useRefreshMutation();
-  const { isError } = useUserInfoQuery();
-
+  const userQuery = useUserInfoQuery();
   useEffect(() => {
-    console.log(user);
     const refreshCookie = getCookie("refreshToken");
     const accessToken = getCookie("accessToken");
     if (refreshCookie && !accessToken) {

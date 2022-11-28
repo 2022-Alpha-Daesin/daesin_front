@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const useVerifyEmailMutation = (key) => {
   const navigate = useNavigate();
-  return useMutation(["verifyEmail", key], (key) => userRelatedAPI.verifyEmail({ key: key }), {
+  return useMutation(["verifyEmail"], (key) => userRelatedAPI.verifyEmail({ key: key }), {
     onSuccess: () => {
       toast.dismiss();
       toast.success("이메일 인증 완료! 로그인 해주십시오");

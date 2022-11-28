@@ -49,22 +49,20 @@ const ReviewPostModal = (props) => {
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
   };
-  console.log("유저상태", user);
   const onButtonClick = () => {
     inputRef.current.click();
   };
   const submitReview = () => {
     console.log("데이타들", imageList, selectTags, title, contents);
-    let images = imageList.map((item) => item.file);
-    let tagList = selectTags.map((item) => item.id);
-    // let text = { title: title, content: contents };
-    const postData = new FormData();
-    postData.append("title", title);
-    postData.append("content", contents);
     const formData = new FormData();
-    formData.append("images", images);
-    formData.append("tags", tagList);
-    formData.append("post", postData);
+    imageList.forEach((item) => {
+      formData.append("images", item.file);
+    });
+    selectTags.forEach((item) => {
+      formData.append("tags", item.id);
+    });
+    formData.append("post.title", title);
+    formData.append("post.content", contents);
     reviewMutate(formData);
   };
   return (
