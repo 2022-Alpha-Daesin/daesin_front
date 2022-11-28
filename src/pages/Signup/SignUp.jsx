@@ -5,6 +5,7 @@ import { useCollegeQuery, useMajorListQuery } from "queries/major";
 import { useSignUpMutation } from "queries/auth";
 import toast from "react-hot-toast";
 import MajorData from "constants/MajorData";
+import SignUpHandler from "utils/SignUpHandler";
 import { SelectChangeEvent } from "@mui/material/Select";
 import {
   theme,
@@ -26,7 +27,6 @@ import {
 
 const SignUp = () => {
   const navigate = useNavigate();
-  // const [Divsion
   const { Division, Department } = MajorData;
   const [grade, setGrade] = useState("");
   const [targetCollege, setTargetCollege] = useState("");
@@ -58,14 +58,25 @@ const SignUp = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    signInMutate({
-      email: email,
-      password1: password1,
-      password2: password2,
-      nickname: nickname,
-      grade: grade,
-      major_id: department,
-    });
+    if (
+      SignUpHandler({
+        email: email,
+        password1: password1,
+        password2: password2,
+        nickname: nickname,
+        grade: grade,
+        major_id: department,
+      })
+    ) {
+      signInMutate({
+        email: email,
+        password1: password1,
+        password2: password2,
+        nickname: nickname,
+        grade: grade,
+        major_id: department,
+      });
+    }
   };
 
   return (
