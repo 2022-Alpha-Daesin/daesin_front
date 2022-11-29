@@ -5,6 +5,8 @@ import useADListQuery from "queries/AD/useADListQuery";
 const ADCardWrapper = () => {
   const { data: ADList } = useADListQuery();
 
+  console.log(ADList);
+
   const cardList = ADList.map((data, idx) => (
     <ADCard key={idx} title={data.post.title} content={data.post.content} id={data.id} />
   ));
