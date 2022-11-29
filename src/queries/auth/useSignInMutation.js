@@ -23,9 +23,9 @@ const useSignInMutation = () => {
         setCookie("accessToken", res.access_token);
         setUserInfo({
           isLoggedIn: true,
-          nickName: res.user.nickname,
-          email: res.user.email,
-          grade: res.user.grade,
+          // nickName: res.user.nickname,
+          // email: res.user.email,
+          // grade: res.user.grade,
           accessToken: res.access_token,
         });
         navigate("/");

@@ -8,9 +8,10 @@ const useRefreshMutation = () => {
   const [user, setUser] = useRecoilState(userInfo);
   const refreshToken = getCookie("refreshToken");
   const queryClient = useQueryClient();
+  const isLogged = getCookie("refreshToken") ? true : false;
   return useMutation(
-    ["verifyEmail", refreshToken],
-    () => refreshToken && userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
+    ["refreshToken"],
+    () => userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
     {
       onSuccess: (res) => {
         console.log("리프레쉬데이터", res);
@@ -20,6 +21,7 @@ const useRefreshMutation = () => {
       onError: (res) => {
         console.log("refresh error", res);
       },
+      enabled: isLogged,
     },
   );
 };

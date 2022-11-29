@@ -13,12 +13,13 @@ import {
   ReviewPostModal,
   Box,
 } from "./styles";
+import { useReviewListQuery } from "queries/review";
 
 const Review = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
-
+  const { data: reviewList, isSuccess } = useReviewListQuery();
   return (
     <FlexContainer>
       <FlexBox alignItems="flex-start" column margin="2rem 0 0 0" gap="2rem">
@@ -38,11 +39,7 @@ const Review = () => {
           </FlexTextBox>
         </FlexBox>
         <ReviewCategory />
-        <ReviewPostList />
-        <ReviewPostList />
-        <ReviewPostList />
-        <ReviewPostList />
-        <ReviewPostList />
+        {isSuccess && reviewList?.map((item) => <ReviewPostList {...item} key={item.id} />)}
         <Modal
           open={modalOpen}
           onClose={handleModalClose}
