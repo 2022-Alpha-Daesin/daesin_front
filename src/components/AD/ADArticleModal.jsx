@@ -9,10 +9,8 @@ import EventIcon from "@mui/icons-material/Event";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
-// import useADMutation from "queries/AD/useADMutation";
 import useUserInfoQuery from "queries/auth/useUserInfoQuery";
-// import { useRefreshMutation } from "queries/auth";
-// import { getCookie } from "cookies-next";
+import { useADMutation } from "queries/AD";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -43,6 +41,32 @@ const ADArticleModal = (props) => {
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
   const { data: user } = useUserInfoQuery();
+  const { mutate: ADMutate, isError, Error } = useADMutation();
+
+  // console.log(startDate);
+  if (isError) {
+    console.log(Error);
+  }
+
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    const imageUrl = URL.createObjectURL(imageFile);
+    setimageList([...imageList, { file: imageFile, url: imageUrl }]);
+  };
+
+  const submitAD = () => {
+    const formData = new FormData();
+
+    imageList.forEach((item) => {
+      formData.append("post.image_list", item.file);
+    });
+    formData.append("post.title", title);
+    formData.append("post.content", content);
+    formData.append("author.nickname", user.nickname);
+    formData.append("start_date", "2022-12-01T15:09:50.510Z");
+    formData.append("end_date", "2022-12-01T15:09:50.510Z");
+    ADMutate(formData);
+  };
   // const { mutate: ADMutate } = useADMutation();
   // const { mutate: refresMutate } = useRefreshMutation();
 
@@ -59,12 +83,6 @@ const ADArticleModal = (props) => {
   //   console.log(Error);
   // }
   console.log(user);
-
-  const handleImageChange = (e) => {
-    const imageFile = e.target.files[0];
-    const imageUrl = URL.createObjectURL(imageFile);
-    setimageList([...imageList, { file: imageFile, url: imageUrl }]);
-  };
 
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
@@ -95,7 +113,7 @@ const ADArticleModal = (props) => {
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
           <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-            노노카
+            {user.nickname}
           </FlexTextBox>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
@@ -123,7 +141,6 @@ const ADArticleModal = (props) => {
               position="relative"
             >
               <Calendar
-                dateFormat="yyyy-MM-dd"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 selectsStart
@@ -143,7 +160,6 @@ const ADArticleModal = (props) => {
               position="relative"
             >
               <Calendar
-                dateFormat="yyyy-MM-dd"
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 selectsEnd
@@ -205,8 +221,9 @@ const ADArticleModal = (props) => {
           fontSize="1.1rem"
           backgroundColor={COLOR.btn.main_gra}
           color="white"
-          padding="1rem 10rem"
-          margin="0 20%"
+          padding="1rem 8rem"
+          margin="0 24%"
+          onClick={submitAD}
         >
           올리기
         </FlexButton>
