@@ -4,9 +4,6 @@ import { ADDateTab, ADCarousel, ADCategory, ADCardWrapper, ADArticleModal } from
 import { Modal } from "@mui/material";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
-import userRelatedAPI from "../../apis/userRelatedAPI";
-import { useRecoilValue } from "recoil";
-import { userInfo } from "../../states";
 
 const Text = styled.div`
   margin: 1rem 0;
@@ -19,16 +16,7 @@ const Text = styled.div`
 `;
 
 const AD = () => {
-  const user = useRecoilValue(userInfo);
   const [open, setOpen] = useState(false);
-  const handleOpen = async () => {
-    console.log("ad", user);
-    await userRelatedAPI
-      .getUserInfo()
-      .then((res) => console.log(res.data))
-      .catch((err) => console.error(err));
-    setOpen(true);
-  };
   const handleClose = () => setOpen(false);
   return (
     <FlexBox width="100%" column gap="1.4rem">
@@ -41,7 +29,7 @@ const AD = () => {
       <ADCarousel />
       <FlexBox width="100%">
         <FlexTextBox fontSize="1.5rem">모든 홍보</FlexTextBox>
-        <FlexButton textDecoration="underline" fontSize="0.9rem" onClick={handleOpen}>
+        <FlexButton textDecoration="underline" fontSize="0.9rem">
           홍보 올리기
         </FlexButton>
         <Modal
