@@ -3,4 +3,3 @@ export { default as ADCard } from "./ADCard";
 export { default as ADCardWrapper } from "./ADCardWrapper";
 export { default as ADDateCarousel } from "./ADDateCarousel";
 export { default as ADCategory } from "./ADCategory";
-export { default as ADDateTab } from "./ADDateTab";
