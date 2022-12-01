@@ -2,9 +2,9 @@ import { FlexBox, FlexTextBox } from "components/Common";
 import { FoodMenuCarousel, HotKeyword } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
-import UserRelatedAPI from "../../apis/userRelatedAPI";
+import UserRelatedAPI from "apis/userRelatedAPI";
 import { useRecoilValue } from "recoil";
-import { userInfo } from "../../states";
+import { userInfo } from "states";
 
 const Text = styled.div`
   margin: 1rem 0;
@@ -17,16 +17,16 @@ const Text = styled.div`
 `;
 
 const Now = () => {
-  const user = useRecoilValue(userInfo);
-  const checkUserFunc = () => {
-    console.log(user, "userInfoOnClick rootDIr");
-  };
-
-  const getUserFUnc = () => {
-    UserRelatedAPI.getUserInfo().then((res) => {
-      console.log(res, "userD");
-    });
-  };
+  // const user = useRecoilValue(userInfo);
+  // const checkUserFunc = () => {
+  //   console.log(user, "userInfoOnClick rootDIr");
+  // };
+  //
+  // const getUserFUnc = () => {
+  //   UserRelatedAPI.getUserInfo().then((res) => {
+  //     console.log(res, "userD");
+  //   });
+  // };
 
   return (
     <FlexBox width="100%" column gap="1.3rem">
@@ -34,8 +34,8 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
-      <div onClick={checkUserFunc}>checkIsUserText</div>
-      <div onClick={getUserFUnc}>getUserInfoText</div>
+      {/*<div onClick={checkUserFunc}>checkIsUserText</div>*/}
+      {/*<div onClick={getUserFUnc}>getUserInfoText</div>*/}
       <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
       <FoodMenuCarousel />
       <FlexTextBox fontSize="1.25rem">오늘의 실시간 검색어</FlexTextBox>
