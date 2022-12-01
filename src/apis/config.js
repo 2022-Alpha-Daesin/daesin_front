@@ -16,14 +16,16 @@ const axiosInstance = createInstance();
 
 const AxiosInterceptor = ({ children }) => {
   const [user] = useRecoilState(userInfo);
-  console.log(user);
+
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = user.accessToken;
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
+      console.log("config", accessToken);
+      console.log("config", user);
       return config;
     });
-  }, []);
+  }, [user]);
 
   return children;
 };

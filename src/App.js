@@ -23,6 +23,7 @@ const App = () => {
   const user = useRecoilValue(userInfo);
   const resetUser = useResetRecoilState(userInfo);
   const { mutate: refreshMutate } = useRefreshMutation();
+  console.log("inApp", user);
 
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
@@ -33,7 +34,7 @@ const App = () => {
     } else {
       resetUser();
     }
-  }, [user]);
+  }, []);
 
   return (
     <>
