@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
 import { ADDateTab, ADCarousel, ADCategory, ADCardWrapper, ADArticleModal } from "components/AD";
 import { Modal } from "@mui/material";
@@ -19,6 +19,7 @@ const AD = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   return (
     <FlexBox width="100%" column gap="1.4rem">
       <FlexBox margin="1.9rem 0 0 0">
@@ -39,9 +40,11 @@ const AD = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <FlexBox width="100%" height="100vh" center>
-            <ADArticleModal onClick={handleClose} />
-          </FlexBox>
+          <Bar>
+            <FlexBox width="100%" height="100vh" center>
+              <ADArticleModal onClick={handleClose} />
+            </FlexBox>
+          </Bar>
         </Modal>
       </FlexBox>
       <ADCategory />
@@ -49,5 +52,11 @@ const AD = () => {
     </FlexBox>
   );
 };
+
+const Bar = forwardRef((props, ref) => (
+  <span {...props} ref={ref}>
+    {props.children}
+  </span>
+));
 
 export default AD;

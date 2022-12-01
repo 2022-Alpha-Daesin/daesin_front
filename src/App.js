@@ -3,8 +3,8 @@ import { WaveLoading } from "react-loadingg";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
-import { useRefreshMutation, useUserInfoQuery } from "queries/auth";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRefreshMutation } from "queries/auth";
+import { useRecoilValue } from "recoil";
 import { userInfo } from "states";
 import { getCookie } from "cookies-next";
 
@@ -14,6 +14,7 @@ const SignIn = lazy(() => import("pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("pages/Signup/SignUp"));
 const Club = lazy(() => import("pages/Club/Club"));
 const AD = lazy(() => import("pages/AD/AD"));
+const ADArticle = lazy(() => import("pages/AD/ADArticle"));
 const Review = lazy(() => import("pages/Review/Review"));
 const ReviewDetail = lazy(() => import("pages/ReviewDetail/ReviewDetail"));
 const MyPage = lazy(() => import("pages/MyPage/MyPage"));
@@ -21,14 +22,13 @@ const MyPage = lazy(() => import("pages/MyPage/MyPage"));
 
 const App = () => {
   const user = useRecoilValue(userInfo);
-  const resetUser = useResetRecoilState(userInfo);
-  const { mutate: refresMutate } = useRefreshMutation();
-  const userQuery = useUserInfoQuery();
+  const { mutate: refreshMutate } = useRefreshMutation();
+
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
     const accessToken = getCookie("accessToken");
     if (refreshCookie && !accessToken) {
-      refresMutate();
+      refreshMutate();
     }
   }, []);
   return (
@@ -49,6 +49,7 @@ const App = () => {
               />
               <Route path="/club" element={<Club />} />
               <Route path="/ad" element={<AD />} />
+              <Route path="/ad/:id" element={<ADArticle />} />
               <Route path="/review" element={<Review />} />
               <Route path="/review/:id" element={<ReviewDetail />} />
               <Route

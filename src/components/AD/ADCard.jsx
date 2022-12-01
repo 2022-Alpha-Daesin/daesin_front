@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FlexTextBox from "components/Common/FlexTextBox";
+import { useNavigate } from "react-router-dom";
 
 const CardContainer = styled.div`
   width: 16rem;
@@ -33,8 +34,14 @@ const ContentBox = styled.div`
 `;
 
 const ADCard = (props) => {
+  const navigate = useNavigate();
+
   return (
-    <CardContainer img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}>
+    <CardContainer
+      img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}
+      onClick={() => navigate(`/ad/${props.id}`)}
+      d
+    >
       <ContentBox>
         <FlexTextBox color="white" fontSize="1.1rem" textAlign="center">
           {props.title}
