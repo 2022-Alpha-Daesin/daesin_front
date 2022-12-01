@@ -36,6 +36,8 @@ const ImgInner = styled.div`
 const ADArticleModal = (props) => {
   const [title, handleTitle] = useInput("");
   const [content, handleContent] = useInput("");
+  const tmp = new Date();
+  console.log(tmp);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);

@@ -21,7 +21,6 @@ const Line = styled.div`
 const ADArticle = () => {
   const { id } = useParams();
   const { data: ad } = useADQuery(id);
-  const { data: user } = useUserInfoQuery();
   const date = useDate(ad.postupdated_at);
 
   return (
@@ -35,7 +34,7 @@ const ADArticle = () => {
           <FlexBox width="100%" position="relative">
             <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
             <FlexBox column gap="0.2rem" margin="0.2rem 0 0 0.8rem">
-              <FlexTextBox fontSize="1.25rem">{user.nickname}</FlexTextBox>
+              <FlexTextBox fontSize="1.25rem">{ad.post.author.nickname}</FlexTextBox>
               <FlexTextBox fontSize="0.85rem" color="#717171">
                 {date}
               </FlexTextBox>
