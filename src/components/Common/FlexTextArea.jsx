@@ -12,6 +12,8 @@ const defaultProps = {
   maxLength: 900000,
   autoFocus: false,
   borderRadius: "1rem",
+  value: "",
+  onClick: "",
 };
 
 const Textarea = (props) => {

@@ -5,6 +5,13 @@ import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Commo
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
+import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
+import useInput from "hooks/useInput";
+import useTagListQuery from "queries/tag/useTagListQuery";
+import { usePostReviewMutation } from "queries/review";
+import { useEffect } from "react";
+import { userInfo } from "states";
+import { useRecoilState } from "recoil";
 
 const Image = styled.img`
   width: 6rem;
@@ -19,22 +26,46 @@ const ImgInner = styled.div`
   position: relative;
 `;
 
-const ADArticleModal = (props) => {
+const ReviewPostModal = (props) => {
+  const [user] = useRecoilState(userInfo);
+  const [title, setTitle] = useInput("");
+  const [contents, setContents] = useInput("");
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
-
+  const { data: tagData, isSuccess: successTag } = useTagListQuery();
+  const { mutate: reviewMutate } = usePostReviewMutation();
+  const [tags, setTags] = useState([]);
+  const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
   };
-
+  useEffect(() => {
+    if (successTag) {
+      setTags(tagData);
+    }
+  }, [successTag]);
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
   };
-
+  console.log("유저상태", user);
   const onButtonClick = () => {
     inputRef.current.click();
+  };
+  const submitReview = () => {
+    console.log("데이타들", imageList, selectTags, title, contents);
+    let images = imageList.map((item) => item.file);
+    let tagList = selectTags.map((item) => item.id);
+    // let text = { title: title, content: contents };
+    const postData = new FormData();
+    postData.append("title", title);
+    postData.append("content", contents);
+    const formData = new FormData();
+    formData.append("images", images);
+    formData.append("tags", tagList);
+    formData.append("post", postData);
+    reviewMutate(formData);
   };
   return (
     <FlexBox position="relative">
@@ -60,19 +91,19 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             제목
           </FlexTextBox>
-          <FlexTextArea />
+          <FlexTextArea value={title} onChange={setTitle} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             후기 종류
           </FlexTextBox>
-          <FlexTextArea />
+          <CustomAutoComplete tags={tags} setSelectTags={setSelectTags} selectTags={selectTags} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             글 작성
           </FlexTextBox>
-          <FlexTextArea padding="5rem 1rem" />
+          <FlexTextArea padding="5rem 1rem" value={contents} onChange={setContents} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -120,6 +151,7 @@ const ADArticleModal = (props) => {
           color="white"
           padding="1rem 10rem"
           margin="0 20%"
+          onClick={submitReview}
         >
           올리기
         </FlexButton>
@@ -128,4 +160,4 @@ const ADArticleModal = (props) => {
   );
 };
 
-export default ADArticleModal;
+export default ReviewPostModal;
