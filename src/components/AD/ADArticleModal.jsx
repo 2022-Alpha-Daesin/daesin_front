@@ -39,6 +39,7 @@ const ADArticleModal = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
+  const [tagList, setTagList] = useState(["동아리"]);
   const inputRef = useRef(null);
   const { data: user } = useUserInfoQuery();
   const { mutate: ADMutate, isError, Error } = useADMutation();
@@ -62,6 +63,11 @@ const ADArticleModal = (props) => {
     });
     formData.append("post.title", title);
     formData.append("post.content", content);
+    tagList.forEach((item) => {
+      formData.append("post.tags", item);
+      console.log(item);
+    });
+    formData.append("post.tags", ["동아리"]);
     formData.append("author.nickname", user.nickname);
     formData.append("start_date", "2022-12-01T15:09:50.510Z");
     formData.append("end_date", "2022-12-01T15:09:50.510Z");
