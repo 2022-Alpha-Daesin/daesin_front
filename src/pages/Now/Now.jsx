@@ -1,5 +1,6 @@
 import { FlexBox, FlexTextBox } from "components/Common";
-import { FoodMenuCarousel, HotKeyword } from "components/Now";
+import { FoodMenuCarousel, HotKeyword, DepartNotice } from "components/Now";
+import ReviewPostList from "components/Review/ReviewPostList";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 
@@ -20,10 +21,24 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
-      <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
+      <FlexTextBox fontSize="1.3rem">오늘의 메뉴</FlexTextBox>
       <FoodMenuCarousel />
-      <FlexTextBox fontSize="1.25rem">오늘의 실시간 검색어</FlexTextBox>
+      <FlexTextBox fontSize="1.3rem">오늘의 실시간 검색어</FlexTextBox>
       <HotKeyword />
+      <FlexTextBox fontSize="1.3rem" margin="0.5rem 0 0 0">
+        학과 공지사항
+      </FlexTextBox>
+      <FlexTextBox fontSize="1.1rem">소프트웨어 융합</FlexTextBox>
+      <DepartNotice
+        title="소융대학 전체 공지~~~~~~"
+        content="이번에 면접까지 보게 되었는데 꿀팁(?) 같은게 있을까요? 정말정말 급해서 여쭤봅니..."
+        date="10.25"
+      />
+      <DepartNotice
+        title="소융대학 전체 공지~~~~~~"
+        content="이번에 면접까지 보게 되었는데 꿀팁(?) 같은게 있을까요? 정말정말 급해서 여쭤봅니..."
+        date="10.25"
+      />
     </FlexBox>
   );
 };
