@@ -17,7 +17,6 @@ const Text = styled.div`
 
 const AD = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
@@ -31,7 +30,7 @@ const AD = () => {
       <ADCarousel />
       <FlexBox width="100%">
         <FlexTextBox fontSize="1.5rem">모든 홍보</FlexTextBox>
-        <FlexButton textDecoration="underline" fontSize="0.9rem" onClick={handleOpen}>
+        <FlexButton textDecoration="underline" fontSize="0.9rem">
           홍보 올리기
         </FlexButton>
         <Modal

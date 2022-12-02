@@ -17,7 +17,7 @@ const axiosInstance = createInstance();
 
 const AxiosInterceptor = ({ children }) => {
   const [user] = useRecoilState(userInfo);
-  console.log(user);
+
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = getCookie("accessToken");

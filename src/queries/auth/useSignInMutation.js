@@ -39,7 +39,6 @@ const useSignInMutation = () => {
         } else {
           toast.error("예기치 않은 오류가 발생했습니다. 😭");
         }
-        console.log("fail", res.response.data);
         return "".join(res.response.data);
       },
     },
