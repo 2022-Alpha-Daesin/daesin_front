@@ -21,11 +21,10 @@ const AxiosInterceptor = ({ children }) => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = user.accessToken;
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
-      console.log("config", accessToken);
-      console.log("config", user);
+      console.log(config);
       return config;
     });
-  }, [user]);
+  }, []);
 
   return children;
 };

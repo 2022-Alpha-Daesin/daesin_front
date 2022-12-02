@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from "styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
 import { useRefreshMutation } from "queries/auth";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { userInfo } from "states";
 import { getCookie } from "cookies-next";
 
