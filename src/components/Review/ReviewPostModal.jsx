@@ -33,7 +33,7 @@ const ReviewPostModal = (props) => {
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
   const { data: tagData, isSuccess: successTag } = useTagListQuery();
-  const { mutate: reviewMutate } = usePostReviewMutation();
+  const { mutate: reviewMutate} = usePostReviewMutation();
   const [tags, setTags] = useState([]);
   const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {

@@ -10,6 +10,7 @@ import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternate
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
 import useUserInfoQuery from "queries/auth/useUserInfoQuery";
+import useTagListQuery from "queries/tag/useTagListQuery";
 import { useADMutation } from "queries/AD";
 
 const Calendar = styled(DatePicker)`
@@ -39,14 +40,23 @@ const ADArticleModal = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
-  const [tagList, setTagList] = useState(["동아리"]);
+  const [tag, setTag] = useState(["동아리"]);
   const inputRef = useRef(null);
   const { data: user } = useUserInfoQuery();
-  const { mutate: ADMutate, isError, Error } = useADMutation();
+  const { data: ADP, mutate: ADMutate, isError, Error, isSuccess } = useADMutation();
+  const { data: tagData, isSuccess: successTag } = useTagListQuery();
 
-  // console.log(startDate);
+  if (successTag) {
+    console.log(tagData);
+  }
+
+  console.log(startDate);
   if (isError) {
     console.log(Error);
+  }
+
+  if (isSuccess) {
+    console.log(ADP);
   }
 
   const handleImageChange = (e) => {
@@ -63,11 +73,21 @@ const ADArticleModal = (props) => {
     });
     formData.append("post.title", title);
     formData.append("post.content", content);
-    tagList.forEach((item) => {
-      formData.append("post.tags", item);
-      console.log(item);
-    });
-    formData.append("post.tags", ["동아리"]);
+
+    // formData.append("post.tag", tagList);
+
+    // setTag.forEach((item) => {
+    //   formData.append("post.tag", item.id);
+    // });
+
+    // selectTags.forEach((item) => {
+    //   formData.append("tags", item.id);
+    // });
+    // tagList.forEach((item) => {
+    formData.append("tags", 12);
+    //   console.log(item);
+    // });
+    // formData.append("tags", ["동아리"]);
     formData.append("author.nickname", user.nickname);
     formData.append("start_date", "2022-12-01T15:09:50.510Z");
     formData.append("end_date", "2022-12-01T15:09:50.510Z");
