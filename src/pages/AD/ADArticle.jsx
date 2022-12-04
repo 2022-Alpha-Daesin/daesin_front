@@ -4,7 +4,6 @@ import Searchbar from "components/Navbar/Searchbar";
 import useDate from "hooks/useDate";
 import { Icon } from "semantic-ui-react";
 import { useADQuery } from "queries/AD";
-import { useUserInfoQuery } from "queries/auth";
 import styled from "styled-components";
 
 const Img = styled.img`

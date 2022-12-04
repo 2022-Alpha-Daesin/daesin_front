@@ -14,6 +14,11 @@ const ADRelatedAPI = {
       .catch((err) => err);
   },
 
+  getADDeadLine: (day) => {
+    console.log("here", day);
+    return client.get(`advertisement/${day}/`).then((res) => res.data);
+  },
+
   postAD: (payload) => {
     return client.post("advertisement/", payload).then((res) => res.data);
   },

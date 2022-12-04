@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { FlexBox, FlexTextBox } from "components/Common";
 import { ADCard } from "components/AD";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import dummyData from "./dummyData";
 import COLOR from "constants/color";
 import styled from "styled-components";
-import useADListQuery from "queries/AD/useADListQuery";
+import useADDeadLineQuery from "queries/AD/useADDeadLineQuery";
 
 let today = new Date();
 let date = today.getDate();
@@ -23,16 +21,19 @@ const Btn = styled.button`
 `;
 
 const Line = styled.div`
-  width: 24rem;
+  width: 22rem;
   height: 0.1rem;
   background-color: black;
 `;
 
 const ADDateCarousel = () => {
   const [isClicked, setClick] = useState([true, false, false, false, false]);
-  const { data: ADList } = useADListQuery();
+  const [dayy, setDay] = useState("");
+  const [deadline, setDeadline] = useState("deadline_" + dayy);
+  const { data: ad, isSuccess } = useADDeadLineQuery(deadline);
 
-  console.log(ADList);
+  console.log("!", ad);
+  console.log(deadline);
 
   const handleClickDate = (id) => {
     setClick(
@@ -47,12 +48,13 @@ const ADDateCarousel = () => {
         return data;
       }),
     );
-    // console.log(isClicked);
+    setDay(id);
+    setDeadline("deadline_" + id);
   };
 
   const insertDateBtn = () => {
     const newArr = [];
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 4; i += 1) {
       newArr.push(
         <Btn
           key={i}
@@ -73,26 +75,6 @@ const ADDateCarousel = () => {
     return newArr;
   };
 
-  // const cntUp = () => {
-  //   cnt >= data.length / 4 ? setCnt(1) : setCnt(cnt + 1);
-  // };
-
-  const insertCard = () => {
-    console.log(ADList.results);
-    const newArr = [];
-    for (let i = 0; i < 4; i += 1) {
-      newArr.push(
-        <ADCard
-          key={i}
-          title={ADList.results[i].title}
-          content={ADList.results[i].content}
-          id={ADList.results[i].id}
-        />,
-      );
-    }
-    return newArr;
-  };
-
   return (
     <>
       <FlexBox column>
@@ -102,13 +84,15 @@ const ADDateCarousel = () => {
         <Line />
       </FlexBox>
       <FlexBox wrap="wrap" gap="0.75rem" margin="1rem 0 2rem 0">
-        {insertCard()}
-        {/* <ArrowForwardIosIcon
-          sx={{ margin: "9rem 0 0 0", color: "black", cursor: "pointer" }}
-          onClick={() => {
-            cntUp();
-          }}
-        /> */}
+        {isSuccess &&
+          ad.results.map((data, idx) => (
+            <ADCard
+              key={idx}
+              title={data.post.title}
+              content={data.post.content}
+              id={data.post.id}
+            />
+          ))}
       </FlexBox>
     </>
   );
