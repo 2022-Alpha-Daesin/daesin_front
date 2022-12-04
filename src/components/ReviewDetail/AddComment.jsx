@@ -40,7 +40,7 @@ const AddCommentText = styled.input`
 `;
 
 const AddComment = ({ count, postId }) => {
-  const [content, changeContent] = useInput("");
+  const [content, changeContent, reset] = useInput("");
   const { mutate } = usePostCommentMutation();
   const user = useRecoilValue(userInfo);
   const submitComment = () => {
@@ -48,6 +48,7 @@ const AddComment = ({ count, postId }) => {
       post: postId,
       content: content,
     });
+    reset();
   };
   return (
     <FlexBox width="100%" column borderBottom="1px solid #b5b5b5">

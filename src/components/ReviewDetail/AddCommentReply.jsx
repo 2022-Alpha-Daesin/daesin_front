@@ -41,7 +41,7 @@ const AddCommentText = styled.input`
 `;
 
 const AddCommentReply = ({ postId, CommentId, setReplyOpen }) => {
-  const [content, changeContent] = useInput("");
+  const [content, changeContent, reset] = useInput("");
   const { mutate } = usePostCommentMutation();
   const user = useRecoilValue(userInfo);
   const submitComment = () => {
@@ -50,6 +50,7 @@ const AddCommentReply = ({ postId, CommentId, setReplyOpen }) => {
       post: postId,
       content: content,
     });
+    reset();
   };
   return (
     <FlexBox width="100%" column borderBottom="1px solid #b5b5b5">

@@ -49,7 +49,7 @@ const CommentList = ({ content, id, username, updated_at, postId }) => {
       </FlexBox>
       <FlexBox color="#717171" justifyContent="flex-end" width="93%">
         <ThumbUpOffAltIcon />
-        <RecommendCnt>2</RecommendCnt>
+        <RecommendCnt></RecommendCnt>
         <CommentReplyBtn onClick={replyOpenHandler}>답글쓰기</CommentReplyBtn>
         <CommentDate>{updated_at.split("/")[0]}</CommentDate>
       </FlexBox>

@@ -26,6 +26,7 @@ const AxiosInterceptor = ({ children }) => {
       (error) => {
         if (getCookie("accessToken") && error.response.status == 401) {
           deleteCookie("accessToken");
+          return error;
         }
         return error;
       },

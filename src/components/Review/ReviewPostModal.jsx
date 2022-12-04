@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import COLOR from "constants/color";
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
@@ -9,9 +9,10 @@ import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
 import useInput from "hooks/useInput";
 import useTagListQuery from "queries/tag/useTagListQuery";
 import { usePostReviewMutation } from "queries/review";
-import { useEffect } from "react";
 import { userInfo } from "states";
 import { useRecoilState } from "recoil";
+import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Image = styled.img`
   width: 6rem;
@@ -41,9 +42,25 @@ const ReviewPostModal = (props) => {
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
   };
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (props.open && !user.isLoggedIn) {
+      toast.error("리뷰를 쓰시려면 로그인을 해야합니다.");
+      navigate("/login", { state: { path: location.pathname } });
+    }
+  }, [props.open]);
   useEffect(() => {
     if (successTag) {
-      setTags(tagData);
+      const tags = tagData.filter(
+        (item) =>
+          item.content === "전과/복전/부전" ||
+          item.content === "졸업정보" ||
+          item.content === "교환학생" ||
+          item.content === "장학정보" ||
+          item.content === "지원금",
+      );
+      setTags(tags);
     }
   }, [successTag]);
   const deleteImage = (idx) => {
@@ -82,7 +99,7 @@ const ReviewPostModal = (props) => {
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
           <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-            노노카
+            {user.nickName}
           </FlexTextBox>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">

@@ -54,7 +54,7 @@ const Review = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={ModalStyle}>
-            <ReviewPostModal onClick={handleModalClose} />
+            <ReviewPostModal onClick={handleModalClose} open={modalOpen} />
           </Box>
         </Modal>
       </FlexBox>
