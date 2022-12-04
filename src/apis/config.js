@@ -22,7 +22,9 @@ const AxiosInterceptor = ({ children }) => {
       return config;
     });
     axiosInstance.interceptors.response.use(
-      (res) => res,
+      (res) => {
+        return res;
+      },
       (error) => {
         if (getCookie("accessToken") && error.response.status == 401) {
           deleteCookie("accessToken");

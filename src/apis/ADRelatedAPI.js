@@ -4,7 +4,10 @@ const client = axiosInstance;
 
 const ADRelatedAPI = {
   getADList: () => {
-    return client.get("advertisement/").then((res) => res.data);
+    return client
+      .get("advertisement/")
+      .then((res) => res.data)
+      .catch((err) => err);
   },
 
   getAD: (id) => {
@@ -15,12 +18,17 @@ const ADRelatedAPI = {
   },
 
   getADDeadLine: (day) => {
-    console.log("here", day);
-    return client.get(`advertisement/${day}/`).then((res) => res.data);
+    return client
+      .get(`advertisement/${day}/`)
+      .then((res) => res.data)
+      .catch((err) => err);
   },
 
   postAD: (payload) => {
-    return client.post("advertisement/", payload).then((res) => res.data);
+    return client
+      .post("advertisement/", payload)
+      .then((res) => res.data)
+      .catch((err) => err);
   },
 };
 

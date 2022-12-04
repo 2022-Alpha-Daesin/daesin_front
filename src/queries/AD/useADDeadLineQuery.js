@@ -7,6 +7,9 @@ const useADDeadLineQuery = (day) => {
   }
   console.log(day);
   return useQuery(["ad-deadline", day], () => ADRelatedAPI.getADDeadLine(day), {
+    onSuccess: (res) => {
+      console.log(res);
+    },
     onError: (res) => {
       console.log(res);
     },
