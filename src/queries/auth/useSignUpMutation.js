@@ -3,6 +3,7 @@ import userRelatedAPI from "apis/userRelatedAPI";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import messages from "constants/message";
+import SignUpMutationHandler from "utils/SignUpMutationHandler";
 
 const useSignUpMutation = () => {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ const useSignUpMutation = () => {
         toast.success(messages.user.signup.success);
         navigate("/signin");
       },
-      onError: () => {
-        console.log("fail");
+      onError: (res) => {
+        SignUpMutationHandler(res.response.data);
       },
     },
   );
