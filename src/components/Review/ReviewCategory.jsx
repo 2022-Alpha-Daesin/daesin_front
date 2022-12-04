@@ -28,23 +28,38 @@ const Btn = styled.button`
   animation: fade-in 1000ms;
 `;
 
-const ReviewCategory = () => {
+const ReviewCategory = ({ data, setData }) => {
   const [cnt, setCnt] = useState(1);
-  const [data, setData] = useState(dummyData);
 
   const cntUp = () => {
     cnt >= data.length / 8 ? setCnt(1) : setCnt(cnt + 1);
   };
 
   const handleClick = (id) => {
-    setData(
-      data.map((data) => {
-        if (data.id === id) {
-          data.isClicked = !data.isClicked;
-        }
-        return data;
-      }),
-    );
+    if (id === 1) {
+      setData(
+        data.map((data) => {
+          if (data.id === 1) {
+            data.isClicked = true;
+          } else {
+            data.isClicked = false;
+          }
+          return data;
+        }),
+      );
+    } else {
+      setData(
+        data.map((data) => {
+          if (data.id === 1) {
+            data.isClicked = false;
+          }
+          if (data.id === id) {
+            data.isClicked = !data.isClicked;
+          }
+          return data;
+        }),
+      );
+    }
   };
 
   const insertBtn = (cnt) => {
