@@ -19,7 +19,7 @@ const Line = styled.div`
 const ReviewDetail = () => {
   const params = useParams();
   const { data: review } = useReviewDetailQuery(params.id);
-  console.log(review);
+  console.log("review", review);
   return (
     <FlexBox width="100%" column>
       <Searchbar />
@@ -37,24 +37,27 @@ const ReviewDetail = () => {
               </FlexTextBox>
             </FlexBox>
             <FlexBox margin="1rem 0 0 0" position="absolute" right="0" width="5rem">
-              <Icon disabled name="bookmark outline" size="large" link />
+              <Icon
+                disabled={"post" in review && !review.post.is_scraped}
+                name="bookmark outline"
+                size="large"
+                link
+              />
               <Icon disabled name="paperclip" size="large" link />
             </FlexBox>
           </FlexBox>
           <FlexTextBox fontSize="2rem">{"post" in review && review.post?.title}</FlexTextBox>
           <FlexBox width="100%" center column>
             {"post" in review &&
-              review.post?.image_list.map((image) => <img src={image.image}></img>)}
+              review.post?.image_list.map((image, id) => <img key={id} src={image.image}></img>)}
             <FlexTextBox width="100%" fontSize="1.1rem" marginBottom="10%">
               <br />
               {"post" in review && review.post?.content}
             </FlexTextBox>
           </FlexBox>
-          <AddComment />
-          <CommentList />
-          <CommentReply />
-          <CommentList />
-          <CommentList />
+          <AddComment count={"post" in review && review.post?.comments_count} postId={params.id} />
+          {"post" in review &&
+            review.post?.comments.map((comment) => <CommentList key={comment.id} {...comment} />)}
         </FlexBox>
         <Line />
       </FlexBox>

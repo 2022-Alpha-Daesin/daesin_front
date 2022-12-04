@@ -24,7 +24,7 @@ const CommentDate = styled.span`
   font-size: 1.2rem;
 `;
 
-const CommentList = () => {
+const CommentList = ({ content, id, username }) => {
   const [replyOpen, setReplyOpen] = useState(false);
   const replyOpenHandler = () => {
     setReplyOpen(!replyOpen);
@@ -41,11 +41,10 @@ const CommentList = () => {
           margin="0 1rem  1rem"
         />
         <FlexTextBox margin="0 3rem 0 0" fontSize="1.25rem" padding="0 0 2% 0">
-          멋쟁이 사자처럼
+          {username}
         </FlexTextBox>
         <FlexTextBox margin="0 1rem 0 0" fontSize="1.25rem" width="70%" padding="0 0 2% 0">
-          국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다. 안녕하세요! 교내 소프트웨어 동아리
-          멋쟁이 사자처럼 at 국민대입니다. 국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다.
+          {content}
         </FlexTextBox>
       </FlexBox>
       <FlexBox color="#717171" justifyContent="flex-end" width="93%">

@@ -33,13 +33,13 @@ const Review = () => {
         </FlexBox>
         <ReviewCategory />
       </FlexBox>
-      <FlexBox column margin="2rem 0 0 0" gap="2rem">
+      <FlexBox width="100%" column margin="2rem 0 0 0" gap="2rem">
         <FlexBox column gap="2rem">
           <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">
             전과/복전/부전
           </FlexTextBox>
         </FlexBox>
-        <ReviewCategory />
+        {/* <ReviewCategory /> */}
         {"results" in reviewList &&
           reviewList.results.map((item) => <ReviewPostList {...item} key={item.id} />)}
         <Modal
