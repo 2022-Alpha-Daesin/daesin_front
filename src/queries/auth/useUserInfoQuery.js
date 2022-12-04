@@ -29,7 +29,7 @@ const useUserInfoQuery = () => {
       console.error(err);
     },
     enabled: isLogged,
-    staleTime: 60000,
+    staleTime: 60000000,
   });
 };
 

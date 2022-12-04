@@ -11,7 +11,7 @@ const reviewAPI = {
   },
   getReviewDetail: (id) => {
     return client
-      .get(`review/${id}`)
+      .get(`review/${id}/`)
       .then((res) => res.data)
       .catch((err) => err);
   },

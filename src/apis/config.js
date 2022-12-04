@@ -1,9 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "../constants/URLS";
 import { useEffect } from "react";
-import { userInfo } from "states";
-import { useRecoilState } from "recoil";
-import { getCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next";
 
 const createInstance = () => {
   const headers = {};
@@ -16,8 +14,6 @@ const createInstance = () => {
 const axiosInstance = createInstance();
 
 const AxiosInterceptor = ({ children }) => {
-  const [user] = useRecoilState(userInfo);
-  console.log(user);
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = getCookie("accessToken");
@@ -25,6 +21,15 @@ const AxiosInterceptor = ({ children }) => {
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
       return config;
     });
+    axiosInstance.interceptors.response.use(
+      (res) => res,
+      (error) => {
+        if (getCookie("accessToken") && error.response.status == 401) {
+          deleteCookie("accessToken");
+        }
+        return error;
+      },
+    );
   }, []);
 
   return children;

@@ -6,6 +6,9 @@ import { Icon } from "semantic-ui-react";
 import AddComment from "components/ReviewDetail/AddComment";
 import CommentList from "components/ReviewDetail/CommentList";
 import CommentReply from "components/ReviewDetail/CommentReply";
+import { useParams } from "react-router-dom";
+import { useReviewDetailQuery } from "queries/review";
+import { useCallback } from "react";
 
 const Line = styled.div`
   width: 0.12rem;
@@ -14,6 +17,9 @@ const Line = styled.div`
 `;
 
 const ReviewDetail = () => {
+  const params = useParams();
+  const { data: review } = useReviewDetailQuery(params.id);
+  console.log(review);
   return (
     <FlexBox width="100%" column>
       <Searchbar />
@@ -23,9 +29,11 @@ const ReviewDetail = () => {
           <FlexBox width="100%" position="relative">
             <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
             <FlexBox column gap="0.2rem" margin="0.2rem 0 0 0.8rem">
-              <FlexTextBox fontSize="1.25rem">멋쟁이 사자처럼</FlexTextBox>
+              <FlexTextBox fontSize="1.25rem">
+                {"post" in review && review.post?.author?.nickname}
+              </FlexTextBox>
               <FlexTextBox fontSize="0.85rem" color="#717171">
-                2022.10.14
+                {"post" in review && review.post?.created_at.split("/")[0]}
               </FlexTextBox>
             </FlexBox>
             <FlexBox margin="1rem 0 0 0" position="absolute" right="0" width="5rem">
@@ -33,19 +41,13 @@ const ReviewDetail = () => {
               <Icon disabled name="paperclip" size="large" link />
             </FlexBox>
           </FlexBox>
-          <FlexTextBox fontSize="2rem">[멋쟁이 사자 처럼 8기] 아기사자 대모집!!</FlexTextBox>
+          <FlexTextBox fontSize="2rem">{"post" in review && review.post?.title}</FlexTextBox>
           <FlexBox width="100%" center column>
+            {"post" in review &&
+              review.post?.image_list.map((image) => <img src={image.image}></img>)}
             <FlexTextBox width="100%" fontSize="1.1rem" marginBottom="10%">
-              안녕하세요! 교내 소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다.
-              <br /> <br /> 국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다. 안녕하세요! 교내
-              소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다. 국민대 멋쟁이 사자처럼이 8기 아기
-              사자를 모집합니다. 국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다. 안녕하세요!
-              교내 소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다. 국민대 멋쟁이 사자처럼이 8기
-              아기 사자를 모집합니다. 국민대 멋쟁이 사자처럼이 8기 아기 사자를 모집합니다.
-              안녕하세요! 교내 소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다. 국민대 멋쟁이
-              사자처럼이 8기 아기 사자를 모집합니다. 국민대 멋쟁이 사자처럼이 8기 아기 사자를
-              모집합니다. 안녕하세요! 교내 소프트웨어 동아리 멋쟁이 사자처럼 at 국민대입니다. 국민대
-              멋쟁이 사자처럼이 8기 아기 사자를 모집합니다.
+              <br />
+              {"post" in review && review.post?.content}
             </FlexTextBox>
           </FlexBox>
           <AddComment />

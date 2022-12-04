@@ -19,7 +19,8 @@ const Review = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => setModalOpen(true);
   const handleModalClose = () => setModalOpen(false);
-  const { data: reviewList, isSuccess } = useReviewListQuery();
+  const { data: reviewList } = useReviewListQuery();
+  console.log(reviewList);
   return (
     <FlexContainer>
       <FlexBox alignItems="flex-start" column margin="2rem 0 0 0" gap="2rem">
@@ -39,7 +40,8 @@ const Review = () => {
           </FlexTextBox>
         </FlexBox>
         <ReviewCategory />
-        {isSuccess && reviewList?.map((item) => <ReviewPostList {...item} key={item.id} />)}
+        {"results" in reviewList &&
+          reviewList.results.map((item) => <ReviewPostList {...item} key={item.id} />)}
         <Modal
           open={modalOpen}
           onClose={handleModalClose}
