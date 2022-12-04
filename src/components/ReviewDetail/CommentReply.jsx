@@ -17,7 +17,7 @@ const CommentDate = styled.span`
   font-size: 1.1rem;
 `;
 
-const CommentReply = () => {
+const CommentReply = ({ content, id, username, updated_at, postId }) => {
   return (
     <FlexBox column width="100%" borderBottom="1px solid #b5b5b5" padding="0 0 1.5% 5%">
       <FlexBox width="95%" height="100%" alignItems="center">
@@ -31,16 +31,16 @@ const CommentReply = () => {
           margin="0 1rem  1rem"
         />
         <FlexTextBox margin="0 2rem 0 0" fontSize="1rem" padding="0 0 2% 0">
-          멋쟁이 사자처럼
+          {username}
         </FlexTextBox>
         <FlexTextBox margin="0 1rem 0 0" fontSize="1.1rem" width="70%" padding="0 0 2% 0">
-          댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글의 대댓글입니다.댓글
+          {content}
         </FlexTextBox>
       </FlexBox>
       <FlexBox color="#717171" justifyContent="flex-end" width="93%">
         <ThumbUpOffAltIcon />
-        <RecommendCnt>2</RecommendCnt>
-        <CommentDate>2022.11.18</CommentDate>
+        <RecommendCnt></RecommendCnt>
+        <CommentDate>{updated_at.split("/")[0]}</CommentDate>
       </FlexBox>
     </FlexBox>
   );

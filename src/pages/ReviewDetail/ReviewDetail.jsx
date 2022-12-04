@@ -8,7 +8,6 @@ import CommentList from "components/ReviewDetail/CommentList";
 import CommentReply from "components/ReviewDetail/CommentReply";
 import { useParams } from "react-router-dom";
 import { useReviewDetailQuery } from "queries/review";
-import { useCallback } from "react";
 
 const Line = styled.div`
   width: 0.12rem;
@@ -57,7 +56,25 @@ const ReviewDetail = () => {
           </FlexBox>
           <AddComment count={"post" in review && review.post?.comments_count} postId={params.id} />
           {"post" in review &&
-            review.post?.comments.map((comment) => <CommentList key={comment.id} {...comment} />)}
+            review.post?.comments.map((comment, ind, alList) => {
+              if (comment.parent) {
+                return;
+              }
+              const children = alList.filter((item) => item.parent === comment.id);
+              console.log("혹쉬?", children);
+              if (children === []) {
+                return <CommentList postId={params.id} key={comment.id} {...comment} />;
+              } else {
+                return (
+                  <>
+                    <CommentList postId={params.id} key={comment.id} {...comment} />
+                    {children.map((child) => (
+                      <CommentReply postId={params.id} key={child.id} {...child} />
+                    ))}
+                  </>
+                );
+              }
+            })}
         </FlexBox>
         <Line />
       </FlexBox>

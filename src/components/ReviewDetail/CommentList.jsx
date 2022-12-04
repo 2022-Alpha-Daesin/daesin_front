@@ -24,7 +24,7 @@ const CommentDate = styled.span`
   font-size: 1.2rem;
 `;
 
-const CommentList = ({ content, id, username }) => {
+const CommentList = ({ content, id, username, updated_at, postId }) => {
   const [replyOpen, setReplyOpen] = useState(false);
   const replyOpenHandler = () => {
     setReplyOpen(!replyOpen);
@@ -51,9 +51,11 @@ const CommentList = ({ content, id, username }) => {
         <ThumbUpOffAltIcon />
         <RecommendCnt>2</RecommendCnt>
         <CommentReplyBtn onClick={replyOpenHandler}>답글쓰기</CommentReplyBtn>
-        <CommentDate>2022.11.18</CommentDate>
+        <CommentDate>{updated_at.split("/")[0]}</CommentDate>
       </FlexBox>
-      {replyOpen ? <AddCommentReply /> : null}
+      {replyOpen ? (
+        <AddCommentReply CommentId={id} postId={postId} setReplyOpen={setReplyOpen} />
+      ) : null}
     </FlexBox>
   );
 };
