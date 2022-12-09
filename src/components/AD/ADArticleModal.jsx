@@ -9,9 +9,13 @@ import EventIcon from "@mui/icons-material/Event";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
-import useUserInfoQuery from "queries/auth/useUserInfoQuery";
 import useTagListQuery from "queries/tag/useTagListQuery";
+import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
 import { useADMutation } from "queries/AD";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "states";
+import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -35,28 +39,47 @@ const ImgInner = styled.div`
 const ADArticleModal = (props) => {
   const [title, handleTitle] = useInput("");
   const [content, handleContent] = useInput("");
-  const tmp = new Date();
-  console.log(tmp);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
-  const [tag, setTag] = useState(["동아리"]);
+  const [tags, setTags] = useState([]);
+  const [selectTags, setSelectTags] = useState([]);
   const inputRef = useRef(null);
-  const { data: user } = useUserInfoQuery();
+  const user = useRecoilValue(userInfo);
   const { data: ADP, mutate: ADMutate, isError, Error, isSuccess } = useADMutation();
   const { data: tagData, isSuccess: successTag } = useTagListQuery();
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (props.open && !user.isLoggedIn) {
+      toast.error("리뷰를 쓰시려면 로그인을 해야합니다.");
+      navigate("/login", { state: { path: location.pathname } });
+    }
+  }, [props.open]);
 
-  if (successTag) {
-    console.log(tagData);
-  }
+  useEffect(() => {
+    if (successTag) {
+      const tags = tagData.filter(
+        (item) =>
+          item.content === "동아리" ||
+          item.content === "알파프로젝트" ||
+          item.content === "알바" ||
+          item.content === "기타",
+      );
+      setTags(tags);
+    }
+  }, [successTag]);
 
-  console.log(startDate);
-  if (isError) {
-    console.log(Error);
-  }
+  const covertDateFormat = (date) => {
+    let year = date.getFullYear();
+    let month = ("0" + (1 + date.getMonth())).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
+  };
 
   if (isSuccess) {
-    console.log(ADP);
+    console.log("얜뭐야", ADP);
   }
 
   const handleImageChange = (e) => {
@@ -69,46 +92,18 @@ const ADArticleModal = (props) => {
     const formData = new FormData();
 
     imageList.forEach((item) => {
-      formData.append("post.image_list", item.file);
+      formData.append("images", item.file);
+    });
+    selectTags.forEach((item) => {
+      formData.append("tags", item.id);
     });
     formData.append("post.title", title);
     formData.append("post.content", content);
 
-    // formData.append("post.tag", tagList);
-
-    // setTag.forEach((item) => {
-    //   formData.append("post.tag", item.id);
-    // });
-
-    // selectTags.forEach((item) => {
-    //   formData.append("tags", item.id);
-    // });
-    // tagList.forEach((item) => {
-    formData.append("tags", 12);
-    //   console.log(item);
-    // });
-    // formData.append("tags", ["동아리"]);
-    formData.append("author.nickname", user.nickname);
-    formData.append("start_date", "2022-12-01T15:09:50.510Z");
-    formData.append("end_date", "2022-12-01T15:09:50.510Z");
+    formData.append("start_date", covertDateFormat(startDate));
+    formData.append("end_date", covertDateFormat(endDate));
     ADMutate(formData);
   };
-  // const { mutate: ADMutate } = useADMutation();
-  // const { mutate: refresMutate } = useRefreshMutation();
-
-  // useEffect(() => {
-  //   const refreshCookie = getCookie("refreshToken");
-  //   if (refreshCookie) {
-  //     if (!user.isLoggedIn) {
-  //       refresMutate();
-  //     }
-  //   }
-  // }, [isError]);
-
-  // if (isError) {
-  //   console.log(Error);
-  // }
-  console.log(user);
 
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
@@ -139,7 +134,7 @@ const ADArticleModal = (props) => {
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
           <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-            {user.nickname}
+            {user.nickName}
           </FlexTextBox>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
@@ -152,7 +147,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             홍보 종류
           </FlexTextBox>
-          <FlexTextArea />
+          <CustomAutoComplete tags={tags} setSelectTags={setSelectTags} selectTags={selectTags} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">

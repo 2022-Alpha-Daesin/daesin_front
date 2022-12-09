@@ -30,7 +30,7 @@ const ADDateCarousel = () => {
   const [isClicked, setClick] = useState([true, false, false, false, false]);
   const [dayy, setDay] = useState("");
   const [deadline, setDeadline] = useState("deadline_" + dayy);
-  const { data: ad, isSuccess } = useADDeadLineQuery(deadline);
+  const { data: ad } = useADDeadLineQuery(deadline);
 
   // console.log(ad);
   const handleClickDate = (id) => {
@@ -82,7 +82,7 @@ const ADDateCarousel = () => {
         <Line />
       </FlexBox>
       <FlexBox wrap="wrap" gap="0.75rem" margin="1rem 0 2rem 0">
-        {isSuccess &&
+        {"results" in ad &&
           ad.results.map((data, idx) => (
             <ADCard
               key={idx}

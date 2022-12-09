@@ -23,76 +23,13 @@ const ADCardWrapper = () => {
   const [id, setId] = useState(0);
   const { data: ADList } = useADListQuery();
 
-  console.log(ADList.results);
-
-  const handleClick = (id) => {
-    setClick(
-      isClicked.map((data, idx) => {
-        if (data === true) {
-          data = false;
-        }
-        if (idx === id) {
-          data = !data;
-        }
-
-        return data;
-      }),
-    );
-    console.log(isClicked);
-  };
-
-  const cardList = ADList.results.map(
-    (data, idx) =>
-      id === 0 && <ADCard key={idx} title={data.title} content={data.content} id={data.id} />,
-  );
   return (
-    <>
-      <FlexBox gap="1rem">
-        <Btn
-          isClicked={isClicked[0]}
-          onClick={() => {
-            handleClick(0);
-          }}
-        >
-          ALL
-        </Btn>
-        <Btn
-          isClicked={isClicked[1]}
-          onClick={() => {
-            handleClick(1);
-          }}
-        >
-          동아리
-        </Btn>
-        <Btn
-          isClicked={isClicked[2]}
-          onClick={() => {
-            handleClick(2);
-          }}
-        >
-          알파프로젝트
-        </Btn>
-        <Btn
-          isClicked={isClicked[3]}
-          onClick={() => {
-            handleClick(3);
-          }}
-        >
-          알바
-        </Btn>
-        <Btn
-          isClicked={isClicked[4]}
-          onClick={() => {
-            handleClick(4);
-          }}
-        >
-          기타
-        </Btn>
-      </FlexBox>
-      <FlexBox gap="1.5rem" wrap="wrap">
-        {cardList}
-      </FlexBox>
-    </>
+    <FlexBox gap="1.5rem" wrap="wrap">
+      {"results" in ADList &&
+        ADList.results.map((data, idx) => (
+          <ADCard key={idx} title={data.title} content={data.content} id={data.id} />
+        ))}
+    </FlexBox>
   );
 };
 export default ADCardWrapper;

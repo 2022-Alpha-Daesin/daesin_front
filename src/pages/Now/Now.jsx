@@ -3,7 +3,6 @@ import { FoodMenuCarousel } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import ReviewPostList from "components/Review/ReviewPostList";
-// import UserRelatedAPI from "apis/userRelatedAPI";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "states";
 
@@ -19,15 +18,6 @@ const Text = styled.div`
 
 const Now = () => {
   const user = useRecoilValue(userInfo);
-  // const checkUserFunc = () => {
-  //   console.log(user, "userInfoOnClick rootDIr");
-  // };
-
-  // const getUserFUnc = () => {
-  //   UserRelatedAPI.getUserInfo().then((res) => {
-  //     console.log(res, "userD");
-  //   });
-  // };
 
   return (
     <FlexBox width="100%" column gap="1.3rem">
@@ -35,6 +25,7 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
+      <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
       {/* <div onClick={checkUserFunc}>checkIsUserText</div>
       <div onClick={getUserFUnc}>getUserInfoText</div> */}
       <FlexTextBox fontSize="1.35rem">오늘의 메뉴</FlexTextBox>

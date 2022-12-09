@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { FlexBox, FlexButton } from "../Common";
 import FlexTextBox from "../Common/FlexTextBox";
 import COLOR from "constants/color";
-
+import { usePostCommentMutation } from "queries/comment";
+import useInput from "hooks/useInput";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "states";
 const Title = styled.span`
   font-size: 2rem;
   font-weight: 800;
@@ -36,12 +39,22 @@ const AddCommentText = styled.input`
   background-color: transparent;
 `;
 
-const AddComment = () => {
+const AddComment = ({ count, postId }) => {
+  const [content, changeContent, reset] = useInput("");
+  const { mutate } = usePostCommentMutation();
+  const user = useRecoilValue(userInfo);
+  const submitComment = () => {
+    mutate({
+      post: postId,
+      content: content,
+    });
+    reset();
+  };
   return (
     <FlexBox width="100%" column borderBottom="1px solid #b5b5b5">
       <FlexBox>
         <Title>국민 TALK</Title>
-        <CommentCnt> 총 18개</CommentCnt>
+        <CommentCnt> 총 {count}개</CommentCnt>
       </FlexBox>
       <FlexBox width="100%">
         <AddCommentBox>
@@ -53,13 +66,20 @@ const AddComment = () => {
             margin="0 1rem 0 1rem"
           />
           <FlexTextBox margin="0 3rem 0 0" fontSize="1.25rem">
-            멋쟁이 사자처럼
+            {user.nickName}
           </FlexTextBox>
-          <AddCommentText type="text" name="comment" placeholder="댓글을 입력해주세요." />
+          <AddCommentText
+            type="text"
+            name="comment"
+            onChange={changeContent}
+            value={content}
+            placeholder="댓글을 입력해주세요."
+          />
         </AddCommentBox>
       </FlexBox>
       <FlexBox width="100%" justifyContent="flex-end">
         <FlexButton
+          onClick={submitComment}
           fontSize="1.1rem"
           backgroundColor={COLOR.btn.main_gra}
           color="#fff"
