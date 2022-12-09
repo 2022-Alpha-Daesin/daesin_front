@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
 import useInput from "hooks/useInput";
 import DatePicker from "react-datepicker";
@@ -90,7 +90,7 @@ const ADArticleModal = (props) => {
     // formData.append("tags", ["동아리"]);
     formData.append("author.nickname", user.nickname);
     formData.append("start_date", "2022-12-01T15:09:50.510Z");
-    formData.append("end_date", "2022-12-12T15:09:10.510Z");
+    formData.append("end_date", "2022-12-01T15:09:50.510Z");
     ADMutate(formData);
   };
   // const { mutate: ADMutate } = useADMutation();
@@ -123,7 +123,7 @@ const ADArticleModal = (props) => {
   //   ADMutate({ email: email, password: password });
   // };
   return (
-    <FlexBox position="relative" width="38%">
+    <FlexBox position="relative" width="35%">
       <ClearOutlinedIcon
         sx={{
           fontSize: 35,
