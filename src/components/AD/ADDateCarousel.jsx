@@ -32,9 +32,7 @@ const ADDateCarousel = () => {
   const [deadline, setDeadline] = useState("deadline_" + dayy);
   const { data: ad } = useADDeadLineQuery(deadline);
 
-  console.log("!", ad);
-  console.log(deadline);
-
+  console.log(ad);
   const handleClickDate = (id) => {
     setClick(
       isClicked.map((data, idx) => {

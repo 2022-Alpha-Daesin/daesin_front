@@ -18,7 +18,7 @@ const ADArticle = lazy(() => import("pages/AD/ADArticle"));
 const Review = lazy(() => import("pages/Review/Review"));
 const ReviewDetail = lazy(() => import("pages/ReviewDetail/ReviewDetail"));
 const MyPage = lazy(() => import("pages/MyPage/MyPage"));
-// const ClubDetail = lazy(() => import('pages/Club/ClubDetail'));
+const ClubDetail = lazy(() => import("pages/Club/ClubDetail"));
 
 const App = () => {
   const user = useRecoilValue(userInfo);
@@ -50,6 +50,7 @@ const App = () => {
                 element={user.isLoggedIn ? <Navigate replace to="/" /> : <SignUp />}
               />
               <Route path="/club" element={<Club />} />
+              <Route path="/club/:id" element={<ClubDetail />} />
               <Route path="/ad" element={<AD />} />
               <Route path="/ad/:id" element={<ADArticle />} />
               <Route path="/review" element={<Review />} />

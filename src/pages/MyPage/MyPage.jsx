@@ -8,7 +8,7 @@ const MyPage = () => {
     <>
       <FlexBox width="100%" column margin="2rem 0 0 0" gap="2.2rem">
         <Searchbar />
-        <FlexBox width="100%" column gap="4rem">
+        <FlexBox width="100%" column gap="4rem" margin="2rem 0 0 0">
           <Profile />
           <FlexBox width="100%" gap="7%">
             <FlexBox width="90%" gap="1.25rem" column>
