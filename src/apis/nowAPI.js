@@ -9,6 +9,12 @@ const nowAPI = {
       .then((res) => res)
       .catch((err) => err);
   },
+  getNotice: () => {
+    return client
+      .get("notice/")
+      .then((res) => res)
+      .catch((err) => err);
+  },
 };
 
 export default nowAPI;
