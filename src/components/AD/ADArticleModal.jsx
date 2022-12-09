@@ -9,10 +9,13 @@ import EventIcon from "@mui/icons-material/Event";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import styled from "styled-components";
-// import useADMutation from "queries/AD/useADMutation";
-import useUserInfoQuery from "queries/auth/useUserInfoQuery";
-// import { useRefreshMutation } from "queries/auth";
-// import { getCookie } from "cookies-next";
+import useTagListQuery from "queries/tag/useTagListQuery";
+import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
+import { useADMutation } from "queries/AD";
+import { useRecoilValue } from "recoil";
+import { userInfo } from "states";
+import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Calendar = styled(DatePicker)`
   width: 60%;
@@ -39,29 +42,67 @@ const ADArticleModal = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [imageList, setimageList] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selectTags, setSelectTags] = useState([]);
   const inputRef = useRef(null);
-  const { data: user } = useUserInfoQuery();
-  // const { mutate: ADMutate } = useADMutation();
-  // const { mutate: refresMutate } = useRefreshMutation();
+  const user = useRecoilValue(userInfo);
+  const { data: ADP, mutate: ADMutate, isError, Error, isSuccess } = useADMutation();
+  const { data: tagData, isSuccess: successTag } = useTagListQuery();
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (props.open && !user.isLoggedIn) {
+      toast.error("리뷰를 쓰시려면 로그인을 해야합니다.");
+      navigate("/login", { state: { path: location.pathname } });
+    }
+  }, [props.open]);
 
-  // useEffect(() => {
-  //   const refreshCookie = getCookie("refreshToken");
-  //   if (refreshCookie) {
-  //     if (!user.isLoggedIn) {
-  //       refresMutate();
-  //     }
-  //   }
-  // }, [isError]);
+  useEffect(() => {
+    if (successTag) {
+      const tags = tagData.filter(
+        (item) =>
+          item.content === "동아리" ||
+          item.content === "알파프로젝트" ||
+          item.content === "알바" ||
+          item.content === "기타",
+      );
+      setTags(tags);
+    }
+  }, [successTag]);
 
-  // if (isError) {
-  //   console.log(Error);
-  // }
-  console.log(user);
+  const covertDateFormat = (date) => {
+    let year = date.getFullYear();
+    let month = ("0" + (1 + date.getMonth())).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
+
+    return year + "-" + month + "-" + day;
+  };
+
+  if (isSuccess) {
+    console.log("얜뭐야", ADP);
+  }
 
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0];
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
+  };
+
+  const submitAD = () => {
+    const formData = new FormData();
+
+    imageList.forEach((item) => {
+      formData.append("images", item.file);
+    });
+    selectTags.forEach((item) => {
+      formData.append("tags", item.id);
+    });
+    formData.append("post.title", title);
+    formData.append("post.content", content);
+
+    formData.append("start_date", covertDateFormat(startDate));
+    formData.append("end_date", covertDateFormat(endDate));
+    ADMutate(formData);
   };
 
   const deleteImage = (idx) => {
@@ -93,7 +134,7 @@ const ADArticleModal = (props) => {
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
           <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-            노노카
+            {user.nickName}
           </FlexTextBox>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
@@ -106,7 +147,7 @@ const ADArticleModal = (props) => {
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
             홍보 종류
           </FlexTextBox>
-          <FlexTextArea />
+          <CustomAutoComplete tags={tags} setSelectTags={setSelectTags} selectTags={selectTags} />
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">
           <FlexTextBox fontSize="1.5rem" fontWeight="600">
@@ -121,7 +162,6 @@ const ADArticleModal = (props) => {
               position="relative"
             >
               <Calendar
-                dateFormat="yyyy-MM-dd"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 selectsStart
@@ -141,7 +181,6 @@ const ADArticleModal = (props) => {
               position="relative"
             >
               <Calendar
-                dateFormat="yyyy-MM-dd"
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 selectsEnd
@@ -203,8 +242,9 @@ const ADArticleModal = (props) => {
           fontSize="1.1rem"
           backgroundColor={COLOR.btn.main_gra}
           color="white"
-          padding="1rem 10rem"
-          margin="0 20%"
+          padding="1rem 8rem"
+          margin="0 24%"
+          onClick={submitAD}
         >
           올리기
         </FlexButton>

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import COLOR from "constants/color";
 import { FlexBox, FlexTextBox, FlexButton, FlexTextArea } from "components/Common";
@@ -9,9 +9,10 @@ import CustomAutoComplete from "components/AutoComplete/CustomAutoComplete";
 import useInput from "hooks/useInput";
 import useTagListQuery from "queries/tag/useTagListQuery";
 import { usePostReviewMutation } from "queries/review";
-import { useEffect } from "react";
 import { userInfo } from "states";
 import { useRecoilState } from "recoil";
+import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Image = styled.img`
   width: 6rem;
@@ -33,7 +34,7 @@ const ReviewPostModal = (props) => {
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
   const { data: tagData, isSuccess: successTag } = useTagListQuery();
-  const { mutate: reviewMutate } = usePostReviewMutation();
+  const { mutate: reviewMutate} = usePostReviewMutation();
   const [tags, setTags] = useState([]);
   const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {
@@ -41,30 +42,44 @@ const ReviewPostModal = (props) => {
     const imageUrl = URL.createObjectURL(imageFile);
     setimageList([...imageList, { file: imageFile, url: imageUrl }]);
   };
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (props.open && !user.isLoggedIn) {
+      toast.error("리뷰를 쓰시려면 로그인을 해야합니다.");
+      navigate("/login", { state: { path: location.pathname } });
+    }
+  }, [props.open]);
   useEffect(() => {
     if (successTag) {
-      setTags(tagData);
+      const tags = tagData.filter(
+        (item) =>
+          item.content === "전과/복전/부전" ||
+          item.content === "졸업정보" ||
+          item.content === "교환학생" ||
+          item.content === "장학정보" ||
+          item.content === "지원금",
+      );
+      setTags(tags);
     }
   }, [successTag]);
   const deleteImage = (idx) => {
     setimageList(imageList.filter((_, index) => index !== idx));
   };
-  console.log("유저상태", user);
   const onButtonClick = () => {
     inputRef.current.click();
   };
   const submitReview = () => {
     console.log("데이타들", imageList, selectTags, title, contents);
-    let images = imageList.map((item) => item.file);
-    let tagList = selectTags.map((item) => item.id);
-    // let text = { title: title, content: contents };
-    const postData = new FormData();
-    postData.append("title", title);
-    postData.append("content", contents);
     const formData = new FormData();
-    formData.append("images", images);
-    formData.append("tags", tagList);
-    formData.append("post", postData);
+    imageList.forEach((item) => {
+      formData.append("images", item.file);
+    });
+    selectTags.forEach((item) => {
+      formData.append("tags", item.id);
+    });
+    formData.append("post.title", title);
+    formData.append("post.content", contents);
     reviewMutate(formData);
   };
   return (
@@ -84,7 +99,7 @@ const ReviewPostModal = (props) => {
         <FlexBox>
           <FlexBox width="3rem" height="3rem" borderRadius="50%" background="#FFC8C8" />
           <FlexTextBox fontSize="1.25rem" margin="0.9rem">
-            노노카
+            {user.nickName}
           </FlexTextBox>
         </FlexBox>
         <FlexBox width="100%" column gap="0.6rem">

@@ -23,9 +23,9 @@ const useSignInMutation = () => {
         setCookie("accessToken", res.access_token);
         setUserInfo({
           isLoggedIn: true,
-          nickName: res.user.nickname,
-          email: res.user.email,
-          grade: res.user.grade,
+          // nickName: res.user.nickname,
+          // email: res.user.email,
+          // grade: res.user.grade,
           accessToken: res.access_token,
         });
         navigate("/");
@@ -39,7 +39,6 @@ const useSignInMutation = () => {
         } else {
           toast.error("예기치 않은 오류가 발생했습니다. 😭");
         }
-        console.log("fail", res.response.data);
         return "".join(res.response.data);
       },
     },

@@ -35,14 +35,14 @@ const ReviewPostCommentCnt = styled.span`
   font-weight: 500;
 `;
 
-const ReviewPostList = () => {
+const ReviewPostList = (props) => {
   const navigate = useNavigate();
   return (
-    <PostContainer onClick={() => navigate("/review/1")}>
-      <ReviewPostTitle>소프트웨어 융합학부 전과 면접 꿀팁</ReviewPostTitle>
-      <ReviewPostContent>이번에 면접까지 보게 되었는데 꿀팁 같은게 있을까요?</ReviewPostContent>
-      <ReviewPostDate>10.25</ReviewPostDate>
-      <ReviewPostCommentCnt>댓글 2</ReviewPostCommentCnt>
+    <PostContainer onClick={() => navigate(`/review/${props.id}`)}>
+      <ReviewPostTitle>{props?.title}</ReviewPostTitle>
+      <ReviewPostContent>{props?.content}</ReviewPostContent>
+      <ReviewPostDate>{props?.update_at?.split("/")[0]}</ReviewPostDate>
+      <ReviewPostCommentCnt>댓글 {props?.comments_count}</ReviewPostCommentCnt>
     </PostContainer>
   );
 };
