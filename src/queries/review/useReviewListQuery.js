@@ -12,7 +12,7 @@ const useReviewListQuery = (category) => {
     queryParms =
       "?post__post_tags__tag__content=" + categoryList.join("&post__post_tags__tag__content=");
   }
-  return useQuery(["getReviewList", category], () => reviewAPI.getReviewList(queryParms), {
+  return useQuery(["getReviewList", queryParms], () => reviewAPI.getReviewList(queryParms), {
     onSuccess: (res) => {
       console.log("res", res);
     },
