@@ -15,7 +15,7 @@ const ADRelatedAPI = {
   },
 
   getADDeadLine: (day) => {
-    console.log("here", day);
+    console.log(day);
     return client.get(`advertisement/${day}/`).then((res) => res.data);
   },
 
