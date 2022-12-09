@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
 import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
-import { ADDateTab, ADCarousel, ADCategory, ADCardWrapper, ADArticleModal } from "components/AD";
+import { ADDateCarousel, ADCategory, ADCardWrapper, ADArticleModal } from "components/AD";
 import { Modal } from "@mui/material";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
@@ -26,8 +26,8 @@ const AD = () => {
       </FlexBox>
       <Text>홍보</Text>
       <FlexTextBox fontSize="1.5rem">마감 임박 홍보</FlexTextBox>
-      <ADDateTab />
-      <ADCarousel />
+
+      <ADDateCarousel />
       <FlexBox width="100%">
         <FlexTextBox fontSize="1.5rem">모든 홍보</FlexTextBox>
         <FlexButton textDecoration="underline" fontSize="0.9rem">

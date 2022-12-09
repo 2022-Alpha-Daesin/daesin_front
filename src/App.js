@@ -3,8 +3,8 @@ import { WaveLoading } from "react-loadingg";
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import GlobalStyles from "styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
-import { useRefreshMutation } from "queries/auth";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRefreshMutation, useUserInfoQuery } from "queries/auth";
+import { useRecoilValue } from "recoil";
 import { userInfo } from "states";
 import { getCookie } from "cookies-next";
 
@@ -23,7 +23,7 @@ const MyPage = lazy(() => import("pages/MyPage/MyPage"));
 const App = () => {
   const user = useRecoilValue(userInfo);
   const { mutate: refreshMutate } = useRefreshMutation();
-  console.log("inApp", user);
+  const { data: useData } = useUserInfoQuery();
 
   useEffect(() => {
     console.log(user);

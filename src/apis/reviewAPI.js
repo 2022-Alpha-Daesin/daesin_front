@@ -3,15 +3,15 @@ import { axiosInstance } from "./config";
 const client = axiosInstance;
 
 const reviewAPI = {
-  getReviewList: () => {
+  getReviewList: (query) => {
     return client
-      .get("review/")
+      .get("review/" + query)
       .then((res) => res.data)
       .catch((err) => err);
   },
   getReviewDetail: (id) => {
     return client
-      .get(`review/${id}`)
+      .get(`review/${id}/`)
       .then((res) => res.data)
       .catch((err) => err);
   },

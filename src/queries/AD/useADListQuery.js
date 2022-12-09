@@ -3,6 +3,9 @@ import ADRelatedAPI from "apis/ADRelatedAPI";
 
 const useADListQuery = () => {
   return useQuery(["ad-lists"], () => ADRelatedAPI.getADList(), {
+    onSuccess: (res) => {
+      console.log(res);
+    },
     onError: (res) => {
       console.log(res);
     },

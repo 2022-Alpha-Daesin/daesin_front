@@ -34,8 +34,6 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
-      <div onClick={checkUserFunc}>checkIsUserText</div>
-      <div onClick={getUserFUnc}>getUserInfoText</div>
       <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
       <FoodMenuCarousel />
       <FlexTextBox fontSize="1.25rem">오늘의 실시간 검색어</FlexTextBox>
