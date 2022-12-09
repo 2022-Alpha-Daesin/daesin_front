@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-d
 import GlobalStyles from "styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
 import { useRefreshMutation } from "queries/auth";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { userInfo } from "states";
 import { getCookie } from "cookies-next";
 
@@ -23,6 +23,7 @@ const ClubDetail = lazy(() => import("pages/Club/ClubDetail"));
 const App = () => {
   const user = useRecoilValue(userInfo);
   const { mutate: refreshMutate } = useRefreshMutation();
+  console.log("inApp", user);
 
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
