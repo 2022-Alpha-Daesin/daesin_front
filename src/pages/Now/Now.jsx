@@ -21,6 +21,31 @@ const Now = () => {
 
   console.log("메뉴데이타", menuData, "\n 공지사항데이터", noticeData);
 
+  const noticeSection = () => {
+    let hasMajor = true;
+    const noticeList = Object.keys(noticeData).map((key) => {
+      let major = `제 ${key}전공 ${noticeData[key][0]["major"]}`;
+      if (noticeData[key][0]["major"] === "국민대학교") {
+        major = `국민대학교 전체 공지사항`;
+      }
+      return (
+        <>
+          <FlexTextBox fontSize="1.15rem">{major}</FlexTextBox>
+          {noticeData[key].map((noti) => (
+            <ReviewPostList title={noti.title} content={noti.url} isNotice={true} />
+          ))}
+        </>
+      );
+    });
+
+    return (
+      <>
+        {hasMajor && <FlexTextBox fontSize="1.35rem">학과 공지사항</FlexTextBox>}
+        {noticeList}
+      </>
+    );
+  };
+
   return (
     <FlexBox width="100%" column gap="1.3rem">
       <FlexBox width="100%" margin="1.9rem 0 0 0">
@@ -29,18 +54,7 @@ const Now = () => {
       <Text>NOW</Text>
       <FlexTextBox fontSize="1.35rem">오늘의 메뉴</FlexTextBox>
       <FoodMenuCarousel menus={menuData} />
-      <FlexTextBox fontSize="1.35rem">학과 공지사항</FlexTextBox>
-      <FlexTextBox fontSize="1.15rem">소프트웨어 융합</FlexTextBox>
-      <ReviewPostList
-        title="소프트웨어 융합대학 커리어 위크"
-        content="소융대 학생들을 위한 진로 탐색의 기회를 늘리고자 열린 행사입니다. "
-        date="11.28"
-      />
-      <ReviewPostList
-        title="계절학기 등록 안내"
-        content="계절학기 등록금은 1학점당 9만원이고 12월 7일까지 등록을 완료해주셔야 합니다. 자세한...."
-        date="12.01"
-      />
+      {noticeSection()}
     </FlexBox>
   );
 };

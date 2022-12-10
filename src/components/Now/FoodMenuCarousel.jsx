@@ -25,11 +25,10 @@ const FoodMenuCarousel = ({ menus }) => {
       setData(dataFomat);
     }
   }, [menus]);
-  console.log(data, "시발왜??");
+
   const cntUp = () => {
     cnt >= data.length / 3 ? setCnt(1) : setCnt(cnt + 1);
   };
-  console.log("props", menus);
 
   const handleClick = (id) => {
     setData(
