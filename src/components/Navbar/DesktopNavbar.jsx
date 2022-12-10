@@ -15,7 +15,7 @@ import { userInfo } from "states";
 
 const TabsLib = styled(Tabs)`
   position: fixed;
-  padding: 2.5rem 0 2rem 2rem;
+  padding: 3rem 0 2rem 2rem;
   height: 100vh;
   background: white;
   display: flex;
@@ -30,7 +30,7 @@ const Logo = styled.span`
 `;
 
 const NavLabel = styled.span`
-  margin: 2rem 0 1rem 1rem;
+  margin: 3.5rem 0 1rem 1rem;
   font-size: 1.4rem;
   font-family: "Pr-Bold";
   font-weight: 600;
@@ -110,7 +110,7 @@ const DesktopNavbar = () => {
           fontWeight: 600,
           color: "#282828",
           height: 20,
-          // marginTop: 1,
+          marginTop: 1,
           justifyContent: "flex-start",
         }}
         onClick={clickNow}
@@ -130,7 +130,7 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: "#282828",
-          // marginTop: 1,
+          marginTop: 1,
           justifyContent: "flex-start",
         }}
         onClick={clickReview}
@@ -150,7 +150,7 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: "#282828",
-          // marginTop: 1,
+          marginTop: 1,
           justifyContent: "flex-start",
         }}
         onClick={clickClub}
@@ -170,7 +170,7 @@ const DesktopNavbar = () => {
           fontSize: 20,
           fontWeight: 600,
           color: "#282828",
-          // marginTop: 1,
+          marginTop: 1,
           justifyContent: "flex-start",
         }}
         onClick={clickAD}

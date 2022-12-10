@@ -118,7 +118,7 @@ const ADArticleModal = (props) => {
   //   ADMutate({ email: email, password: password });
   // };
   return (
-    <FlexBox position="relative" width="38%">
+    <FlexBox position="relative" width="35%">
       <ClearOutlinedIcon
         sx={{
           fontSize: 35,
