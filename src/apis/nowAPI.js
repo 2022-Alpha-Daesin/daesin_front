@@ -6,13 +6,13 @@ const nowAPI = {
   getCafeteria: () => {
     return client
       .get("cafeteria/")
-      .then((res) => res)
+      .then((res) => res.data)
       .catch((err) => err);
   },
   getNotice: () => {
     return client
       .get("notice/")
-      .then((res) => res)
+      .then((res) => res.data)
       .catch((err) => err);
   },
 };

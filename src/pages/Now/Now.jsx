@@ -3,8 +3,7 @@ import { FoodMenuCarousel } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import ReviewPostList from "components/Review/ReviewPostList";
-import { useRecoilValue } from "recoil";
-import { userInfo } from "states";
+import { useMenuListQuery, useNoticeListQuery } from "queries/now";
 
 const Text = styled.div`
   margin: 1rem 0;
@@ -17,7 +16,10 @@ const Text = styled.div`
 `;
 
 const Now = () => {
-  const user = useRecoilValue(userInfo);
+  const { data: menuData } = useMenuListQuery();
+  const { data: noticeData } = useNoticeListQuery();
+
+  console.log("메뉴데이타", menuData, "\n 공지사항데이터", noticeData);
 
   return (
     <FlexBox width="100%" column gap="1.3rem">
@@ -25,11 +27,8 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
-      <FlexTextBox fontSize="1.25rem">오늘의 메뉴</FlexTextBox>
-      {/* <div onClick={checkUserFunc}>checkIsUserText</div>
-      <div onClick={getUserFUnc}>getUserInfoText</div> */}
       <FlexTextBox fontSize="1.35rem">오늘의 메뉴</FlexTextBox>
-      <FoodMenuCarousel />
+      <FoodMenuCarousel menus={menuData} />
       <FlexTextBox fontSize="1.35rem">학과 공지사항</FlexTextBox>
       <FlexTextBox fontSize="1.15rem">소프트웨어 융합</FlexTextBox>
       <ReviewPostList

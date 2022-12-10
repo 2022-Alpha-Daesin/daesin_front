@@ -9,7 +9,7 @@ const useNoticeListQuery = (id) => {
       toast.dismiss();
       toast.error("서버와 연결이 끊겼습니다.");
     },
-    staleTime: 600,
+    staleTime: 6000000,
   });
 };
 
