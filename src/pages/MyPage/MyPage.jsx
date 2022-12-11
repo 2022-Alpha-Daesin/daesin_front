@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const MyPage = () => {
   const navigate = useNavigate();
   const [{ data: myPosts }, { data: scrappedPosts }] = useMyPostListQueries();
-  console.log(myPosts, scrappedPosts, "데이터야?");
   const category = {
     R: "review",
     A: "ad",
@@ -27,8 +26,7 @@ const MyPage = () => {
                   <MyArticleCard
                     key={idx}
                     {...post}
-                    onClick={(e) => {
-                      console.log("안먹어?", e);
+                    onClick={() => {
                       navigate(`/${category[post.type]}/${post.related_id}`);
                     }}
                   />

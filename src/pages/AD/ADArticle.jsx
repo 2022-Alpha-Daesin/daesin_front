@@ -21,7 +21,6 @@ const ADArticle = () => {
   const { id } = useParams();
   const { data: ad } = useADQuery(id);
   const date = useDate(ad.postupdated_at);
-
   return (
     <FlexBox width="100%" column>
       <FlexBox margin="1.9rem 0 0 0">
@@ -45,14 +44,14 @@ const ADArticle = () => {
           </FlexBox>
           <FlexTextBox fontSize="2rem">{ad.post.title}</FlexTextBox>
           <FlexBox width="100%" center column gap="2rem">
-            <FlexBox width="86%" column center background="#DCDCDC">
-              <Img src={`${process.env.PUBLIC_URL}/images/ADArticle.png`} />
-            </FlexBox>
+            {/* <FlexBox width="86%" column center background="#DCDCDC"> */}
+            {"post" in ad && ad.post.image_list.map((item) => <Img src={item.image} />)}
+            {/* </FlexBox> */}
             <FlexTextBox width="100%" fontSize="1.1rem">
               {ad.post.content}
             </FlexTextBox>
           </FlexBox>
-          <FlexTextBox color="#679AFF">#동방있음</FlexTextBox>
+          {/* <FlexTextBox color="#679AFF">#동방있음</FlexTextBox> */}
         </FlexBox>
         <Line />
       </FlexBox>
