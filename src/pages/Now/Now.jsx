@@ -19,8 +19,6 @@ const Now = () => {
   const { data: menuData } = useMenuListQuery();
   const { data: noticeData } = useNoticeListQuery();
 
-  console.log("메뉴데이타", menuData, "\n 공지사항데이터", noticeData);
-
   const noticeSection = () => {
     let hasMajor = true;
     const noticeList = Object.keys(noticeData).map((key) => {

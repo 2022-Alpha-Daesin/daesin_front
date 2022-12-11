@@ -3,9 +3,9 @@ import { axiosInstance } from "./config";
 const client = axiosInstance;
 
 const scrapAPI = {
-  postScrap: () => {
+  postScrap: (data) => {
     return client
-      .post("scrap/")
+      .post("scrap/", data)
       .then((res) => res.data)
       .catch((err) => err);
   },

@@ -56,17 +56,18 @@ const FoodMenuCard = (props) => {
           {props.place}
         </FlexTextBox>
         {props.category
-          .map((item) => (
+          .map((item, idx) => (
             <>
               <FlexTextBox
                 color="#C7C7C7"
                 fontSize="0.85rem"
                 textAlign="center"
                 margin="1rem 0 0 0"
+                key={idx}
               >
                 {item.name}
               </FlexTextBox>
-              <FoodText>
+              <FoodText key={idx + "text"}>
                 {item.food.map((data, idx) =>
                   idx === item.food.length - 1 || item.food.length === 1 ? data : data + ",",
                 )}

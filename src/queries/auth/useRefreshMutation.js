@@ -15,7 +15,6 @@ const useRefreshMutation = () => {
     () => userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
     {
       onSuccess: (res) => {
-        console.log("리프레쉬데이터", res);
         setCookie("accessToken", res.data.access);
         queryClient.invalidateQueries("getUserInfo");
       },

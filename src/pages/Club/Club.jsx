@@ -15,7 +15,6 @@ const Text = styled.div`
 
 const Club = () => {
   const { data } = useClubListQuery();
-  console.log("데이터", data);
   return (
     <>
       <FlexBox column margin="2rem 0 0 0" gap="2rem">

@@ -11,7 +11,6 @@ const useUserInfoQuery = () => {
   const isLogged = getCookie("accessToken") ? true : false;
   return useQuery(["getUserInfo"], () => userRelatedAPI.getUserInfo(), {
     onSuccess: (res) => {
-      console.log("ss", res);
       if ("nickname" in res) {
         setUser({
           ...user,

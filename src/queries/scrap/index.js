@@ -1,1 +1,1 @@
-export { default as useMenuListQuery } from "./useMenuListQuery";
+export { default as useScrapMutation } from "./useScrapMutation";

@@ -26,7 +26,6 @@ const App = () => {
   const { data: useData } = useUserInfoQuery();
 
   useEffect(() => {
-    console.log(user);
     const refreshCookie = getCookie("refreshToken");
     const accessToken = getCookie("accessToken");
     if (refreshCookie && !accessToken) {

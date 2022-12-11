@@ -79,7 +79,6 @@ const ADArticleModal = (props) => {
   };
 
   if (isSuccess) {
-    console.log("얜뭐야", ADP);
   }
 
   const handleImageChange = (e) => {

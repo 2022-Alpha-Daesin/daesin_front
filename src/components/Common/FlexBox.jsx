@@ -45,6 +45,7 @@ const FlexBox = (props) => {
     borderBottom,
     color,
     boxShadow,
+    onClick,
   } = props;
 
   const dir = (column ? "column" : "row") + (reverse ? "-reverse" : "");
@@ -71,6 +72,7 @@ const FlexBox = (props) => {
         color: ${color};
         box-shadow: ${boxShadow};
       `}
+      onClick={onClick}
     >
       {children}
     </div>

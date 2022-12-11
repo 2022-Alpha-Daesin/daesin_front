@@ -10,7 +10,7 @@ const Profile = () => {
       <FlexBox column padding="1.4rem" gap="1.25rem">
         <FlexTextBox fontSize="1.8rem">{user.nickName}</FlexTextBox>
         <FlexTextBox fontSize="1.25rem">
-          {user.major[0]} / {user.grade}학년
+          {user.major !== [] && user.major[0]} / {user.grade}학년
         </FlexTextBox>
       </FlexBox>
     </FlexBox>

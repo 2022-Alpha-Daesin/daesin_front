@@ -21,7 +21,6 @@ const ADArticle = () => {
   const { id } = useParams();
   const { data: ad } = useADQuery(id);
   const date = useDate(ad.postupdated_at);
-  console.log(ad);
 
   return (
     <FlexBox width="100%" column>
