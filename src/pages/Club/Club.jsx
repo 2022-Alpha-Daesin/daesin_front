@@ -2,6 +2,7 @@ import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
 import { ClubCardWrapper, ClubCategory } from "components/Club";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
+import { useClubListQuery } from "queries/club";
 
 const Text = styled.div`
   font-size: 1.5rem;
@@ -13,6 +14,8 @@ const Text = styled.div`
 `;
 
 const Club = () => {
+  const { data } = useClubListQuery();
+  console.log("데이터", data);
   return (
     <>
       <FlexBox column margin="2rem 0 0 0" gap="2rem">
@@ -35,9 +38,9 @@ const Club = () => {
             중앙동아리
           </FlexTextBox>
         </FlexBox>
-        <ClubCardWrapper />
+        <ClubCardWrapper clubs={"results" in data ? data.results : []} />
       </FlexBox>
-      <FlexBox column margin="2rem 0 0 0" gap="2rem">
+      {/* <FlexBox column margin="2rem 0 0 0" gap="2rem">
         <FlexBox column gap="2rem">
           <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">
             과 동아리
@@ -45,7 +48,7 @@ const Club = () => {
           <ClubCategory />
         </FlexBox>
         <ClubCardWrapper />
-      </FlexBox>
+      </FlexBox> */}
     </>
   );
 };

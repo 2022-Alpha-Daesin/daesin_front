@@ -27,12 +27,13 @@ const Now = () => {
       let major = `제 ${key}전공 ${noticeData[key][0]["major"]}`;
       if (noticeData[key][0]["major"] === "국민대학교") {
         major = `국민대학교 전체 공지사항`;
+        hasMajor = false;
       }
       return (
         <>
           <FlexTextBox fontSize="1.15rem">{major}</FlexTextBox>
-          {noticeData[key].map((noti) => (
-            <ReviewPostList title={noti.title} content={noti.url} isNotice={true} />
+          {noticeData[key].map((noti, indx) => (
+            <ReviewPostList title={noti.title} key={indx} content={noti.url} isNotice={true} />
           ))}
         </>
       );

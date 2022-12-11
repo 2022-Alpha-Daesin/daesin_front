@@ -31,7 +31,7 @@ const ContentBox = styled.div`
   bottom: 0;
 `;
 
-const ClubCard = () => {
+const ClubCard = ({ club }) => {
   return (
     <CardContainer>
       <Thumbnail src={`${process.env.PUBLIC_URL}/images/sample.png`} />
@@ -40,11 +40,11 @@ const ClubCard = () => {
       />
       <ContentBox>
         <FlexTextBox fontSize="1rem" color="#737373" fontWeight="600" padding="0 0 0.25rem 0.5rem">
-          코딩
+          {club.place}
         </FlexTextBox>
         <FlexBox margin="0.4rem 0 0 0">
           <FlexTextBox fontSize="1.2rem" fontWeight="600" padding="0 0 0 0.5rem" color="white">
-            멋쟁이 사자처럼
+            {club.name}
           </FlexTextBox>
           <FlexTextBox
             fontSize="0.85rem"
@@ -52,7 +52,7 @@ const ClubCard = () => {
             margin="0.25rem 0 0 1.5rem"
             color="white"
           >
-            모집중
+            상시 모집
           </FlexTextBox>
         </FlexBox>
       </ContentBox>

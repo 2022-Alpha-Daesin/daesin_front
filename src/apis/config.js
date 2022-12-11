@@ -17,7 +17,7 @@ const AxiosInterceptor = ({ children }) => {
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
       const accessToken = getCookie("accessToken");
-
+      console.log("accessToken", accessToken);
       if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
       return config;
     });

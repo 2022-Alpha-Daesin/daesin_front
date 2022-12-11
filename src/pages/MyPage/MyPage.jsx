@@ -12,12 +12,12 @@ const MyPage = () => {
           <Profile />
           <FlexBox width="100%" gap="7%">
             <FlexBox width="90%" gap="1.25rem" column>
-              <FlexTextBox fontSize="1.25rem">내가 쓴 글</FlexTextBox>
+              <FlexTextBox fontSize="1.25rem">내가 쓴 리뷰</FlexTextBox>
               <MyArticleCard />
               <MyArticleCard />
             </FlexBox>
             <FlexBox width="90%" gap="1.25rem" column>
-              <FlexTextBox fontSize="1.25rem">내가 쓴 글</FlexTextBox>
+              <FlexTextBox fontSize="1.25rem">내가 쓴 홍보</FlexTextBox>
               <MyArticleCard />
             </FlexBox>
           </FlexBox>

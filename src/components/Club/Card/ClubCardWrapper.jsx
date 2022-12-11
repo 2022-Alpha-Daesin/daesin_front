@@ -1,17 +1,10 @@
 import FlexBox from "components/Common/FlexBox";
 import ClubCard from "components/Club/Card/ClubCard";
 
-const ClubCardWrapper = () => {
+const ClubCardWrapper = ({ clubs }) => {
   return (
     <FlexBox gap="1.5rem" wrap="wrap">
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
-      <ClubCard />
+      {clubs && clubs.map((club) => <ClubCard club={club} />)}
     </FlexBox>
   );
 };

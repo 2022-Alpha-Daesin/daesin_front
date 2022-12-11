@@ -12,6 +12,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "states";
+import { useLogoutMutation } from "queries/auth";
 
 const TabsLib = styled(Tabs)`
   position: fixed;
@@ -48,6 +49,7 @@ const DesktopNavbar = () => {
   const [value, setValue] = React.useState(2);
   const navigate = useNavigate();
   const user = useRecoilValue(userInfo);
+  const { mutate } = useLogoutMutation();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,7 +78,9 @@ const DesktopNavbar = () => {
   const clickMypage = () => {
     navigate("/mypage");
   };
-
+  const logout = () => {
+    mutate();
+  };
   return (
     <TabsLib
       orientation="vertical"
@@ -176,45 +180,48 @@ const DesktopNavbar = () => {
         onClick={clickAD}
       />
       <NavLabel>MY PAGE</NavLabel>
-      <Tab
-        icon={
-          <AccountCircleOutlinedIcon
-            sx={{
-              fontSize: 30,
-              color: "#282828",
-            }}
-          />
-        }
-        iconPosition="start"
-        label="마이페이지"
-        sx={{
-          fontSize: 20,
-          fontWeight: 600,
-          color: "#282828",
-          justifyContent: "flex-start",
-        }}
-        onClick={clickMypage}
-      />
-      <Tab
-        icon={
-          <LoginIcon
-            sx={{
-              fontSize: 30,
-              color: "#282828",
-            }}
-          />
-        }
-        iconPosition="start"
-        label="로그인/회원가입"
-        sx={{
-          fontSize: 20,
-          fontWeight: 600,
-          color: "#282828",
-          justifyContent: "flex-start",
-        }}
-        onClick={clickSignIn}
-      />
-      {user && (
+      {user.isLoggedIn ? (
+        <Tab
+          icon={
+            <AccountCircleOutlinedIcon
+              sx={{
+                fontSize: 30,
+                color: "#282828",
+              }}
+            />
+          }
+          iconPosition="start"
+          label="마이페이지"
+          sx={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: "#282828",
+            justifyContent: "flex-start",
+          }}
+          onClick={clickMypage}
+        />
+      ) : (
+        <Tab
+          icon={
+            <LoginIcon
+              sx={{
+                fontSize: 30,
+                color: "#282828",
+              }}
+            />
+          }
+          iconPosition="start"
+          label="로그인/회원가입"
+          sx={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: "#282828",
+            justifyContent: "flex-start",
+          }}
+          onClick={clickSignIn}
+        />
+      )}
+      {user.isLoggedIn && (
         <Tab
           icon={
             <LogoutIcon
@@ -232,6 +239,7 @@ const DesktopNavbar = () => {
             color: "#282828",
             justifyContent: "flex-start",
           }}
+          onClick={logout}
         />
       )}
     </TabsLib>
