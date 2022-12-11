@@ -29,6 +29,9 @@ const userRelatedAPI = {
   tokenVerfiy: (data) => {
     return client.post("auth/token/verify/", data);
   },
+  logout: (data) => {
+    return client.post("auth/logout/", data);
+  },
 };
 
 export default userRelatedAPI;

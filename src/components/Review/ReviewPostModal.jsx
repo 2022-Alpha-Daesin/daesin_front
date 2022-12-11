@@ -34,7 +34,7 @@ const ReviewPostModal = (props) => {
   const [imageList, setimageList] = useState([]);
   const inputRef = useRef(null);
   const { data: tagData, isSuccess: successTag } = useTagListQuery();
-  const { mutate: reviewMutate} = usePostReviewMutation();
+  const { mutate: reviewMutate } = usePostReviewMutation();
   const [tags, setTags] = useState([]);
   const [selectTags, setSelectTags] = useState([]);
   const handleImageChange = (e) => {
@@ -70,7 +70,6 @@ const ReviewPostModal = (props) => {
     inputRef.current.click();
   };
   const submitReview = () => {
-    console.log("데이타들", imageList, selectTags, title, contents);
     const formData = new FormData();
     imageList.forEach((item) => {
       formData.append("images", item.file);

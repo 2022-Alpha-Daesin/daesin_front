@@ -2,19 +2,19 @@ import { axiosInstance } from "./config";
 
 const client = axiosInstance;
 
-const nowAPI = {
-  getCafeteria: () => {
+const ClubAPI = {
+  getClubs: () => {
     return client
-      .get("cafeteria/")
+      .get("club/")
       .then((res) => res.data)
       .catch((err) => err);
   },
-  getNotice: () => {
+  getClub: (id) => {
     return client
-      .get("notice/")
+      .get(`club/${id}`)
       .then((res) => res.data)
       .catch((err) => err);
   },
 };
 
-export default nowAPI;
+export default ClubAPI;

@@ -25,11 +25,11 @@ const ReviewPostContent = styled.p`
   color: #717171;
 `;
 
-// const ReviewPostDate = styled.span`
-//   font-size: 1rem;
-//   font-weight: 500;
-//   margin-right: 1.5rem;
-// `;
+const ReviewPostDate = styled.span`
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 1.5rem;
+`;
 
 const ReviewPostCommentCnt = styled.span`
   font-size: 1rem;
@@ -38,14 +38,24 @@ const ReviewPostCommentCnt = styled.span`
 
 const ReviewPostList = (props) => {
   const navigate = useNavigate();
-  return (
-    <PostContainer onClick={() => navigate(`/review/${props.id}`)}>
-      <ReviewPostTitle>{props?.title}</ReviewPostTitle>
-      <ReviewPostContent>{props?.content}</ReviewPostContent>
-      {/* <ReviewPostDate>{props?.update_at?.split("/")[0]}</ReviewPostDate> */}
-      <ReviewPostCommentCnt>{props?.date}</ReviewPostCommentCnt>
-    </PostContainer>
-  );
+  if ("isNotice" in props) {
+    return (
+      <PostContainer onClick={() => (window.location.href = props.content)}>
+        <ReviewPostTitle>{props?.title}</ReviewPostTitle>
+        <ReviewPostContent>{props?.content}</ReviewPostContent>
+        {/* <ReviewPostCommentCnt>댓글{props?.comment_count}</ReviewPostCommentCnt> */}
+      </PostContainer>
+    );
+  } else {
+    return (
+      <PostContainer onClick={() => navigate(`/review/${props.id}`)}>
+        <ReviewPostTitle>{props?.title}</ReviewPostTitle>
+        <ReviewPostContent>{props?.content}</ReviewPostContent>
+        <ReviewPostDate>{props?.updated_at?.split("/")[0]}</ReviewPostDate>
+        <ReviewPostCommentCnt>댓글{props?.comments_count}</ReviewPostCommentCnt>
+      </PostContainer>
+    );
+  }
 };
 
 export default ReviewPostList;

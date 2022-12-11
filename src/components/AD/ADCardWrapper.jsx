@@ -23,8 +23,6 @@ const ADCardWrapper = () => {
   const [category, setCategory] = useState(0);
   const { data: ADList } = useADListQuery();
 
-  console.log(ADList);
-
   const handleClick = (id, idd) => {
     setClick(
       isClicked.map((data, idx) => {
@@ -38,35 +36,35 @@ const ADCardWrapper = () => {
         return data;
       }),
     );
-    console.log(isClicked);
+
     setCategory(idd);
   };
 
   const insertCard = () => {
     const newArr = [];
     if (category === 0) {
-      for (let i = 0; i < ADList.results.length; i += 1) {
+      for (let i = 0; i < ADList.length; i += 1) {
         newArr.push(
           <ADCard
-            key={ADList.results[i].id}
-            title={ADList.results[i].title}
-            content={ADList.results[i].content}
-            id={ADList.results[i].id}
+            key={ADList[i].id}
+            title={ADList[i].title}
+            content={ADList[i].content}
+            id={ADList[i].id}
           />,
         );
       }
     } else {
-      for (let i = 0; i < ADList.results.length; i += 1) {
-        if (ADList.results[i].tags.length === 0) {
+      for (let i = 0; i < ADList.length; i += 1) {
+        if (ADList[i].tags.length === 0) {
           continue;
         }
-        if (ADList.results[i].tags[0].tag === category)
+        if (ADList[i].tags[0].tag === category)
           newArr.push(
             <ADCard
-              key={ADList.results[i].id}
-              title={ADList.results[i].title}
-              content={ADList.results[i].content}
-              id={ADList.results[i].id}
+              key={ADList[i].id}
+              title={ADList[i].title}
+              content={ADList[i].content}
+              id={ADList[i].id}
             />,
           );
       }

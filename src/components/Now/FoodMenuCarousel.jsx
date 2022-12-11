@@ -3,10 +3,28 @@ import { FlexBox } from "components/Common";
 import FoodMenuCard from "components/Now/FoodMenuCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import dummyFoodData from "./dummyFoodData";
+import { useEffect } from "react";
 
-const FoodMenuCarousel = () => {
+const FoodMenuCarousel = ({ menus }) => {
   const [cnt, setCnt] = useState(1);
   const [data, setData] = useState(dummyFoodData);
+
+  useEffect(() => {
+    if (menus.length >= 1) {
+      const dataFomat = menus.map((menu, idx) => {
+        idx += 1;
+        let foodNum = (idx % 3) + 1;
+        let foods = { id: idx, place: menu.name, img: `food${foodNum}.png` };
+        foods["category"] = menu.menus.map((item) => {
+          let category = { name: item.division };
+          category["food"] = item.food.split("/");
+          return category;
+        });
+        return foods;
+      });
+      setData(dataFomat);
+    }
+  }, [menus]);
 
   const cntUp = () => {
     cnt >= data.length / 3 ? setCnt(1) : setCnt(cnt + 1);

@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import ADRelatedAPI from "apis/ADRelatedAPI";
+import { toast } from "react-hot-toast";
 
 const useADMutation = () => {
   return useMutation(
@@ -8,7 +9,7 @@ const useADMutation = () => {
     },
     {
       onSuccess: (res) => {
-        console.log(res);
+        toast.success("홍보가 작성되었습니다.");
       },
     },
   );

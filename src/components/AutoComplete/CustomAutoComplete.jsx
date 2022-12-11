@@ -25,14 +25,7 @@ const CustomAutoComplete = ({ tags, setSelectTags, selectTags }) => {
     options: tags ? tags : [],
     getOptionLabel: (option) => option.content,
   });
-  // console.log(
-  //   "getInputProps",
-  //   getInputProps,
-  //   "getTagProps",
-  //   getTagProps,
-  //   "getListboxProps",
-  //   getListboxProps,
-  // );
+
   return (
     <Root>
       <div {...getRootProps()}>
