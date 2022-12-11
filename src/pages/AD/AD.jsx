@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
 import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
-import { ADDateCarousel, ADCategory, ADCardWrapper, ADArticleModal } from "components/AD";
+import { ADDateCarousel, ADCardWrapper, ADArticleModal } from "components/AD";
 import { Modal } from "@mui/material";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
@@ -47,7 +47,6 @@ const AD = () => {
           </Bar>
         </Modal>
       </FlexBox>
-      <ADCategory />
       <ADCardWrapper />
     </FlexBox>
   );
