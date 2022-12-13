@@ -3,7 +3,7 @@ import { FoodMenuCarousel } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import ReviewPostList from "components/Review/ReviewPostList";
-import { useMenuListQuery, useNoticeListQuery } from "queries/now";
+import { useMenuListQuery, useNoticeListQuery } from "queries/Now";
 
 const Text = styled.div`
   margin: 1rem 0;
