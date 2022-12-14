@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 // 대학교 리스트 받는 쿼리
 const useReviewDetailQuery = (id) => {
-  return useQuery(["getReviewDetail"], () => reviewAPI.getReviewDetail(id), {
+  return useQuery(["getReviewDetail"], async () => await reviewAPI.getReviewDetail(id), {
     onError: (res) => {
       console.log("querylist error", res);
       toast.dismiss();

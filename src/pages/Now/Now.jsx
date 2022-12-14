@@ -21,19 +21,23 @@ const Now = () => {
 
   const noticeSection = () => {
     let hasMajor = true;
-    const noticeList = Object.keys(noticeData).map((key) => {
+    if (!noticeData) {
+      return <></>;
+    }
+    const noticeList = Object.keys(noticeData).map((key, idx) => {
       let major = `제 ${key}전공 ${noticeData[key][0]["major"]}`;
       if (noticeData[key][0]["major"] === "국민대학교") {
         major = `국민대학교 전체 공지사항`;
         hasMajor = false;
       }
+
       return (
-        <>
+        <div key={idx}>
           <FlexTextBox fontSize="1.15rem">{major}</FlexTextBox>
           {noticeData[key].map((noti, indx) => (
             <ReviewPostList title={noti.title} key={indx} content={noti.url} isNotice={true} />
           ))}
-        </>
+        </div>
       );
     });
 

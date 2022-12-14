@@ -5,7 +5,9 @@ import toast from "react-hot-toast";
 //리뷰 리스트 받는 쿼리
 const useReviewListQuery = (category) => {
   let queryParms;
-  const categoryList = category.filter((item) => item.isClicked).map((obj) => obj.study);
+  const categoryList = category
+    .filter(async (item) => await item.isClicked)
+    .map((obj) => obj.study);
   if (categoryList[0] === "ALL") {
     queryParms = "";
   } else {

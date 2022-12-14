@@ -12,11 +12,13 @@ const useRefreshMutation = () => {
   const isLogged = getCookie("refreshToken") ? true : false;
   return useMutation(
     ["refreshToken"],
-    () => userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
+    async () => await userRelatedAPI.tokenRefresh({ refresh: refreshToken }),
     {
       onSuccess: (res) => {
-        setCookie("accessToken", res.data.access);
-        queryClient.invalidateQueries("getUserInfo");
+        console.log(res, "시발");
+        setUser({ ...user, isLoggedIn: true, accessToken: res.data.access });
+        // setCookie("accessToken", res.data.access);
+        return queryClient.invalidateQueries("getUserInfo");
       },
       onError: (res) => {
         // refreshToken 만료시 로그아웃

@@ -40,7 +40,6 @@ const ADCard = (props) => {
     <CardContainer
       img={`url(${process.env.PUBLIC_URL}/images/sample.png)`}
       onClick={() => navigate(`/ad/${props.id}`)}
-      d
     >
       <ContentBox>
         <FlexTextBox color="white" fontSize="1.1rem" textAlign="center">

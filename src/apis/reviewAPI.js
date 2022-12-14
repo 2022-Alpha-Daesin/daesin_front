@@ -4,16 +4,10 @@ const client = axiosInstance;
 
 const reviewAPI = {
   getReviewList: (query) => {
-    return client
-      .get("review/" + query)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("review/" + query).then((res) => res.data);
   },
   getReviewDetail: (id) => {
-    return client
-      .get(`review/${id}/`)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get(`review/${id}/`).then((res) => res.data);
   },
   postReview: (data) => {
     return client
@@ -22,8 +16,7 @@ const reviewAPI = {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => res.data)
-      .catch((err) => err);
+      .then((res) => res.data);
   },
   putReview: (id, data) => {
     return client
@@ -32,14 +25,10 @@ const reviewAPI = {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((res) => res.data)
-      .catch((err) => err);
+      .then((res) => res.data);
   },
   deleteReview: (id) => {
-    return client
-      .delete(`review/${id}`)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.delete(`review/${id}`).then((res) => res.data);
   },
 };
 

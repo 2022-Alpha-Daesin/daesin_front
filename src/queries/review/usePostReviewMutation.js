@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 // 대학교 리스트 받는 쿼리
 const usePostReviewMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation((payload) => reviewAPI.postReview(payload), {
+  return useMutation(async (payload) => await reviewAPI.postReview(payload), {
     onSuccess: (res) => {
       console.log("성공", res);
       queryClient.invalidateQueries("getReviewList");

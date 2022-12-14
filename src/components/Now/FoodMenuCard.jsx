@@ -57,7 +57,7 @@ const FoodMenuCard = (props) => {
         </FlexTextBox>
         {props.category
           .map((item, idx) => (
-            <>
+            <div key={idx}>
               <FlexTextBox
                 color="#C7C7C7"
                 fontSize="0.85rem"
@@ -72,7 +72,7 @@ const FoodMenuCard = (props) => {
                   idx === item.food.length - 1 || item.food.length === 1 ? data : data + ",",
                 )}
               </FoodText>
-            </>
+            </div>
           ))
           .splice(1, 5)}
       </ContentBox>

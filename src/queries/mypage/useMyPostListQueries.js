@@ -7,12 +7,12 @@ const useMyPostListQueries = () => {
     queries: [
       {
         queryKey: ["getMyPosts"],
-        queryFn: () => userPostAPI.getMyPosts(),
+        queryFn: async () => await userPostAPI.getMyPosts(),
         staleTime: 60 * 1000,
       },
       {
         queryKey: ["getScrappedPosts"],
-        queryFn: () => userPostAPI.getScrappedPosts(),
+        queryFn: async () => await userPostAPI.getScrappedPosts(),
         staleTime: 60 * 1000,
       },
     ],
