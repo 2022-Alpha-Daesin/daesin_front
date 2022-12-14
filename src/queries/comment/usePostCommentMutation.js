@@ -8,7 +8,6 @@ const usePostCommentMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(async (payload) => await CommentAPI.postComment(payload), {
     onSuccess: (res) => {
-      console.log("?", res);
       queryClient.invalidateQueries("getReviewDetail");
       toast.success("댓글이 작성되었습니다.");
     },

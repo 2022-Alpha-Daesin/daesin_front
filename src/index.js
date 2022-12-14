@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RecoilRoot } from "recoil";
 import { AxiosInterceptor } from "./apis/config";
+import { WaveLoading } from "react-loadingg";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,9 +26,11 @@ root.render(
   <RecoilRoot>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <AxiosInterceptor>
-        <App />
-      </AxiosInterceptor>
+      <React.Suspense fallback={<WaveLoading />}>
+        <AxiosInterceptor>
+          <App />
+        </AxiosInterceptor>
+      </React.Suspense>
     </QueryClientProvider>
   </RecoilRoot>,
 );
