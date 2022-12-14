@@ -18,7 +18,6 @@ const AxiosInterceptor = ({ children }) => {
   const [user, setUser] = useRecoilState(userInfo);
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
-      console.log(user.accessToken, "수;ㅅㅍㄹ", user, user.isLoggedIn);
       if (user.isLoggedIn) config.headers["Authorization"] = `Bearer ${user.accessToken}`;
       return config;
     });
