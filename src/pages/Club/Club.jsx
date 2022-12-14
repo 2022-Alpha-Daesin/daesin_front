@@ -30,21 +30,12 @@ const Club = () => {
             </Text>
           </FlexBox>
 
-          <FlexTextBox fontSize="1.5rem" margin="1.5rem 0">
+          <FlexTextBox fontSize="1.5rem" margin="1rem 0">
             중앙동아리
           </FlexTextBox>
         </FlexBox>
         <ClubCardWrapper clubs={"results" in data ? data.results : []} />
       </FlexBox>
-      {/* <FlexBox column margin="2rem 0 0 0" gap="2rem">
-        <FlexBox column gap="2rem">
-          <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">
-            과 동아리
-          </FlexTextBox>
-          <ClubCategory />
-        </FlexBox>
-        <ClubCardWrapper />
-      </FlexBox> */}
     </>
   );
 };
