@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import userRelatedAPI from "apis/userRelatedAPI";
 import { useRecoilState } from "recoil";
 import { userInfo } from "states/userInfo";
@@ -9,7 +9,8 @@ import { toast } from "react-hot-toast";
 const useUserInfoQuery = () => {
   const [user, setUser] = useRecoilState(userInfo);
   const { mutate: refreshMutate } = useRefreshMutation();
-  const isLogged = user.isLoggedIn;
+  const queryClient = useQueryClient();
+  const isLogged = user.isLoggedIn && user.nickName === "" && user.accessToken !== "";
   return useQuery(["getUserInfo"], async () => await userRelatedAPI.getUserInfo(), {
     onSuccess: (res) => {
       if ("nickname" in res) {
@@ -22,6 +23,7 @@ const useUserInfoQuery = () => {
           major: res?.user_majors.map((item) => item.major.name),
         });
       }
+      return queryClient.invalidateQueries("getNoticeList");
     },
     onError: (err) => {
       if (hasCookie("refreshToken")) {
