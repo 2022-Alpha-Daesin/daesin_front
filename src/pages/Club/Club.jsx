@@ -1,5 +1,5 @@
-import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
-import { ClubCardWrapper, ClubCategory } from "components/Club";
+import { FlexBox, FlexTextBox } from "components/Common";
+import { ClubCardWrapper } from "components/Club";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
 import { useClubListQuery } from "queries/club";
@@ -20,7 +20,7 @@ const Club = () => {
       <FlexBox column margin="2rem 0 0 0" gap="2rem">
         <Searchbar />
         <FlexBox column>
-          <FlexBox>
+          <FlexBox margin="0 0 1.25rem 0">
             <Text
               background="linear-gradient(to right, #FF8F28, #DB00FF)"
               color="transparent"
@@ -28,12 +28,9 @@ const Club = () => {
             >
               동아리
             </Text>
-            <FlexButton textDecoration="underline" padding="0.2rem 1rem">
-              동아리 문의하기
-            </FlexButton>
           </FlexBox>
 
-          <FlexTextBox fontSize="1.8rem" margin="1rem 0 0 0">
+          <FlexTextBox fontSize="1.7rem" margin="1.5rem 0">
             중앙동아리
           </FlexTextBox>
         </FlexBox>

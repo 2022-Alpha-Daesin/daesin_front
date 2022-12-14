@@ -16,7 +16,6 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
   ThemeProvider,
 } from "./styles";
 
@@ -25,8 +24,8 @@ const SignIn = () => {
   const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { mutate: loginMutate, isError: loginError, isSuccess: loginSuccess } = useSignInMutation();
-  const { mutate: verifyMutate, isError: emailError } = useVerifyEmailMutation();
+  const { mutate: loginMutate } = useSignInMutation();
+  const { mutate: verifyMutate } = useVerifyEmailMutation();
 
   useEffect(() => {
     let query = qs.parse(location.search);
