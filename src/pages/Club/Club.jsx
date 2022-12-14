@@ -20,7 +20,7 @@ const Club = () => {
       <FlexBox column margin="2rem 0 0 0" gap="2rem">
         <Searchbar />
         <FlexBox column>
-          <FlexBox margin="0 0 1.25rem 0">
+          <FlexBox margin="0.5rem 0 1.25rem 0">
             <Text
               background="linear-gradient(to right, #FF8F28, #DB00FF)"
               color="transparent"
@@ -30,7 +30,7 @@ const Club = () => {
             </Text>
           </FlexBox>
 
-          <FlexTextBox fontSize="1.7rem" margin="1.5rem 0">
+          <FlexTextBox fontSize="1.5rem" margin="1.5rem 0">
             중앙동아리
           </FlexTextBox>
         </FlexBox>
