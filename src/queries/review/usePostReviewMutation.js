@@ -8,7 +8,6 @@ const usePostReviewMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(async (payload) => await reviewAPI.postReview(payload), {
     onSuccess: (res) => {
-      console.log("성공", res);
       queryClient.invalidateQueries("getReviewList");
       toast.success("리뷰가 작성되었습니다.");
     },
