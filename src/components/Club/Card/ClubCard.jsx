@@ -31,9 +31,9 @@ const ContentBox = styled.div`
   bottom: 0;
 `;
 
-const ClubCard = ({ club }) => {
+const ClubCard = ({ club, onClick }) => {
   return (
-    <CardContainer>
+    <CardContainer onClick={onClick}>
       <Thumbnail src={`${process.env.PUBLIC_URL}/images/sample.png`} />
       <FavoriteBorderOutlinedIcon
         sx={{ fontSize: 24, color: "white", position: "absolute", top: 10, right: 10 }}
