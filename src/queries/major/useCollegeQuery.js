@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 // 대학교 리스트 받는 쿼리
 const useCollegeQuery = () => {
-  return useQuery(["collegeList"], () => majorAPI.getCollegeList(), {
+  return useQuery(["collegeList"], async () => await majorAPI.getCollegeList(), {
     onError: (res) => {
       toast.dismiss();
       toast.error(res.data);

@@ -4,10 +4,7 @@ const client = axiosInstance;
 
 const scrapAPI = {
   postScrap: (data) => {
-    return client
-      .post("scrap/", data)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.post("scrap/", data).then((res) => res.data);
   },
 };
 

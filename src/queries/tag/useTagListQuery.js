@@ -3,7 +3,7 @@ import tagAPI from "apis/tagAPI";
 
 // 대학교 리스트 받는 쿼리
 const useTagListQuery = () => {
-  return useQuery(["tagList"], () => tagAPI.getAllTag(), {
+  return useQuery(["tagList"], async () => await tagAPI.getAllTag(), {
     onError: (res) => {
       console.log("??", res);
     },

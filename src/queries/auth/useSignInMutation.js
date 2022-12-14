@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import userRelatedAPI from "apis/userRelatedAPI";
 import toast from "react-hot-toast";
 import messages from "constants/message";
@@ -10,25 +10,26 @@ import { setCookie, deleteCookie } from "cookies-next";
 const useSignInMutation = () => {
   const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(userInfo);
-
+  const queryClient = useQueryClient();
   return useMutation(
-    (payload) => {
-      return userRelatedAPI.postSignin(payload);
+    async (payload) => {
+      return await userRelatedAPI.postSignin(payload);
     },
     {
       onSuccess: (res) => {
         toast.dismiss();
         toast.success(messages.user.signin.success);
         setCookie("refreshToken", res.refresh_token);
-        setCookie("accessToken", res.access_token);
+        // setCookie("accessToken", res.access_token);
         setUserInfo({
           isLoggedIn: true,
-          // nickName: res.user.nickname,
-          // email: res.user.email,
-          // grade: res.user.grade,
+          nickName: res.user.nickname,
+          email: res.user.email,
+          grade: res.user.grade,
           accessToken: res.access_token,
         });
         navigate("/");
+        queryClient.invalidateQueries("getNoticeList");
       },
       onError: (res) => {
         toast.dismiss();

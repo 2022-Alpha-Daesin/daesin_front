@@ -5,8 +5,8 @@ import toast from "react-hot-toast";
 const useScrapMutation = () => {
   const queryClient = useQueryClient();
   return useMutation(
-    (payload) => {
-      return scrapAPI.postScrap(payload);
+    async (payload) => {
+      return await scrapAPI.postScrap(payload);
     },
     {
       onSuccess: (data) => {

@@ -4,16 +4,10 @@ const client = axiosInstance;
 
 const nowAPI = {
   getCafeteria: () => {
-    return client
-      .get("cafeteria/")
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("cafeteria/").then((res) => res.data);
   },
   getNotice: () => {
-    return client
-      .get("notice/")
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("notice/").then((res) => res.data);
   },
 };
 

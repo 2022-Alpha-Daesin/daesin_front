@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 // 대학교 리스트 받는 쿼리
 const usePostCommentMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation((payload) => CommentAPI.postComment(payload), {
+  return useMutation(async (payload) => await CommentAPI.postComment(payload), {
     onSuccess: (res) => {
       console.log("?", res);
       queryClient.invalidateQueries("getReviewDetail");

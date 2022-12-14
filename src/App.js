@@ -23,15 +23,13 @@ const ClubDetail = lazy(() => import("pages/Club/ClubDetail"));
 const App = () => {
   const user = useRecoilValue(userInfo);
   const { mutate: refreshMutate } = useRefreshMutation();
-  const { data: useData } = useUserInfoQuery();
-
+  const { data } = useUserInfoQuery();
   useEffect(() => {
     const refreshCookie = getCookie("refreshToken");
-    const accessToken = getCookie("accessToken");
-    if (refreshCookie && !accessToken) {
+    if (refreshCookie && !user.isLoggedIn) {
       refreshMutate();
     }
-  }, []);
+  }, [user]);
   return (
     <>
       <Router>

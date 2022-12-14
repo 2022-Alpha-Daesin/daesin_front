@@ -4,16 +4,10 @@ const client = axiosInstance;
 
 const ClubAPI = {
   getClubs: () => {
-    return client
-      .get("club/")
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("club/").then((res) => res.data);
   },
   getClub: (id) => {
-    return client
-      .get(`club/${id}`)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get(`club/${id}`).then((res) => res.data);
   },
 };
 

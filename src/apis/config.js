@@ -1,7 +1,8 @@
 import axios from "axios";
 import { baseUrl } from "../constants/URLS";
 import { useEffect } from "react";
-import { getCookie, deleteCookie } from "cookies-next";
+import { useRecoilState } from "recoil";
+import { userInfo } from "states";
 
 const createInstance = () => {
   const headers = {};
@@ -14,25 +15,14 @@ const createInstance = () => {
 const axiosInstance = createInstance();
 
 const AxiosInterceptor = ({ children }) => {
+  const [user, setUser] = useRecoilState(userInfo);
   useEffect(() => {
     axiosInstance.interceptors.request.use((config) => {
-      const accessToken = getCookie("accessToken");
-      if (accessToken) config.headers["Authorization"] = `Bearer ${accessToken}`;
+      console.log(user.accessToken, "수;ㅅㅍㄹ", user, user.isLoggedIn);
+      if (user.isLoggedIn) config.headers["Authorization"] = `Bearer ${user.accessToken}`;
       return config;
     });
-    axiosInstance.interceptors.response.use(
-      (res) => {
-        return res;
-      },
-      (error) => {
-        if (getCookie("accessToken") && error.response.status == 401) {
-          deleteCookie("accessToken");
-          return error;
-        }
-        return error;
-      },
-    );
-  }, []);
+  }, [user]);
 
   return children;
 };

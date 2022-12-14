@@ -13,6 +13,7 @@ export const queryClient = new QueryClient({
       suspense: true,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
+      useErrorBoundary: false,
     },
   },
 });

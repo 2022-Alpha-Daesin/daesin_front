@@ -4,8 +4,8 @@ import { toast } from "react-hot-toast";
 
 const useADMutation = () => {
   return useMutation(
-    (payload) => {
-      return ADRelatedAPI.postAD(payload);
+    async (payload) => {
+      return await ADRelatedAPI.postAD(payload);
     },
     {
       onSuccess: (res) => {
