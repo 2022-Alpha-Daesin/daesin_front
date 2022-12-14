@@ -1,14 +1,15 @@
 import { useMutation } from "@tanstack/react-query";
 import ADRelatedAPI from "apis/ADRelatedAPI";
+import { toast } from "react-hot-toast";
 
 const useADMutation = () => {
   return useMutation(
-    (payload) => {
-      return ADRelatedAPI.postAD(payload);
+    async (payload) => {
+      return await ADRelatedAPI.postAD(payload);
     },
     {
       onSuccess: (res) => {
-        console.log(res);
+        toast.success("홍보가 작성되었습니다.");
       },
     },
   );

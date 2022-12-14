@@ -32,7 +32,6 @@ const ADCategory = () => {
         return data;
       }),
     );
-    console.log(isClicked);
   };
 
   return (

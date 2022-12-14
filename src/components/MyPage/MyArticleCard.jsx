@@ -1,9 +1,6 @@
 import { FlexBox, FlexTextBox } from "components/Common";
-import useDate from "hooks/useDate";
 
-const MyArticleCard = () => {
-  let date = useDate();
-  date = date.slice(5, -1);
+const MyArticleCard = ({ title, updated_at, comments_count, content, onClick }) => {
   return (
     <FlexBox
       width="100%"
@@ -14,14 +11,15 @@ const MyArticleCard = () => {
       boxShadow="1px 2px 3px 2px #ececec"
       cursor="pointer"
       column
+      onClick={onClick}
     >
-      <FlexTextBox fontSize="1.05rem">아아아아아아ㅏㅏ제목제목</FlexTextBox>
+      <FlexTextBox fontSize="1.05rem">{title}</FlexTextBox>
       <FlexTextBox fontSize="0.95rem" fontWeight={500} color="#717171">
-        아아아아아아ㅏ아아아아아아ㅏ아아아아아아아아아아...
+        {content}
       </FlexTextBox>
       <FlexBox gap="1rem">
-        <FlexTextBox>{date}</FlexTextBox>
-        <FlexTextBox>댓글 2</FlexTextBox>
+        <FlexTextBox>{updated_at && updated_at.split("/")[0]}</FlexTextBox>
+        <FlexTextBox>댓글 {comments_count}</FlexTextBox>
       </FlexBox>
     </FlexBox>
   );

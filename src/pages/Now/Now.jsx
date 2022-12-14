@@ -1,11 +1,9 @@
 import { FlexBox, FlexTextBox } from "components/Common";
-import { FoodMenuCarousel, HotKeyword, DepartNotice } from "components/Now";
-import ReviewPostList from "components/Review/ReviewPostList";
+import { FoodMenuCarousel } from "components/Now";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
-import UserRelatedAPI from "apis/userRelatedAPI";
-import { useRecoilValue } from "recoil";
-import { userInfo } from "states";
+import ReviewPostList from "components/Review/ReviewPostList";
+import { useMenuListQuery, useNoticeListQuery } from "queries/Now";
 
 const Text = styled.div`
   margin: 1rem 0;
@@ -18,15 +16,37 @@ const Text = styled.div`
 `;
 
 const Now = () => {
-  const user = useRecoilValue(userInfo);
-  const checkUserFunc = () => {
-    console.log(user, "userInfoOnClick rootDIr");
-  };
+  const { data: menuData } = useMenuListQuery();
+  const { data: noticeData } = useNoticeListQuery();
 
-  const getUserFUnc = () => {
-    UserRelatedAPI.getUserInfo().then((res) => {
-      console.log(res, "userD");
+  const noticeSection = () => {
+    let hasMajor = true;
+    if (!noticeData) {
+      return <></>;
+    }
+    const noticeList = Object.keys(noticeData).map((key, idx) => {
+      let major = `제 ${key}전공 ${noticeData[key][0]["major"]}`;
+      if (noticeData[key][0]["major"] === "국민대학교") {
+        major = `국민대학교 전체 공지사항`;
+        hasMajor = false;
+      }
+
+      return (
+        <div key={idx}>
+          <FlexTextBox fontSize="1.15rem">{major}</FlexTextBox>
+          {noticeData[key].map((noti, indx) => (
+            <ReviewPostList title={noti.title} key={indx} content={noti.url} isNotice={true} />
+          ))}
+        </div>
+      );
     });
+
+    return (
+      <>
+        {hasMajor && <FlexTextBox fontSize="1.35rem">학과 공지사항</FlexTextBox>}
+        {noticeList}
+      </>
+    );
   };
 
   return (
@@ -35,24 +55,9 @@ const Now = () => {
         <Searchbar />
       </FlexBox>
       <Text>NOW</Text>
-      <FlexTextBox fontSize="1.3rem">오늘의 메뉴</FlexTextBox>
-      <FoodMenuCarousel />
-      <FlexTextBox fontSize="1.3rem">오늘의 실시간 검색어</FlexTextBox>
-      <HotKeyword />
-      <FlexTextBox fontSize="1.3rem" margin="0.5rem 0 0 0">
-        학과 공지사항
-      </FlexTextBox>
-      <FlexTextBox fontSize="1.1rem">소프트웨어 융합</FlexTextBox>
-      <DepartNotice
-        title="소융대학 전체 공지~~~~~~"
-        content="이번에 면접까지 보게 되었는데 꿀팁(?) 같은게 있을까요? 정말정말 급해서 여쭤봅니..."
-        date="10.25"
-      />
-      <DepartNotice
-        title="소융대학 전체 공지~~~~~~"
-        content="이번에 면접까지 보게 되었는데 꿀팁(?) 같은게 있을까요? 정말정말 급해서 여쭤봅니..."
-        date="10.25"
-      />
+      <FlexTextBox fontSize="1.35rem">오늘의 메뉴</FlexTextBox>
+      <FoodMenuCarousel menus={menuData} />
+      {noticeSection()}
     </FlexBox>
   );
 };

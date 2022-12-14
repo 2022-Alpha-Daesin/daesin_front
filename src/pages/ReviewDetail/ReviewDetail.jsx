@@ -2,12 +2,15 @@ import FlexBox from "components/Common/FlexBox";
 import FlexTextBox from "components/Common/FlexTextBox";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 import AddComment from "components/ReviewDetail/AddComment";
 import CommentList from "components/ReviewDetail/CommentList";
 import CommentReply from "components/ReviewDetail/CommentReply";
 import { useParams } from "react-router-dom";
 import { useReviewDetailQuery } from "queries/review";
+import { useScrapMutation } from "queries/scrap";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Line = styled.div`
   width: 0.12rem;
@@ -18,7 +21,18 @@ const Line = styled.div`
 const ReviewDetail = () => {
   const params = useParams();
   const { data: review } = useReviewDetailQuery(params.id);
-  console.log("review", review);
+  const { mutate } = useScrapMutation();
+  const [isScrap, setIsScrap] = useState(false);
+
+  useEffect(() => {
+    if ("post" in review) {
+      setIsScrap(review.post.is_scraped);
+    }
+  }, [review]);
+  const clickScrap = () => {
+    setIsScrap(!isScrap);
+    mutate({ post: review.post.id });
+  };
   return (
     <FlexBox width="100%" column>
       <Searchbar />
@@ -36,13 +50,13 @@ const ReviewDetail = () => {
               </FlexTextBox>
             </FlexBox>
             <FlexBox margin="1rem 0 0 0" position="absolute" right="0" width="5rem">
-              <Icon
-                disabled={"post" in review && !review.post.is_scraped}
-                name="bookmark outline"
-                size="large"
-                link
-              />
-              <Icon disabled name="paperclip" size="large" link />
+              <Button icon onClick={clickScrap}>
+                {isScrap ? (
+                  <Icon name="bookmark" size="large" link />
+                ) : (
+                  <Icon name="bookmark outline" size="large" link />
+                )}
+              </Button>
             </FlexBox>
           </FlexBox>
           <FlexTextBox fontSize="2rem">{"post" in review && review.post?.title}</FlexTextBox>
@@ -61,7 +75,6 @@ const ReviewDetail = () => {
                 return;
               }
               const children = alList.filter((item) => item.parent === comment.id);
-              console.log("혹쉬?", children);
               if (children === []) {
                 return <CommentList postId={params.id} key={comment.id} {...comment} />;
               } else {

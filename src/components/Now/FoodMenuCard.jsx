@@ -55,39 +55,26 @@ const FoodMenuCard = (props) => {
         <FlexTextBox color="white" fontSize="1.35rem" margin="1.5rem 0 0 0">
           {props.place}
         </FlexTextBox>
-        <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="1rem 0 0 0">
-          {props.category[0].name}
-        </FlexTextBox>
-        <FoodText>
-          {props.category[0].food.map((data, idx) =>
-            idx && props.category[3].food.length - 1 ? data : data + ", ",
-          )}
-        </FoodText>
-
-        <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
-          {props.category[1].name}
-        </FlexTextBox>
-        <FoodText>
-          {props.category[1].food.map((data, idx) =>
-            idx && props.category[3].food.length - 1 ? data : data + ", ",
-          )}
-        </FoodText>
-        <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
-          {props.category[2].name}
-        </FlexTextBox>
-        <FoodText>
-          {props.category[2].food.map((data, idx) =>
-            idx && props.category[3].food.length - 1 ? data : data + ", ",
-          )}
-        </FoodText>
-        <FlexTextBox color="#C7C7C7" fontSize="0.85rem" textAlign="center" margin="0.6rem 0 0 0">
-          {props.category[3].name}
-        </FlexTextBox>
-        <FoodText>
-          {props.category[3].food.map((data, idx) =>
-            idx && props.category[3].food.length - 1 ? data : data + ", ",
-          )}
-        </FoodText>
+        {props.category
+          .map((item, idx) => (
+            <div key={idx}>
+              <FlexTextBox
+                color="#C7C7C7"
+                fontSize="0.85rem"
+                textAlign="center"
+                margin="1rem 0 0 0"
+                key={idx}
+              >
+                {item.name}
+              </FlexTextBox>
+              <FoodText key={idx + "text"}>
+                {item.food.map((data, idx) =>
+                  idx === item.food.length - 1 || item.food.length === 1 ? data : data + ",",
+                )}
+              </FoodText>
+            </div>
+          ))
+          .splice(1, 5)}
       </ContentBox>
     </CardContainer>
   );

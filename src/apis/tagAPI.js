@@ -4,10 +4,7 @@ const client = axiosInstance;
 
 const tagAPI = {
   getAllTag: () => {
-    return client
-      .get("tag/")
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("tag/").then((res) => res.data);
   },
 };
 

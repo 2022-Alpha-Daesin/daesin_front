@@ -31,10 +31,6 @@ const ADDateCarousel = () => {
   const [dayy, setDay] = useState("");
   const [deadline, setDeadline] = useState("deadline_" + dayy);
   const { data: ad } = useADDeadLineQuery(deadline);
-
-  console.log("!", ad);
-  console.log(deadline);
-
   const handleClickDate = (id) => {
     setClick(
       isClicked.map((data, idx) => {
@@ -48,13 +44,14 @@ const ADDateCarousel = () => {
         return data;
       }),
     );
-    setDay(id);
-    setDeadline("deadline_" + id);
+    let cid = id > 3 ? 3 : id;
+    setDay(cid);
+    setDeadline("deadline_" + cid);
   };
 
   const insertDateBtn = () => {
     const newArr = [];
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       newArr.push(
         <Btn
           key={i}
@@ -84,8 +81,8 @@ const ADDateCarousel = () => {
         <Line />
       </FlexBox>
       <FlexBox wrap="wrap" gap="0.75rem" margin="1rem 0 2rem 0">
-        {"results" in ad &&
-          ad.results.map((data, idx) => (
+        {ad &&
+          ad.map((data, idx) => (
             <ADCard
               key={idx}
               title={data.post.title}

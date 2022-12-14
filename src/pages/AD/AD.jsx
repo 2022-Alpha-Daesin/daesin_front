@@ -1,6 +1,6 @@
 import { useState, forwardRef } from "react";
 import { FlexBox, FlexTextBox, FlexButton } from "components/Common";
-import { ADDateCarousel, ADCategory, ADCardWrapper, ADArticleModal } from "components/AD";
+import { ADDateCarousel, ADCardWrapper, ADArticleModal } from "components/AD";
 import { Modal } from "@mui/material";
 import Searchbar from "components/Navbar/Searchbar";
 import styled from "styled-components";
@@ -17,6 +17,7 @@ const Text = styled.div`
 
 const AD = () => {
   const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
@@ -30,7 +31,7 @@ const AD = () => {
       <ADDateCarousel />
       <FlexBox width="100%">
         <FlexTextBox fontSize="1.5rem">모든 홍보</FlexTextBox>
-        <FlexButton textDecoration="underline" fontSize="0.9rem">
+        <FlexButton textDecoration="underline" fontSize="0.9rem" onClick={handleOpen}>
           홍보 올리기
         </FlexButton>
         <Modal
@@ -46,7 +47,6 @@ const AD = () => {
           </Bar>
         </Modal>
       </FlexBox>
-      <ADCategory />
       <ADCardWrapper />
     </FlexBox>
   );

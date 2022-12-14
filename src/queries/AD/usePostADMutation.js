@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 const usePostADMutation = () => {
   const navigate = useNavigate();
   return useMutation(
-    (payload) => {
-      return ADRelatedAPI.postAD(payload);
+    async (payload) => {
+      return await ADRelatedAPI.postAD(payload);
     },
     {
       onSuccess: (res) => {

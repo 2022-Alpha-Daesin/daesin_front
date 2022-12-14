@@ -8,10 +8,7 @@ const userRelatedAPI = {
   },
 
   postSignin: (data) => {
-    return client
-      .post("auth/login/", data)
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.post("auth/login/", data).then((res) => res.data);
   },
 
   verifyEmail: (data) => {
@@ -21,13 +18,13 @@ const userRelatedAPI = {
     return client.post("auth/token/refresh/", data);
   },
   getUserInfo: () => {
-    return client
-      .get("auth/user/")
-      .then((res) => res.data)
-      .catch((err) => err);
+    return client.get("auth/user/").then((res) => res.data);
   },
   tokenVerfiy: (data) => {
     return client.post("auth/token/verify/", data);
+  },
+  logout: (data) => {
+    return client.post("auth/logout/", data);
   },
 };
 

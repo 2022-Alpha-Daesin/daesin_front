@@ -22,7 +22,7 @@ const Review = () => {
   const handleModalClose = () => setModalOpen(false);
   const [category, setCategory] = useState(dummyData);
   const { data: reviewList } = useReviewListQuery(category);
-  console.log(reviewList);
+
   return (
     <FlexContainer width="100%">
       <FlexBox width="100%" alignItems="flex-start" column margin="2rem 0 0 0" gap="2rem">

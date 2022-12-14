@@ -1,4 +1,4 @@
-import { FlexBox, FlexTextBox } from "components/Common/FlexBox";
+import { FlexBox, FlexTextBox } from "components/Common";
 import { ClubDetailCardWrapper } from "components/Club";
 import Searchbar from "components/Navbar/Searchbar";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
@@ -6,7 +6,7 @@ import COLOR from "constants/color";
 
 const ClubDetail = () => {
   return (
-    <FlexBox column margin="2rem 0 0 0" gap="1.5rem">
+    <FlexBox column margin="2rem 0 0 0" gap="2.2rem">
       <Searchbar />
       <FlexBox column gap="1rem">
         <FlexBox>

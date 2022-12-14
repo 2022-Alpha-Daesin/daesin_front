@@ -9,8 +9,8 @@ const useSignUpMutation = () => {
   const navigate = useNavigate();
 
   return useMutation(
-    (payload) => {
-      return userRelatedAPI.postSignup(payload);
+    async (payload) => {
+      return await userRelatedAPI.postSignup(payload);
     },
     {
       onSuccess: () => {

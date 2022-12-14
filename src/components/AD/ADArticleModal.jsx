@@ -79,7 +79,6 @@ const ADArticleModal = (props) => {
   };
 
   if (isSuccess) {
-    console.log("얜뭐야", ADP);
   }
 
   const handleImageChange = (e) => {
@@ -99,7 +98,6 @@ const ADArticleModal = (props) => {
     });
     formData.append("post.title", title);
     formData.append("post.content", content);
-
     formData.append("start_date", covertDateFormat(startDate));
     formData.append("end_date", covertDateFormat(endDate));
     ADMutate(formData);
@@ -118,7 +116,7 @@ const ADArticleModal = (props) => {
   //   ADMutate({ email: email, password: password });
   // };
   return (
-    <FlexBox position="relative" width="38%">
+    <FlexBox position="relative" width="35%">
       <ClearOutlinedIcon
         sx={{
           fontSize: 35,
