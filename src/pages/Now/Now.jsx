@@ -35,7 +35,9 @@ const Now = () => {
         <div key={idx}>
           <FlexTextBox fontSize="1.15rem">{major}</FlexTextBox>
           {noticeData[key].map((noti, indx) => (
-            <ReviewPostList title={noti.title} key={indx} content={noti.url} isNotice={true} />
+            <FlexBox margin="1rem 0">
+              <ReviewPostList title={noti.title} key={indx} content={noti.url} isNotice={true} />
+            </FlexBox>
           ))}
         </div>
       );

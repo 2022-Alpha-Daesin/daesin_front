@@ -2,8 +2,9 @@ import useInput from "hooks/useInput";
 import { useSignInMutation, useVerifyEmailMutation } from "queries/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import qs from "query-string";
+import { FlexBox } from "components/Common";
 import {
   SignInLink,
   SignInText,
@@ -15,7 +16,6 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
   ThemeProvider,
 } from "./styles";
 
@@ -24,8 +24,8 @@ const SignIn = () => {
   const [password, handlePassword] = useInput("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { mutate: loginMutate, isError: loginError, isSuccess: loginSuccess } = useSignInMutation();
-  const { mutate: verifyMutate, isError: emailError } = useVerifyEmailMutation();
+  const { mutate: loginMutate } = useSignInMutation();
+  const { mutate: verifyMutate } = useVerifyEmailMutation();
 
   useEffect(() => {
     let query = qs.parse(location.search);
@@ -52,7 +52,7 @@ const SignIn = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <FlexBox margin="15% 0" width="45%">
         <CssBaseline />
         <Box
           sx={{
@@ -115,7 +115,7 @@ const SignIn = () => {
             </Grid>
           </Box>
         </Box>
-      </Container>
+      </FlexBox>
     </ThemeProvider>
   );
 };

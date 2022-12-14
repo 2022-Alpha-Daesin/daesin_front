@@ -5,7 +5,7 @@ import { Toaster } from "react-hot-toast";
 import { useRefreshMutation, useUserInfoQuery } from "queries/auth";
 import { useRecoilValue } from "recoil";
 import { userInfo } from "states";
-import { getCookie } from "cookies-next";
+import { hasCookie } from "cookies-next";
 
 const ResponsiveLayout = lazy(() => import("layouts/responsive.layout"));
 const Now = lazy(() => import("pages/Now/Now"));
@@ -25,8 +25,7 @@ const App = () => {
   const { mutate: refreshMutate } = useRefreshMutation();
   const { data, isLoading } = useUserInfoQuery();
   useEffect(() => {
-    const refreshCookie = getCookie("refreshToken");
-    if (refreshCookie && !user.isLoggedIn) {
+    if (hasCookie("refreshToken") && !user.isLoggedIn && user.nickName === "") {
       refreshMutate();
     }
   }, [user]);

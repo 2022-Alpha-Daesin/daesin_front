@@ -33,6 +33,18 @@ const ContentBox = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
+const ContentText = styled.div`
+  font-size: 0.9rem;
+  text-align: center;
+  color: rgba(255, 255, 255);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+`;
+
 const ADCard = (props) => {
   const navigate = useNavigate();
 
@@ -45,9 +57,9 @@ const ADCard = (props) => {
         <FlexTextBox color="white" fontSize="1.1rem" textAlign="center">
           {props.title}
         </FlexTextBox>
-        <FlexTextBox color="white" fontSize="0.9rem" textAlign="center">
+        <ContentText color="white" fontSize="0.9rem" textAlign="center">
           {props.content}
-        </FlexTextBox>
+        </ContentText>
       </ContentBox>
     </CardContainer>
   );
