@@ -68,7 +68,10 @@ const ReviewDetail = () => {
               {"post" in review && review.post?.content}
             </FlexTextBox>
           </FlexBox>
-          <AddComment count={"post" in review && review.post?.comments_count} postId={params.id} />
+          <AddComment
+            count={"post" in review && review.post?.comments_count}
+            postId={review.post.id}
+          />
           {"post" in review &&
             review.post?.comments.map((comment, ind, alList) => {
               if (comment.parent) {
@@ -80,9 +83,9 @@ const ReviewDetail = () => {
               } else {
                 return (
                   <>
-                    <CommentList postId={params.id} key={comment.id} {...comment} />
+                    <CommentList postId={review.post.id} key={comment.id} {...comment} />
                     {children.map((child) => (
-                      <CommentReply postId={params.id} key={child.id} {...child} />
+                      <CommentReply postId={review.post.id} key={child.id} {...child} />
                     ))}
                   </>
                 );
