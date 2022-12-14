@@ -27,18 +27,18 @@ const ContentBox = styled.div`
   align-items: center;
   width: 20rem;
   height: 27rem;
-  padding: 2rem 1.8rem 1rem 1.8rem;
+  padding: 1.8rem 1.8rem 1rem 1.8rem;
   border-radius: 1.25rem;
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const FoodText = styled.div`
   color: white;
-  font-size: 1rem;
+  font-size: 0.92rem;
   font-weight: 800;
-  line-height: 130%;
+  line-height: 120%;
   text-align: center;
-  margin: 0.2rem 0 0 0;
+  margin: 0.1rem 0 0 0;
   text-overflow: ellipsis;
   overflow: hidden;
   word-break: break-word;
@@ -52,7 +52,7 @@ const FoodMenuCard = (props) => {
     <CardContainer img={`url(${process.env.PUBLIC_URL}/images/${props.img})`}>
       <ContentBox>
         <RestaurantOutlinedIcon sx={{ color: "white", fontSize: 33 }} />
-        <FlexTextBox color="white" fontSize="1.35rem" margin="1.5rem 0 0 0">
+        <FlexTextBox color="white" fontSize="1.35rem" margin="1rem 0 0 0">
           {props.place}
         </FlexTextBox>
         {props.category
@@ -62,7 +62,7 @@ const FoodMenuCard = (props) => {
                 color="#C7C7C7"
                 fontSize="0.85rem"
                 textAlign="center"
-                margin="1rem 0 0 0"
+                margin="0.8rem 0 0 0"
                 key={idx}
               >
                 {item.name}

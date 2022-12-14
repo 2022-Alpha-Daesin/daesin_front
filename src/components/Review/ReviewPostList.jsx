@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const PostContainer = styled.div`
   width: 70%;
-  height: 6.5rem;
   padding: 0.5rem 1.5rem 0.5rem 1.5rem;
   background-color: #fff;
   cursor: pointer;
@@ -23,6 +22,12 @@ const ReviewPostContent = styled.p`
   font-weight: 300;
   letter-spacing: 0.1rem;
   color: #717171;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 const ReviewPostDate = styled.span`
